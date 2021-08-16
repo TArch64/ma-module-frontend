@@ -1,0 +1,11 @@
+.mat-card-header-text,
+.mat-card-actions {
+    margin: 0 !important;
+}
+
+.mat-card-header-text,
+.mat-card-content,
+.mat-card-actions.mat-card-actions {
+    padding-left: var(--offset-xs);
+    padding-right: var(--offset-xs);
+}
