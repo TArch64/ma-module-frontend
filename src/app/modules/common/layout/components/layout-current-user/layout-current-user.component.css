@@ -6,6 +6,7 @@
     padding: var(--offset-xs) 0;
     padding-left: var(--offset-xs);
     background-color: rgba(255, 255, 255, 0.1);
+    --base-height: 64px;
 }
 
 .layout-current-user__row {
@@ -14,7 +15,7 @@
 }
 
 .layout-current-user__avatar-container {
-    width: calc(64px - var(--offset-xs) - var(--offset-xs));
+    width: calc(var(--base-height) - var(--offset-xs) - var(--offset-xs));
 }
 
 .layout-current-user__avatar {
@@ -34,4 +35,14 @@
 
 .layout-current-user__role {
     color: rgba(255, 255, 255, 0.6);
+}
+
+@media (max-width: 599px) {
+    .layout-current-user {
+        --base-height: 56px;
+        width: auto;
+        min-width: 0;
+        padding: var(--offset-xs)
+    }
+    .layout-current-user__info { display: none }
 }

@@ -3,3 +3,9 @@
     max-width: 300px;
     min-height: 0;
 }
+
+@media (max-width: 599px) {
+    .layout-current-user__menu.layout-current-user__menu {
+        width: auto;
+    }
+}
