@@ -5,8 +5,7 @@ import {IUserJSON} from "../entities";
 import {ApiPathService} from "@common/core";
 
 export interface ISignInResponse {
-    token: string,
-    user: IUserJSON,
+    token: string;
 }
 
 @Injectable({ providedIn: 'root' })

@@ -1,15 +1,15 @@
 import {Inject, Injectable} from "@angular/core";
 import {IUserJSON, User} from "../entities";
-import {BehaviorSubject, Observable} from "rxjs";
+import {BehaviorSubject, Observable, of} from "rxjs";
 import {StorageService} from "@common/core";
 import {CommonAuthSyncService} from "../sync";
-import {mapTo, tap} from "rxjs/operators";
+import {switchMap, tap} from "rxjs/operators";
 
 @Injectable({ providedIn: 'root' })
 export class CommonAuthService {
-    private static readonly USER_CACHE_KEY = 'cu';
     private static readonly TOKEN_KEY = 'ct';
-    private readonly currentUserSubject = new BehaviorSubject(this.fetchInitialCurrentUser());
+    public authToken: string | null = this.fetchSavedToken();
+    private readonly currentUserSubject = new BehaviorSubject<null | User>(null);
 
     constructor(
         @Inject(StorageService.LOCAL_STORAGE)
@@ -17,12 +17,7 @@ export class CommonAuthService {
         private readonly syncService: CommonAuthSyncService
     ) {}
 
-    private fetchInitialCurrentUser(): User | null {
-        const userJSON = this.localStorage.getItem<IUserJSON>(CommonAuthService.USER_CACHE_KEY);
-        return userJSON ? User.fromJSON(userJSON) : null;
-    }
-
-    get authToken(): string | null {
+    private fetchSavedToken(): string | null {
         return this.localStorage.getItem(CommonAuthService.TOKEN_KEY);
     }
 
@@ -31,36 +26,38 @@ export class CommonAuthService {
     }
 
     get isSignedIn(): boolean {
-        return !!this.currentUser;
+        return !!this.authToken;
     }
 
-    public signIn(username: string, password: string): Observable<null> {
+    public signIn(username: string, password: string): Observable<User> {
         return this.syncService.signIn(username, password).pipe(
-            tap(({ token, user }) => this.saveSignedInInfo(token, user)),
-            mapTo(null)
+            tap(({ token }) => this.saveAuthToken(token)),
+            switchMap(() => this.actualizeUser())
         );
     }
 
-    private saveSignedInInfo(token: string, userJSON: IUserJSON): void {
+    private saveAuthToken(token: string): void {
+        this.authToken = token;
         this.localStorage.setItem(CommonAuthService.TOKEN_KEY, token);
-        this.saveCurrentUser(userJSON);
-    }
-
-    private saveCurrentUser(userJSON: IUserJSON): void {
-        this.localStorage.setItem(CommonAuthService.USER_CACHE_KEY, userJSON);
-        this.currentUserSubject.next(User.fromJSON(userJSON))
     }
 
     public signOut() {
         this.localStorage.removeItem(CommonAuthService.TOKEN_KEY);
-        this.localStorage.removeItem(CommonAuthService.USER_CACHE_KEY);
         this.currentUserSubject.next(null);
     }
 
-    public actualizeUser(): Observable<null> {
+    public actualizeUser(): Observable<User> {
         return this.syncService.loadCurrentUser().pipe(
-            tap(json => this.saveCurrentUser(json)),
-            mapTo(null)
+            tap(json => this.saveCurrentUser(json))
         )
+    }
+
+    private saveCurrentUser(userJSON: IUserJSON): void {
+        this.currentUserSubject.next(User.fromJSON(userJSON))
+    }
+
+    public fetchCurrentUser(): Observable<User> {
+        if (this.currentUser) return of(this.currentUser);
+        return this.actualizeUser();
     }
 }

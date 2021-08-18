@@ -3,9 +3,16 @@ import {BrowserModule} from '@angular/platform-browser';
 import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {RouterModule, Routes} from "@angular/router";
-import {CommonAuthModule, AuthOnlyGuard, InauthOnlyGuard, ActualizeCurrentUserResolver, AuthInterceptor} from "@common/auth";
+import {
+    CommonAuthModule,
+    AuthOnlyGuard,
+    InauthOnlyGuard,
+    AuthInterceptor,
+    RoleAccessGuard
+} from "@common/auth";
 import {CommonCoreModule} from "@common/core";
 import {HTTP_INTERCEPTORS} from "@angular/common/http";
+import {UserRoles} from "@common/auth/enums";
 
 const routes: Routes = [
     {
@@ -16,8 +23,26 @@ const routes: Routes = [
     {
         path: '',
         canActivate: [AuthOnlyGuard],
-        resolve: { currentUser: ActualizeCurrentUserResolver },
-        loadChildren: () => import('./modules/dashboard').then(m => m.DashboardModule)
+        children: [
+            {
+                path: 'admin',
+                canActivate: [RoleAccessGuard],
+                data: { requireRole: UserRoles.ADMIN },
+                loadChildren: () => import('./modules/admin').then(m => m.AdminModule)
+            },
+            {
+                path: 'mentor',
+                canActivate: [RoleAccessGuard],
+                data: { requireRole: UserRoles.MENTOR },
+                loadChildren: () => import('./modules/mentor').then(m => m.MentorModule)
+            },
+            {
+                path: '',
+                canActivate: [RoleAccessGuard],
+                data: { requireRole: UserRoles.STUDENT },
+                loadChildren: () => import('./modules/student').then(m => m.StudentModule)
+            }
+        ]
     }
 ];
 
@@ -41,5 +66,4 @@ const routes: Routes = [
     ],
     bootstrap: [AppComponent]
 })
-export class AppModule {
-}
+export class AppModule {}
