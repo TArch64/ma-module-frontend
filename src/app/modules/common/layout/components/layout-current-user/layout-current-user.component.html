@@ -1,0 +1,35 @@
+<a
+    mat-button
+    class="layout-current-user"
+    role="button"
+    [tabIndex]="1"
+    [matMenuTriggerFor]="userMenu"
+    *ngIf="(user$ | async)! as user"
+>
+    <div class="layout-current-user__row">
+        <app-square class="layout-current-user__avatar-container">
+            <img
+                class="layout-current-user__avatar"
+                [src]="user.avatarUrl"
+                [alt]="user.username"
+            />
+        </app-square>
+
+        <div class="layout-current-user__info">
+            <p class="mat-body-1 layout-current-user__username">
+                {{ user.username }}
+            </p>
+
+            <p class="mat-caption layout-current-user__role">
+                {{ user.role | roleTitle }}
+            </p>
+        </div>
+    </div>
+</a>
+
+<mat-menu #userMenu xPosition="after" class="layout-current-user__menu">
+    <button mat-button class="block--full-width text--left" type="button" (click)="signOut()">
+        <mat-icon>logout</mat-icon>
+        Sign Out
+    </button>
+</mat-menu>

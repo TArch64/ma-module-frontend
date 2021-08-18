@@ -3,7 +3,7 @@ import {IUserJSON, User} from "../entities";
 import {BehaviorSubject, Observable, of} from "rxjs";
 import {StorageService} from "@common/core";
 import {CommonAuthSyncService} from "../sync";
-import {switchMap, tap} from "rxjs/operators";
+import {map, switchMap, tap} from "rxjs/operators";
 
 @Injectable({ providedIn: 'root' })
 export class CommonAuthService {
@@ -25,6 +25,10 @@ export class CommonAuthService {
         return this.currentUserSubject.value;
     }
 
+    get currentUser$(): Observable<User | null> {
+        return this.currentUserSubject.asObservable();
+    }
+
     get isSignedIn(): boolean {
         return !!this.authToken;
     }
@@ -43,17 +47,18 @@ export class CommonAuthService {
 
     public signOut() {
         this.localStorage.removeItem(CommonAuthService.TOKEN_KEY);
-        this.currentUserSubject.next(null);
+        window.location.reload();
     }
 
     public actualizeUser(): Observable<User> {
         return this.syncService.loadCurrentUser().pipe(
-            tap(json => this.saveCurrentUser(json))
+            map(json => this.saveCurrentUser(json))
         )
     }
 
-    private saveCurrentUser(userJSON: IUserJSON): void {
+    private saveCurrentUser(userJSON: IUserJSON): User {
         this.currentUserSubject.next(User.fromJSON(userJSON))
+        return this.currentUser!;
     }
 
     public fetchCurrentUser(): Observable<User> {

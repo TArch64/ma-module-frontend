@@ -20,7 +20,6 @@ export class AuthInterceptor implements HttpInterceptor {
     private handleAccessError(error: HttpErrorResponse): Observable<never> {
         if (error.status === 403) {
             this.authService.signOut();
-            window.location.reload();
         }
         return EMPTY;
     }

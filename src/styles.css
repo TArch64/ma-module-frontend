@@ -3,6 +3,8 @@
 @import "./styles/form-field.css";
 @import "./styles/overrides/main.css";
 
+*, *:before, *:after { box-sizing: border-box }
+
 html, body {
     height: 100%;
 }
