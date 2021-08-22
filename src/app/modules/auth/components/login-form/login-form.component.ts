@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {FormBuilder} from "@angular/forms";
 import {requireField} from "@common/form";
 import {AuthFacade} from "../../auth.facade";
@@ -6,8 +6,9 @@ import {ToastrService} from "@common/toastr";
 import {Router} from "@angular/router";
 
 @Component({
-  selector: 'app-login-form',
-  templateUrl: './login-form.component.html'
+    selector: 'app-login-form',
+    templateUrl: './login-form.component.html',
+    styleUrls: ['./login-form.component.css']
 })
 export class LoginFormComponent {
     public readonly loginForm = this.formBuilder.group({
@@ -20,7 +21,8 @@ export class LoginFormComponent {
         private readonly authFacade: AuthFacade,
         private readonly toastr: ToastrService,
         private readonly router: Router
-    ) {}
+    ) {
+    }
 
     public signIn(): void {
         this.loginForm.markAllAsTouched();
