@@ -11,7 +11,6 @@ import {map} from "rxjs/operators";
 })
 export class LayoutComponent {
     public readonly sidenavMode$: Observable<MatDrawerMode> = this.createSidenavModeStream();
-    public readonly isMobile$ = this.windowService.breakpoint$.pipe(map(event => event.isMobile));
     public isSidenavOpened: boolean = this.getInitialSidenavState();
 
     constructor(private readonly windowService: WindowService) {}

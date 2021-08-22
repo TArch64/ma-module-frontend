@@ -7,6 +7,7 @@
 .layout__sidenav {
     width: 300px;
     border-right: none;
+    overflow: initial;
 }
 
 .layout__sidenav-column {
@@ -23,26 +24,17 @@
     padding-right: 0;
 }
 
+@media (min-width: 599px) {
+    .layout__sidenav-header { box-shadow: 2px 0 0 0 #5D34A7 }
+}
+
 .layout__current-user {
     display: block;
     align-self: stretch;
     flex-grow: 1;
 }
 
-.layout__sidenav-content {
-    flex-grow: 1;
-}
-
-
-.layout__sidenav-close {
-    width: 100%;
-    border-radius: 0;
-    text-align: left;
-    padding-top: var(--offset-xxs);
-    padding-bottom: var(--offset-xxs);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-}
-
+.layout__sidenav-content,
 .layout__page {
     flex-grow: 1;
 }
