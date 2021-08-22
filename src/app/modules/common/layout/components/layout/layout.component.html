@@ -1,6 +1,35 @@
-<mat-toolbar color="primary">
-    <h1>MA Module</h1>
-    <app-layout-current-user class="layout__current-user margin-left--auto"></app-layout-current-user>
-</mat-toolbar>
+<mat-sidenav-container class="layout__page" (backdropClick)="closeSidenav()">
+    <mat-sidenav
+        class="layout__sidenav"
+        [opened]="isSidenavOpened"
+        [mode]="(sidenavMode$ | async)!"
+        fixedInViewport
+    >
+        <div class="layout__sidenav-column">
+            <mat-toolbar class="layout__sidenav-header" color="primary">
+                <app-layout-current-user class="layout__current-user"></app-layout-current-user>
+            </mat-toolbar>
 
-<ng-content></ng-content>
+            <div class="layout__sidenav-content mat-drawer-side">
+                <button class="layout__sidenav-close" mat-button type="button" (click)="closeSidenav()">
+                    <mat-icon>close</mat-icon>
+                    <span class="margin-left--xs">Close navigation</span>
+                </button>
+
+                <ng-content select="appSidenavContent"></ng-content>
+            </div>
+        </div>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+        <mat-toolbar color="primary">
+            <button mat-icon-button type="button" (click)="toggleSidenav()">
+                <mat-icon>menu</mat-icon>
+            </button>
+
+            <h1>MA Module</h1>
+        </mat-toolbar>
+
+        <ng-content></ng-content>
+    </mat-sidenav-content>
+</mat-sidenav-container>

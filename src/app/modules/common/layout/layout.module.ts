@@ -8,6 +8,7 @@ import {CommonAuthModule} from "@common/auth";
 import {CommonCoreModule} from "@common/core";
 import {LayoutComponent, LayoutCurrentUserComponent} from "./components";
 import {LayoutFacade} from "./layout.facade";
+import {MatSidenavModule} from "@angular/material/sidenav";
 
 @NgModule({
     imports: [
@@ -16,6 +17,7 @@ import {LayoutFacade} from "./layout.facade";
         MatButtonModule,
         MatMenuModule,
         MatIconModule,
+        MatSidenavModule,
         CommonCoreModule,
         CommonAuthModule
     ],

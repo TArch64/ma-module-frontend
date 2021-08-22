@@ -1,11 +1,6 @@
-.layout-current-user__menu.layout-current-user__menu {
-    width: 300px;
-    max-width: 300px;
-    min-height: 0;
-}
+.cdk-overlay-pane { width: 100% }
 
-@media (max-width: 599px) {
-    .layout-current-user__menu.layout-current-user__menu {
-        width: auto;
-    }
+.layout-current-user__menu {
+    width: 100%;
+    min-height: 0;
 }

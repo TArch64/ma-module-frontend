@@ -1,4 +1,48 @@
+:host {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+}
+
+.layout__sidenav {
+    width: 300px;
+    border-right: none;
+}
+
+.layout__sidenav-column {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.layout__sidenav-header {
+    background-color: #5d34a7;
+    position: relative;
+    flex-shrink: 0;
+    padding-left: 0;
+    padding-right: 0;
+}
+
 .layout__current-user {
     display: block;
     align-self: stretch;
+    flex-grow: 1;
+}
+
+.layout__sidenav-content {
+    flex-grow: 1;
+}
+
+
+.layout__sidenav-close {
+    width: 100%;
+    border-radius: 0;
+    text-align: left;
+    padding-top: var(--offset-xxs);
+    padding-bottom: var(--offset-xxs);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.layout__page {
+    flex-grow: 1;
 }

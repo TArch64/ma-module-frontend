@@ -1,4 +1,8 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+import {Observable} from "rxjs";
+import {MatDrawerMode} from "@angular/material/sidenav";
+import {WindowService} from "@common/core";
+import {map} from "rxjs/operators";
 
 @Component({
   selector: 'app-layout',
@@ -6,5 +10,27 @@ import { Component } from '@angular/core';
   styleUrls: ['./layout.component.css']
 })
 export class LayoutComponent {
+    public readonly sidenavMode$: Observable<MatDrawerMode> = this.createSidenavModeStream();
+    public readonly isMobile$ = this.windowService.breakpoint$.pipe(map(event => event.isMobile));
+    public isSidenavOpened: boolean = this.getInitialSidenavState();
 
+    constructor(private readonly windowService: WindowService) {}
+
+    private createSidenavModeStream(): Observable<MatDrawerMode> {
+        return this.windowService.breakpoint$.pipe(
+            map(event => event.isMobile ? 'push' : 'side')
+        );
+    }
+
+    private getInitialSidenavState(): boolean {
+        return !this.windowService.breakpointSnapshot.isMobile;
+    }
+
+    public toggleSidenav(): void {
+        this.isSidenavOpened = !this.isSidenavOpened;
+    }
+
+    public closeSidenav(): void {
+        this.isSidenavOpened = false;
+    }
 }

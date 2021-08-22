@@ -1,7 +1,7 @@
 import {NgModule} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {RouterModule} from "@angular/router";
-import {AdminPageComponent} from "./components";
+import {AdminLayoutComponent, AdminPageComponent} from "./components";
 import {LayoutModule} from "@common/layout";
 
 @NgModule({
@@ -13,6 +13,7 @@ import {LayoutModule} from "@common/layout";
         LayoutModule
     ],
     declarations: [
+        AdminLayoutComponent,
         AdminPageComponent
     ]
 })
