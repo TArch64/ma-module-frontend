@@ -1,0 +1,24 @@
+.season-selector__field {
+    width: 100%;
+    height: 56px;
+}
+
+.season-selector__field .mat-form-field-wrapper {
+    padding-bottom: 0;
+    height: 100%;
+}
+.season-selector__field .mat-form-field-underline {
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.season-selector__field .mat-form-field-flex {
+    padding: var(--offset-xs) var(--offset-sm);
+    height: 100%;
+    align-items: center;
+}
+
+.season-selector__field .mat-form-field-infix {
+    padding: 0;
+    border: none;
+}

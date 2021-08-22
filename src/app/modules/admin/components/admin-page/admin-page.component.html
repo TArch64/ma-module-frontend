@@ -1,3 +1,4 @@
-<app-layout>
+<app-admin-layout>
     <p>admin-page works!</p>
-</app-layout>
+    <p *ngIf="seasonsService.activeSeason$ | async as season">Current season: {{ season.title }}</p>
+</app-admin-layout>

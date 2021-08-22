@@ -27,7 +27,7 @@
     </div>
 </a>
 
-<mat-menu #userMenu xPosition="after" class="layout-current-user__menu">
+<mat-menu #userMenu xPosition="after" class="layout-current-user__menu" appMatMenuOverlayClass="layout-current-user__menu-overlay">
     <button mat-menu-item class="block--full-width text--left" type="button" (click)="signOut()">
         <mat-icon>logout</mat-icon>
         Sign Out

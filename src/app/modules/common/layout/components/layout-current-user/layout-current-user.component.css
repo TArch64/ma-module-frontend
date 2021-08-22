@@ -1,4 +1,4 @@
-.layout-current-user {
+.layout-current-user.layout-current-user {
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -27,7 +27,7 @@
 
 .layout-current-user__username,
 .layout-current-user__role {
-    margin-bottom: 0;
+    margin-bottom: 0!important;
 }
 
 .layout-current-user__role {
@@ -41,4 +41,13 @@
         min-width: 0;
         padding: var(--offset-xs)
     }
+}
+
+.layout-current-user__menu-overlay {
+    width: 100%
+}
+
+.layout-current-user__menu {
+    width: 100%;
+    min-height: 0;
 }

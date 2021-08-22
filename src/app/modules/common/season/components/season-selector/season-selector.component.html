@@ -1,0 +1,13 @@
+<mat-form-field class="season-selector__field">
+    <mat-select [formControl]="selectControl">
+        <mat-select-trigger>
+            <p class="mat-body-1 margin-bottom--none">
+                Season: {{ selectControl.value.title }}
+            </p>
+        </mat-select-trigger>
+
+        <mat-option *ngFor="let season of seasons" [value]="season">
+            {{ season.title }}
+        </mat-option>
+    </mat-select>
+</mat-form-field>

@@ -1,10 +1,10 @@
 import {ActivatedRouteSnapshot, CanActivate, Router, UrlTree} from "@angular/router";
-import {UserRoles} from "@common/auth/enums";
-import {CommonAuthService} from "@common/auth";
 import {Injectable} from "@angular/core";
 import {Observable} from "rxjs";
-import {User} from "@common/auth/entities";
 import {map} from "rxjs/operators";
+import {User} from "../entities";
+import {UserRoles} from "../enums";
+import {CommonAuthFacade} from "../common-auth.facade";
 
 @Injectable()
 export class RoleAccessGuard implements CanActivate {
@@ -15,18 +15,18 @@ export class RoleAccessGuard implements CanActivate {
     }
 
     constructor(
-        private readonly authService: CommonAuthService,
+        private readonly authFacade: CommonAuthFacade,
         private readonly router: Router
     ) {}
 
     public canActivate(route: ActivatedRouteSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> {
-        if (!this.authService.isSignedIn) {
+        if (this.authFacade.isSignedOut) {
             return this.router.createUrlTree(['/auth']);
         }
         const requiredRole: UserRoles | null = route.data.requireRole;
         if (!requiredRole) return true;
 
-        return this.authService.fetchCurrentUser().pipe(
+        return this.authFacade.fetchCurrentUser().pipe(
             map(({ role }: User) => {
                 if (requiredRole === role) return true;
                 return this.getHomeRedirectUrlTree();
@@ -35,7 +35,7 @@ export class RoleAccessGuard implements CanActivate {
     }
 
     private getHomeRedirectUrlTree(): UrlTree {
-        const {role} = this.authService.currentUser!;
+        const {role} = this.authFacade.currentUser!;
         const redirectCommands = RoleAccessGuard.HOME_URL_COMMANDS[role];
         return this.router.createUrlTree(redirectCommands);
     }

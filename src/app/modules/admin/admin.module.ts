@@ -3,6 +3,7 @@ import {CommonModule} from "@angular/common";
 import {RouterModule} from "@angular/router";
 import {AdminLayoutComponent, AdminPageComponent} from "./components";
 import {LayoutModule} from "@common/layout";
+import {CommonSeasonModule} from "@common/season";
 
 @NgModule({
     imports: [
@@ -10,7 +11,8 @@ import {LayoutModule} from "@common/layout";
         RouterModule.forChild([
             { path: '', component: AdminPageComponent }
         ]),
-        LayoutModule
+        LayoutModule,
+        CommonSeasonModule
     ],
     declarations: [
         AdminLayoutComponent,
