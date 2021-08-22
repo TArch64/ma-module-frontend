@@ -17,7 +17,7 @@ export class LayoutComponent {
 
     private createSidenavModeStream(): Observable<MatDrawerMode> {
         return this.windowService.breakpoint$.pipe(
-            map(event => event.isMobile ? 'push' : 'side')
+            map(event => event.isMobile ? 'over' : 'side')
         );
     }
 
