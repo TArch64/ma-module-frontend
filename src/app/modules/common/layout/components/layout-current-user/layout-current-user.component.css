@@ -1,18 +1,10 @@
 .layout-current-user.layout-current-user {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
     padding: var(--offset-xs) var(--offset-sm);
     --base-height: 64px;
 }
 
-.layout-current-user__row {
-    display: flex;
-    align-items: center;
-}
-
 .layout-current-user__avatar-container {
-    width: calc(var(--base-height) - var(--offset-xs) - var(--offset-xs));
+    width: calc(var(--base-height) - (2 * var(--offset-xs)));
 }
 
 .layout-current-user__avatar {
@@ -35,16 +27,10 @@
 }
 
 @media (max-width: 599px) {
-    .layout-current-user {
+    .layout-current-user.layout-current-user {
         --base-height: 56px;
-        width: auto;
-        min-width: 0;
         padding: var(--offset-xs)
     }
-}
-
-.layout-current-user__menu-overlay {
-    width: 100%
 }
 
 .layout-current-user__menu {

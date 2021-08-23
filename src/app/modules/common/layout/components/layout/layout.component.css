@@ -10,12 +10,6 @@
     overflow: initial;
 }
 
-.layout__sidenav-column {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-}
-
 .layout__sidenav-header {
     background-color: #5d34a7;
     position: relative;

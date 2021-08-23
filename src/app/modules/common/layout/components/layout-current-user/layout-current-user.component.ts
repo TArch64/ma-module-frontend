@@ -14,8 +14,7 @@ export class LayoutCurrentUserComponent {
     @ViewChild('userMenu')
     private matMenu!: MatMenu
 
-    constructor(private readonly layoutFacade: LayoutFacade) {
-    }
+    constructor(private readonly layoutFacade: LayoutFacade) {}
 
     public signOut(): void {
         this.layoutFacade.signOut();
