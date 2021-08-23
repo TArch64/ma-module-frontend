@@ -21,8 +21,7 @@ export class LoginFormComponent {
         private readonly authFacade: AuthFacade,
         private readonly toastr: ToastrService,
         private readonly router: Router
-    ) {
-    }
+    ) {}
 
     public signIn(): void {
         this.loginForm.markAllAsTouched();

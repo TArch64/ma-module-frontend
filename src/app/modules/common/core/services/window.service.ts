@@ -1,21 +1,24 @@
-import {Inject, Injectable} from "@angular/core";
+import {Inject, Injectable, OnDestroy} from "@angular/core";
 import {fromEvent, Observable} from "rxjs";
-import {ResizeEvent, ScreenBreakpointEvent} from "@common/core";
+import {Disposable, ResizeEvent, ScreenBreakpointEvent} from "@common/core";
 import {WindowProvider} from "./window.provider";
 import {distinctUntilKeyChanged, map, startWith} from "rxjs/operators";
 
 @Injectable({ providedIn: 'root' })
-export class WindowService {
+export class WindowService implements OnDestroy {
+    private readonly disposable = new Disposable();
     public resizeSnapshot!: ResizeEvent;
     public breakpointSnapshot!: ScreenBreakpointEvent;
     public readonly resize$: Observable<ResizeEvent> = this.createResizeStream();
     public readonly breakpoint$: Observable<ScreenBreakpointEvent> = this.createBreakpointStream();
 
-    constructor(
-        @Inject(WindowProvider) private readonly window: Window
-    ) {
-        this.resize$.subscribe(value => this.resizeSnapshot = value);
-        this.breakpoint$.subscribe(value => this.breakpointSnapshot = value);
+    constructor(@Inject(WindowProvider) private readonly window: Window) {
+        this.disposable.subscribeTo(this.resize$, value => this.resizeSnapshot = value);
+        this.disposable.subscribeTo(this.breakpoint$, value => this.breakpointSnapshot = value);
+    }
+
+    public ngOnDestroy() {
+        this.disposable.dispose();
     }
 
     private createResizeStream(): Observable<ResizeEvent> {
