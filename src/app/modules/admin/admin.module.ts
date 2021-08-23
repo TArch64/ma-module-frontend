@@ -4,15 +4,25 @@ import {RouterModule} from "@angular/router";
 import {AdminLayoutComponent, AdminPageComponent} from "./components";
 import {LayoutModule} from "@common/layout";
 import {CommonSeasonModule} from "@common/season";
+import {MatButtonModule} from "@angular/material/button";
+import {ManageSeasonsModule, ManageSeasonsPageComponent} from "./modules";
 
 @NgModule({
     imports: [
         CommonModule,
         RouterModule.forChild([
-            { path: '', component: AdminPageComponent }
+            {
+                path: '',
+                component: AdminPageComponent,
+                children: [
+                    { path: 'manage-seasons', component: ManageSeasonsPageComponent }
+                ]
+            }
         ]),
         LayoutModule,
-        CommonSeasonModule
+        CommonSeasonModule,
+        MatButtonModule,
+        ManageSeasonsModule
     ],
     declarations: [
         AdminLayoutComponent,

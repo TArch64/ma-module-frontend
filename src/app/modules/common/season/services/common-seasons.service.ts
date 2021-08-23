@@ -34,6 +34,11 @@ export class CommonSeasonsService {
     }
 
     private refreshActiveSeason(): void {
-        this.activeSeasonSubject.next(this.seasons.find(season => season.active) ?? null);
+        this.activeSeasonSubject.next(this.getActiveSeason() ?? null);
+    }
+
+    private getActiveSeason(): Season | null {
+        const activeSeason = this.seasons.find(season => season.active);
+        return activeSeason ?? this.seasons.reduce((prev, current) => (prev.value > current.value) ? prev : current)
     }
 }

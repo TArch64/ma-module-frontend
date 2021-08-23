@@ -1,4 +1,9 @@
 <app-admin-layout>
-    <p>admin-page works!</p>
-    <p *ngIf="seasonsService.activeSeason$ | async as season">Current season: {{ season.title }}</p>
+    <ng-container layoutSidenavContent>
+        <a class="sidenav-item" mat-button role="button" routerLink="/admin/manage-seasons">
+            <p class="mat-body-1 margin-bottom--none">Manage seasons</p>
+        </a>
+    </ng-container>
+
+    <router-outlet></router-outlet>
 </app-admin-layout>

@@ -13,7 +13,8 @@
     padding-bottom: var(--offset-xxs);
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     color: rgba(0, 0, 0, 0.7);
-    display: block;
+    display: flex;
+    align-items: center;
 }
 
 
@@ -33,6 +34,7 @@
     padding-bottom: 0;
     height: 100%;
 }
+
 .sidenav-selector .mat-form-field-underline {
     bottom: 0;
     background-color: rgba(0, 0, 0, 0.1);
@@ -47,4 +49,8 @@
 .sidenav-selector .mat-form-field-infix {
     padding: 0;
     border: none;
+}
+
+.sidenav-selector .mat-select-value {
+    color: rgba(0, 0, 0, 0.7);
 }

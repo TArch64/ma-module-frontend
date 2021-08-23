@@ -1,6 +1,8 @@
 <app-layout>
     <ng-container appSidenavContent>
         <app-season-selector></app-season-selector>
+
+        <ng-content select="[layoutSidenavContent]"></ng-content>
     </ng-container>
 
     <ng-content></ng-content>
