@@ -11,7 +11,7 @@
 }
 
 .layout__sidenav-header {
-    background-color: #3f51b5;
+    background-color: #394aa3;
     position: relative;
     flex-shrink: 0;
     padding-left: 0;
@@ -19,7 +19,7 @@
 }
 
 @media (min-width: 599px) {
-    .layout__sidenav-header { box-shadow: 1px 0 0 0 #3f51b5 }
+    .layout__sidenav-header { box-shadow: 1px 0 0 0 #394aa3 }
 }
 
 .layout__current-user {
