@@ -1,1 +1,19 @@
-<p>add-season-initiator works!</p>
+<mat-card class="add-season-initiator">
+    <mat-card-header>
+        <h2 mat-card-title>Start new season</h2>
+    </mat-card-header>
+
+    <mat-card-actions>
+        <button
+            class="block margin-left--auto"
+            mat-raised-button
+            [appMatLoadingButton]="isSeasonStarting"
+            type="button"
+            color="primary"
+            disabled
+            (click)="startSeason()"
+        >
+            Start season
+        </button>
+    </mat-card-actions>
+</mat-card>

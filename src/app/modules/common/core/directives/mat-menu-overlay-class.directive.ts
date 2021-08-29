@@ -4,7 +4,7 @@ import {MatMenu} from "@angular/material/menu";
 @Directive({
     selector: '[appMatMenuOverlayClass]'
 })
-export class MatMenuOverlayClass implements AfterViewInit {
+export class MatMenuOverlayClassDirective implements AfterViewInit {
     @Input('appMatMenuOverlayClass')
     public overlayClass!: string | string[];
 

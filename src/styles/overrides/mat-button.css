@@ -1,0 +1,12 @@
+.loading-button {
+    position: relative;
+}
+
+.loading-button .mat-button-wrapper {
+    opacity: 0!important;
+}
+
+.mat-progress-spinner.mat-button-loading circle,
+.mat-spinner.mat-button-loading circle {
+    stroke: rgba(0, 0, 0, 0.4);
+}

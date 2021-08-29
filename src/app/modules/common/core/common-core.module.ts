@@ -1,26 +1,32 @@
 import {NgModule} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {CommonAuthService} from "@common/auth";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {ApiPathService, SerializerService} from "./services";
-import {SquareComponent} from "./components";
+import {ButtonLoaderComponent, SquareComponent} from "./components";
 import {RoleTitlePipe} from "./pipes";
-import {MatMenuOverlayClass} from "./directives";
+import {MatMenuOverlayClassDirective, MatLoadingButtonDirective} from "./directives";
 
 const publicDeclarations = [
     SquareComponent,
     RoleTitlePipe,
-    MatMenuOverlayClass
+    MatMenuOverlayClassDirective,
+    MatLoadingButtonDirective
 ]
 
 @NgModule({
     imports: [
-        CommonModule
+        CommonModule,
+        MatProgressSpinnerModule
     ],
     providers: [
         SerializerService,
         ApiPathService
     ],
-    declarations: publicDeclarations,
+    declarations: [
+        ...publicDeclarations,
+        ButtonLoaderComponent
+    ],
     exports: publicDeclarations
 })
 export class CommonCoreModule {
