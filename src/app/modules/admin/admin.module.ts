@@ -5,7 +5,6 @@ import {AdminLayoutComponent, AdminPageComponent} from "./components";
 import {LayoutModule} from "@common/layout";
 import {CommonSeasonModule} from "@common/season";
 import {MatButtonModule} from "@angular/material/button";
-import {ManageSeasonsModule, ManageSeasonsPageComponent} from "./modules";
 
 @NgModule({
     imports: [
@@ -15,14 +14,16 @@ import {ManageSeasonsModule, ManageSeasonsPageComponent} from "./modules";
                 path: '',
                 component: AdminPageComponent,
                 children: [
-                    { path: 'manage-seasons', component: ManageSeasonsPageComponent }
+                    {
+                        path: 'manage-seasons',
+                        loadChildren: () => import('./modules/manage-seasons').then(m => m.ManageSeasonsModule)
+                    }
                 ]
             }
         ]),
         LayoutModule,
         CommonSeasonModule,
-        MatButtonModule,
-        ManageSeasonsModule
+        MatButtonModule
     ],
     declarations: [
         AdminLayoutComponent,

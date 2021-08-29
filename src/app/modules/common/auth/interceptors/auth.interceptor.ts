@@ -1,11 +1,26 @@
-import {Injectable} from "@angular/core";
-import {HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from "@angular/common/http";
+import {ClassProvider, Injectable} from "@angular/core";
+import {
+    HTTP_INTERCEPTORS,
+    HttpErrorResponse,
+    HttpEvent,
+    HttpHandler,
+    HttpInterceptor,
+    HttpRequest
+} from "@angular/common/http";
 import {EMPTY, Observable} from "rxjs";
 import {catchError} from "rxjs/operators";
 import {CommonAuthFacade} from "../common-auth.facade";
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
+    public static getProvider(): ClassProvider {
+        return {
+            provide: HTTP_INTERCEPTORS,
+            useClass: AuthInterceptor,
+            multi: true
+        }
+    }
+
     constructor(private readonly authFacade: CommonAuthFacade) {}
 
     public intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {

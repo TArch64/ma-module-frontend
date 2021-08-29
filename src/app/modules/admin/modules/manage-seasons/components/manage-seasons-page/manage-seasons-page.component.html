@@ -1,1 +1,7 @@
-<p>manage-seasons-page works!</p>
+<app-finish-active-season-initiator
+    *ngIf="isAnySeasonActive | async; else addSeasonInitiator"
+></app-finish-active-season-initiator>
+
+<ng-template #addSeasonInitiator>
+    <app-add-season-initiator></app-add-season-initiator>
+</ng-template>

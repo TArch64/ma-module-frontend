@@ -4,7 +4,6 @@ import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {RouterModule, Routes} from "@angular/router";
 import {CommonCoreModule} from "@common/core";
-import {HTTP_INTERCEPTORS} from "@angular/common/http";
 import {
     CommonAuthModule,
     AuthOnlyGuard,
@@ -62,11 +61,7 @@ const routes: Routes = [
         CommonSeasonModule
     ],
     providers: [
-        {
-            provide: HTTP_INTERCEPTORS,
-            useClass: AuthInterceptor,
-            multi: true
-        }
+        AuthInterceptor.getProvider()
     ],
     bootstrap: [AppComponent]
 })
