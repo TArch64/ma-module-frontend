@@ -10,19 +10,19 @@ import {Disposable} from "@common/core";
 })
 export class SeasonSelectorComponent implements OnDestroy {
     private readonly disposable = new Disposable();
-    public readonly selectControl = new FormControl(this.seasonFacade.activeSeason);
+    public readonly selectControl = new FormControl();
+    public readonly seasons$ = this.seasonFacade.seasons$;
 
     constructor(private seasonFacade: CommonSeasonFacade) {
         this.disposable.subscribeTo(this.selectControl.valueChanges, (season: Season) => {
             this.seasonFacade.changeActiveSeason(season)
         });
+        this.disposable.subscribeTo(this.seasonFacade.activeSeason$, (season: Season | null) => {
+            this.selectControl.setValue(season, { emitEvent: false });
+        })
     }
 
     public ngOnDestroy() {
         this.disposable.dispose();
-    }
-
-    public get seasons(): Season[] {
-        return this.seasonFacade.seasons;
     }
 }

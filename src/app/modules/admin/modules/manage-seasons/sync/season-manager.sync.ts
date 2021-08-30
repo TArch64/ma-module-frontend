@@ -15,4 +15,9 @@ export class SeasonManagerSync {
         const url = this.apiPath.buildRolePath(['course-seasons', 'manager-state']);
         return this.httpClient.get<IManagerStateJSON>(url);
     }
+
+    public startSeason(): Observable<object> {
+        const url = this.apiPath.buildRolePath(['course-seasons']);
+        return this.httpClient.post(url, null);
+    }
 }

@@ -7,16 +7,16 @@ import {Season} from "@common/season/entities";
 export class CommonSeasonFacade {
     constructor(private readonly seasonsService: CommonSeasonsService) {}
 
-    public get seasons(): Season[] {
-        return this.seasonsService.seasons;
+    public get seasons$(): Observable<Season[]> {
+        return this.seasonsService.seasons$;
     }
 
-    public get activeSeason(): Season | null {
-        return this.seasonsService.activeSeasonSnapshot;
+    public get activeSeason$(): Observable<Season | null> {
+        return this.seasonsService.activeSeason$;
     }
 
     public get isSeasonsLoaded(): boolean {
-        return !!this.seasonsService.seasons.length;
+        return this.seasonsService.isSeasonsLoaded;
     }
 
     public loadSeasons(): Observable<Season[]> {

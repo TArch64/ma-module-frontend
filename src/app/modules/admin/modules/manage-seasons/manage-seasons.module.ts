@@ -12,6 +12,7 @@ import {ManageSeasonsResolver} from "./resolvers";
 import {ManageSeasonsFacade} from "./manage-seasons.facade";
 import {ActiveSeasonService} from "./services";
 import {SeasonManagerSync} from "./sync";
+import {ToastrModule} from "@common/toastr";
 
 @NgModule({
     imports: [
@@ -27,6 +28,7 @@ import {SeasonManagerSync} from "./sync";
         MatIconModule,
         MatCardModule,
         CommonCoreModule,
+        ToastrModule,
         HttpClientModule
     ],
     declarations: [
