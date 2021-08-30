@@ -20,4 +20,9 @@ export class SeasonManagerSync {
         const url = this.apiPath.buildRolePath(['course-seasons']);
         return this.httpClient.post(url, null);
     }
+
+    public finishActiveSeason(): Observable<object> {
+        const url = this.apiPath.buildRolePath(['course-seasons', 'active', 'finish']);
+        return this.httpClient.post(url, null);
+    }
 }

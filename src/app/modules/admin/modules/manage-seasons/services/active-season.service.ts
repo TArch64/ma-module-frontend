@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {BehaviorSubject, Observable} from "rxjs";
 import {ManagerState} from "../entities";
-import {captureExistsValues} from "@common/core";
+import {captureExistsValues, formatValidationHttpResponse} from "@common/core";
 import {SeasonManagerSync} from "../sync";
 import {mapTo} from "rxjs/operators";
 import {CommonSeasonsService} from "@common/season";
@@ -27,6 +27,16 @@ export class ActiveSeasonService {
     }
 
     public startSeason(): Observable<null> {
-        return this.syncService.startSeason().pipe(mapTo(null));
+        return this.syncService.startSeason().pipe(
+            mapTo(null),
+            formatValidationHttpResponse
+        );
+    }
+
+    public finishSeason(): Observable<null> {
+        return this.syncService.finishActiveSeason().pipe(
+            mapTo(null),
+            formatValidationHttpResponse
+        );
     }
 }

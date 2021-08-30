@@ -3,6 +3,7 @@ import {Observable} from "rxjs";
 import {ActiveSeasonService} from "./services";
 import {map, mapTo, tap} from "rxjs/operators";
 import {CommonSeasonsService} from "@common/season";
+import {Season} from "@common/season/entities";
 
 @Injectable()
 export class ManageSeasonsFacade {
@@ -21,8 +22,16 @@ export class ManageSeasonsFacade {
         )
     }
 
+    public get activeSeason(): Season | null {
+        return this.commonSeasonsService.seasonsSnapshot.find(season => season.active) ?? null;
+    }
+
     public startSeason(): Observable<null> {
         return this.activeSeasonService.startSeason();
+    }
+
+    public finishSeason(): Observable<null> {
+        return this.activeSeasonService.finishSeason();
     }
 
     public refreshActiveSeason(): Observable<null> {

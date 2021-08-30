@@ -7,7 +7,7 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatCardModule} from "@angular/material/card";
 import {CommonCoreModule} from "@common/core";
 import {AuthInterceptor} from "@common/auth";
-import {ManageSeasonsPageComponent, AddSeasonInitiatorComponent, FinishActiveSeasonInitiatorComponent} from "./components";
+import {ManageSeasonsPageComponent, AddSeasonInitiatorComponent, FinishSeasonInitiatorComponent} from "./components";
 import {ManageSeasonsResolver} from "./resolvers";
 import {ManageSeasonsFacade} from "./manage-seasons.facade";
 import {ActiveSeasonService} from "./services";
@@ -34,7 +34,7 @@ import {ToastrModule} from "@common/toastr";
     declarations: [
         ManageSeasonsPageComponent,
         AddSeasonInitiatorComponent,
-        FinishActiveSeasonInitiatorComponent
+        FinishSeasonInitiatorComponent
     ],
     providers: [
         ManageSeasonsFacade,

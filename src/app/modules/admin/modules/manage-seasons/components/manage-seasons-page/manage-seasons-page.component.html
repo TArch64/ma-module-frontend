@@ -1,6 +1,4 @@
-<app-finish-active-season-initiator
-    *ngIf="isAnySeasonActive | async; else addSeasonInitiator"
-></app-finish-active-season-initiator>
+<app-finish-season-initiator *ngIf="isAnySeasonActive | async; else addSeasonInitiator"></app-finish-season-initiator>
 
 <ng-template #addSeasonInitiator>
     <app-add-season-initiator></app-add-season-initiator>
