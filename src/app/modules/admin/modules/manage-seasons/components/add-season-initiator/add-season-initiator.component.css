@@ -1,3 +1,3 @@
-.add-season-initiator {
-    max-width: 300px;
+@media (min-width: 600px) {
+    .add-season-initiator {max-width: 300px;}
 }
