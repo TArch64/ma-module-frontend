@@ -40,5 +40,6 @@ export class LoginFormComponent {
 
     private onSignInError(error: Error): void {
         this.toastr.show(error.message);
+        this.loginForm.reset();
     }
 }

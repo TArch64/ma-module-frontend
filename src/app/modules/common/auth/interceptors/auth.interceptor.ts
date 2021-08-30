@@ -7,7 +7,7 @@ import {
     HttpInterceptor,
     HttpRequest
 } from "@angular/common/http";
-import {EMPTY, Observable} from "rxjs";
+import {Observable, throwError} from "rxjs";
 import {catchError} from "rxjs/operators";
 import {CommonAuthFacade} from "../common-auth.facade";
 
@@ -34,6 +34,6 @@ export class AuthInterceptor implements HttpInterceptor {
 
     private handleAccessError(error: HttpErrorResponse): Observable<never> {
         if (error.status === 403) this.authFacade.signOut();
-        return EMPTY;
+        return throwError(error);
     }
 }

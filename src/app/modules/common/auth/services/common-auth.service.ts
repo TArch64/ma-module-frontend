@@ -1,9 +1,10 @@
 import {Inject, Injectable} from "@angular/core";
 import {IUserJSON, User} from "../entities";
-import {BehaviorSubject, Observable, of} from "rxjs";
+import {BehaviorSubject, Observable, of, throwError} from "rxjs";
 import {StorageService} from "@common/core";
 import {CommonAuthSyncService} from "../sync";
-import {map, switchMap, tap} from "rxjs/operators";
+import {catchError, map, switchMap, tap} from "rxjs/operators";
+import {HttpErrorResponse} from "@angular/common/http";
 
 @Injectable({ providedIn: 'root' })
 export class CommonAuthService {
@@ -35,6 +36,7 @@ export class CommonAuthService {
 
     public signIn(username: string, password: string): Observable<User> {
         return this.syncService.signIn(username, password).pipe(
+            catchError(this.onSignInError.bind(this)),
             tap(({ token }) => this.saveAuthToken(token)),
             switchMap(() => this.actualizeUser())
         );
@@ -43,6 +45,13 @@ export class CommonAuthService {
     private saveAuthToken(token: string): void {
         this.authToken = token;
         this.localStorage.setItem(CommonAuthService.TOKEN_KEY, token);
+    }
+
+    private onSignInError(response: Error): Observable<never> {
+        if (response instanceof HttpErrorResponse) {
+            return throwError(new Error(response.error.message))
+        }
+        return throwError(response);
     }
 
     public signOut() {

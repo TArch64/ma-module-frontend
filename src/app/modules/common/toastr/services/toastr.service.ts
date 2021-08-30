@@ -3,11 +3,11 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Injectable()
 export class ToastrService {
-    constructor(
-        private readonly snackBar: MatSnackBar
-    ) {}
+    constructor(private readonly snackBar: MatSnackBar) {}
 
     public show(text: string): void {
-        this.snackBar.open(text);
+        this.snackBar.open(text, 'Ok', {
+            duration: 5000
+        });
     }
 }
