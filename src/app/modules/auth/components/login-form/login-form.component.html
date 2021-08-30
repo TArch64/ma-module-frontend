@@ -19,7 +19,12 @@
         </mat-card-content>
 
         <mat-card-actions>
-            <button mat-raised-button type="submit" color="primary">
+            <button
+                mat-raised-button
+                [appMatLoadingButton]="isProcessing"
+                type="submit"
+                color="primary"
+            >
                 Sign In
             </button>
         </mat-card-actions>

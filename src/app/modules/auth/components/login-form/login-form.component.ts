@@ -11,6 +11,7 @@ import {Router} from "@angular/router";
     styleUrls: ['./login-form.component.css']
 })
 export class LoginFormComponent {
+    public isProcessing: boolean = false;
     public readonly loginForm = this.formBuilder.group({
         username: ['', requireField()],
         password: ['', requireField()]
@@ -27,7 +28,9 @@ export class LoginFormComponent {
         this.loginForm.markAllAsTouched();
         if (this.loginForm.invalid) return;
 
+        this.isProcessing = true;
         const {username, password} = this.loginForm.value;
+
         this.authFacade.signIn(username, password).subscribe({
             next: this.onSignedIn.bind(this),
             error: this.onSignInError.bind(this)
@@ -35,10 +38,12 @@ export class LoginFormComponent {
     }
 
     private onSignedIn(): void {
+        this.isProcessing = false;
         this.router.navigate(['/'])
     }
 
     private onSignInError(error: Error): void {
+        this.isProcessing = false;
         this.toastr.show(error.message);
         this.loginForm.reset();
     }
