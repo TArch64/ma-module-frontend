@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {CommonSeasonsService} from "./services";
 import {Observable} from "rxjs";
-import {Season} from "@common/season/entities";
+import {Season} from "./entities";
 
 @Injectable()
 export class CommonSeasonFacade {

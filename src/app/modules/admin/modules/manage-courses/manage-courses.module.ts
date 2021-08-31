@@ -3,13 +3,18 @@ import {CommonModule} from "@angular/common";
 import {CommonAuthModule} from "@common/auth";
 import {CommonCoreModule} from "@common/core";
 import {ManageCoursesFacade} from "./manage-courses.facade";
-import {ManageCoursesPageComponent} from "./components";
+import {CoursesEmptyComponent, CoursesListComponent, ManageCoursesPageComponent} from "./components";
 import {RouterModule} from "@angular/router";
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatButtonModule} from "@angular/material/button";
-import {MatIconModule} from "@angular/material/icon";
 import {HttpClientModule} from "@angular/common/http";
 import {LayoutModule} from "@common/layout";
+import {MatListModule} from "@angular/material/list";
+import {ManageCoursesResolver} from "./resolvers/manage-courses.resolver";
+import {CoursesRepositoryService} from "./services";
+import {CoursesSync} from "./sync";
+import {CommonSeasonModule} from "@common/season";
+import {MatCardModule} from "@angular/material/card";
 
 @NgModule({
     imports: [
@@ -17,22 +22,30 @@ import {LayoutModule} from "@common/layout";
         RouterModule.forChild([
             {
                 path: '',
+                resolve: { state: ManageCoursesResolver },
                 component: ManageCoursesPageComponent
             }
         ]),
         CommonCoreModule,
         CommonAuthModule,
+        CommonSeasonModule,
         HttpClientModule,
         MatToolbarModule,
         MatButtonModule,
-        MatIconModule,
+        MatListModule,
+        MatCardModule,
         LayoutModule
     ],
     declarations: [
-        ManageCoursesPageComponent
+        ManageCoursesPageComponent,
+        CoursesEmptyComponent,
+        CoursesListComponent
     ],
     providers: [
-        ManageCoursesFacade
+        ManageCoursesFacade,
+        CoursesRepositoryService,
+        CoursesSync,
+        ManageCoursesResolver
     ]
 })
 export class ManageCoursesModule {}

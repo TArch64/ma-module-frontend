@@ -1,6 +1,6 @@
 import {Component, OnDestroy} from '@angular/core';
 import {CommonSeasonFacade} from "@common/season/common-season.facade";
-import {Season} from "@common/season/entities";
+import {Season} from "@common/season";
 import {FormControl} from "@angular/forms";
 import {Disposable} from "@common/core";
 

@@ -7,8 +7,7 @@ import {ConfirmResult, ConfirmService} from "@common/confirm";
 
 @Component({
   selector: 'app-add-season-initiator',
-  templateUrl: './add-season-initiator.component.html',
-  styleUrls: ['./add-season-initiator.component.css']
+  templateUrl: './add-season-initiator.component.html'
 })
 export class AddSeasonInitiatorComponent {
     public isSeasonStarting = false;

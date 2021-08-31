@@ -7,8 +7,7 @@ import {switchMap} from "rxjs/operators";
 
 @Component({
   selector: 'app-finish-season-initiator',
-  templateUrl: './finish-season-initiator.component.html',
-  styleUrls: ['./finish-season-initiator.component.css']
+  templateUrl: './finish-season-initiator.component.html'
 })
 export class FinishSeasonInitiatorComponent {
     public readonly activeSeasonTitle: string = this.getActiveSeasonTitle();

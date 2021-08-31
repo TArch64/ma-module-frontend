@@ -9,3 +9,10 @@
     padding-left: var(--offset-xs);
     padding-right: var(--offset-xs);
 }
+
+@media (min-width: 600px) {
+    .mat-card-xs {
+        max-width: 300px;
+        width: 100%;
+    }
+}

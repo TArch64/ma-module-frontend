@@ -1,8 +1,8 @@
 import {Injectable} from "@angular/core";
 import {BehaviorSubject, Observable} from "rxjs";
 import {map, tap} from "rxjs/operators";
-import {Season} from "@common/season/entities";
-import {CommonSeasonSyncService} from "@common/season/sync";
+import {Season} from "../entities";
+import {CommonSeasonSyncService} from "../sync";
 
 @Injectable({ providedIn: 'root' })
 export class CommonSeasonsService {

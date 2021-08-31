@@ -2,8 +2,7 @@ import {Injectable} from "@angular/core";
 import {Observable} from "rxjs";
 import {ActiveSeasonService} from "./services";
 import {map, mapTo, tap} from "rxjs/operators";
-import {CommonSeasonsService} from "@common/season";
-import {Season} from "@common/season/entities";
+import {CommonSeasonsService, Season} from "@common/season";
 
 @Injectable()
 export class ManageSeasonsFacade {

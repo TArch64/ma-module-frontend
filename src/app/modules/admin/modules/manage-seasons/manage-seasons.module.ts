@@ -14,7 +14,6 @@ import {ActiveSeasonService} from "./services";
 import {SeasonManagerSync} from "./sync";
 import {ToastrModule} from "@common/toastr";
 import {ConfirmModule} from "@common/confirm";
-import {MatToolbarModule} from "@angular/material/toolbar";
 import {LayoutModule} from "@common/layout";
 
 @NgModule({
@@ -28,7 +27,6 @@ import {LayoutModule} from "@common/layout";
             }
         ]),
         HttpClientModule,
-        MatToolbarModule,
         MatButtonModule,
         MatIconModule,
         MatCardModule,

@@ -1,4 +1,4 @@
-<mat-card class="finish-season-initiator">
+<mat-card class="mat-card-xs">
     <mat-card-header>
         <h2 mat-card-title>Active season: {{ activeSeasonTitle }}</h2>
     </mat-card-header>
@@ -10,7 +10,6 @@
             [appMatLoadingButton]="isSeasonFinishing"
             type="button"
             color="primary"
-            disabled
             (click)="finishSeason()"
         >
             Finish season

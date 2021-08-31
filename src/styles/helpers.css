@@ -1,19 +1,19 @@
-.block.block { display: block !important; }
-.block--full-width.block--full-width { width: 100% }
-.block--full-height.block--full-height { height: 100% }
+.block { display: block !important }
+.block--full-width { width: 100% !important }
+.block--full-height { height: 100% !important }
 
-.flex.flex { display: flex }
-.flex--column.flex--column { flex-direction: column }
-.flex--align-center.flex--align-center { align-items: center }
+.flex { display: flex !important }
+.flex--column { flex-direction: column !important }
+.flex--align-center { align-items: center !important }
 
 .flex--center.flex--center {
     align-items: center;
     justify-content: center;
 }
 
-.margin-left--xs { margin-left: var(--offset-xs) }
-.margin-left--auto { margin-left: auto !important; }
+.margin-left--xs { margin-left: var(--offset-xs) !important }
+.margin-left--auto { margin-left: auto !important }
 
-.margin-bottom--none.margin-bottom--none { margin-bottom: 0 }
+.margin-bottom--none { margin-bottom: 0 !important }
 
 .text--left { text-align: left !important; }
