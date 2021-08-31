@@ -4,6 +4,7 @@ import {MatDialog, MatDialogRef} from "@angular/material/dialog";
 import {ConfirmDialogComponent} from "@common/confirm/components";
 import {Observable} from "rxjs";
 import {filter, map} from "rxjs/operators";
+import {DialogSizes} from "@common/dialog";
 
 type ConfirmRef = MatDialogRef<ConfirmDialogComponent>;
 type ConfirmResult$ = Observable<ConfirmResult>;
@@ -16,7 +17,7 @@ export class ConfirmService {
     public open(rawOptions: IConfirmOptions): ConfirmResult$ {
         const options = ConfirmOptions.create(rawOptions);
         const dialogRef: ConfirmRef = this.matDialog.open(ConfirmDialogComponent, {
-            width: '280px',
+            width: DialogSizes.XS,
             data: options
         });
         return this.onDialogClosed(dialogRef, options);

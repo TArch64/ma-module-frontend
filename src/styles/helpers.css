@@ -5,6 +5,7 @@
 .flex { display: flex !important }
 .flex--column { flex-direction: column !important }
 .flex--align-center { align-items: center !important }
+.flex--justify-end { justify-content: flex-end }
 
 .flex--center.flex--center {
     align-items: center;
@@ -15,5 +16,7 @@
 .margin-left--auto { margin-left: auto !important }
 
 .margin-bottom--none { margin-bottom: 0 !important }
+.margin-bottom--xs { margin-bottom: var(--offset-xs) !important }
+.margin-bottom--xxs { margin-bottom: var(--offset-xxs) !important }
 
 .text--left { text-align: left !important; }

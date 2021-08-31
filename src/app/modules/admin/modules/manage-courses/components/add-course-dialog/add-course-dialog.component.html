@@ -1,0 +1,35 @@
+<h1 mat-dialog-title>Add course</h1>
+
+<form [formGroup]="courseForm" appBindFormErrors (ngSubmit)="addCourse()">
+    <div mat-card-content class="margin-bottom--none">
+        <mat-form-field class="form-field--md margin-bottom--xxs">
+            <mat-label>Name</mat-label>
+            <input matInput type="text" formControlName="name" required>
+            <mat-error appBindControlError="name" ></mat-error>
+        </mat-form-field>
+
+        <mat-checkbox formControlName="isGeneral" color="primary">
+            Is general course?
+        </mat-checkbox>
+    </div>
+
+    <div mat-dialog-actions class="flex flex--justify-end">
+        <button
+            mat-button
+            mat-dialog-close
+            type="button"
+            color="primary"
+        >
+            Cancel
+        </button>
+
+        <button
+            mat-raised-button
+            [appMatLoadingButton]="isAdding"
+            type="submit"
+            color="primary"
+        >
+            Add Course
+        </button>
+    </div>
+</form>

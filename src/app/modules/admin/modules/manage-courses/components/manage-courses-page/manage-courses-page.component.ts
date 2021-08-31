@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import {Observable} from "rxjs";
 import {ManageCoursesFacade} from "../../manage-courses.facade";
 import {map} from "rxjs/operators";
+import {MatDialog} from "@angular/material/dialog";
+import {AddCourseDialogComponent} from "../add-course-dialog";
+import {DialogSizes} from "@common/dialog";
 
 @Component({
   selector: 'app-manage-courses-page',
@@ -11,7 +14,10 @@ import {map} from "rxjs/operators";
 export class ManageCoursesPageComponent {
     public readonly hasCourses$: Observable<boolean> = this.createHasCoursesStream();
 
-    constructor(private readonly facade: ManageCoursesFacade) {}
+    constructor(
+        private readonly facade: ManageCoursesFacade,
+        private readonly matDialog: MatDialog
+    ) {}
 
     private createHasCoursesStream(): Observable<boolean> {
         return this.facade.courses$.pipe(
@@ -20,6 +26,6 @@ export class ManageCoursesPageComponent {
     }
 
     public addCourse(): void {
-        console.log('add course');
+        this.matDialog.open(AddCourseDialogComponent, {width: DialogSizes.MD});
     }
 }
