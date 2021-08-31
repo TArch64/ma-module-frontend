@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import {ManageSeasonsFacade} from "../../manage-seasons.facade";
 import {ToastrService} from "@common/toastr";
+import {Observable} from "rxjs";
+import {ConfirmResult, ConfirmService} from "@common/confirm";
+import {switchMap} from "rxjs/operators";
 
 @Component({
   selector: 'app-finish-season-initiator',
@@ -13,7 +16,8 @@ export class FinishSeasonInitiatorComponent {
 
     constructor(
         private readonly facade: ManageSeasonsFacade,
-        private readonly toastr: ToastrService
+        private readonly toastr: ToastrService,
+        private readonly confirm: ConfirmService
     ) {}
 
     private getActiveSeasonTitle(): string {
@@ -22,11 +26,22 @@ export class FinishSeasonInitiatorComponent {
     }
 
     public finishSeason(): void {
-        this.isSeasonFinishing = true;
-        this.facade.finishSeason().subscribe({
+        this.confirmFinishing().pipe(
+            switchMap(() => {
+                this.isSeasonFinishing = true;
+                return this.facade.finishSeason();
+            })
+        ).subscribe({
             next: this.onSeasonFinished.bind(this),
             error: this.onFinishSeasonError.bind(this)
-        })
+        });
+    }
+
+    private confirmFinishing(): Observable<ConfirmResult> {
+        return this.confirm.open({
+            text: 'Are you sure you want to finish current season?',
+            confirmAction: { text: 'Finish' }
+        });
     }
 
     private onSeasonFinished(): void {

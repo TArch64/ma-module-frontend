@@ -13,6 +13,7 @@ import {ManageSeasonsFacade} from "./manage-seasons.facade";
 import {ActiveSeasonService} from "./services";
 import {SeasonManagerSync} from "./sync";
 import {ToastrModule} from "@common/toastr";
+import {ConfirmModule} from "@common/confirm";
 
 @NgModule({
     imports: [
@@ -24,12 +25,13 @@ import {ToastrModule} from "@common/toastr";
                 resolve: { state: ManageSeasonsResolver }
             }
         ]),
+        HttpClientModule,
         MatButtonModule,
         MatIconModule,
         MatCardModule,
         CommonCoreModule,
         ToastrModule,
-        HttpClientModule
+        ConfirmModule
     ],
     declarations: [
         ManageSeasonsPageComponent,

@@ -1,0 +1,16 @@
+.confirm-dialog__text {
+    color: rgba(0, 0, 0, .6);
+    line-height: 1.43;
+    padding: 0;
+}
+
+.confirm-dialog__actions {
+    display: flex;
+    justify-content: flex-end;
+    min-height: 0;
+    margin-right: calc(-1 * var(--offset-sm));
+}
+
+.confirm-dialog__action {
+    min-width: 80px;
+}

@@ -1,0 +1,26 @@
+<p class="confirm-dialog__text" mat-dialog-content>
+    {{ bodyText }}
+</p>
+
+<div mat-dialog-actions class="confirm-dialog__actions bottom-inner-offset--xs top-inner-offset--md">
+    <button
+        mat-button
+        class="confirm-dialog__action"
+        type="button"
+        color="primary"
+        (click)="decline()"
+    >
+        {{ declineActionText }}
+    </button>
+
+    <button
+        mat-raised-button
+        class="confirm-dialog__action left-offset--xs"
+        type="button"
+        color="primary"
+        cdkFocusInitial
+        (click)="confirm()"
+    >
+        {{ confirmActionText }}
+    </button>
+</div>
