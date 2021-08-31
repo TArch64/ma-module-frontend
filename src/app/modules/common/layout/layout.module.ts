@@ -6,13 +6,21 @@ import {MatMenuModule} from "@angular/material/menu";
 import {MatIconModule} from "@angular/material/icon";
 import {CommonAuthModule} from "@common/auth";
 import {CommonCoreModule} from "@common/core";
-import {LayoutComponent, LayoutCurrentUserComponent} from "./components";
+import {LayoutComponent, LayoutContentComponent, LayoutCurrentUserComponent, SidenavLinkComponent} from "./components";
 import {LayoutFacade} from "./layout.facade";
 import {MatSidenavModule} from "@angular/material/sidenav";
+import {RouterModule} from "@angular/router";
+
+const publicDeclarations = [
+    LayoutComponent,
+    LayoutContentComponent,
+    SidenavLinkComponent
+]
 
 @NgModule({
     imports: [
         CommonModule,
+        RouterModule,
         MatToolbarModule,
         MatButtonModule,
         MatMenuModule,
@@ -22,14 +30,12 @@ import {MatSidenavModule} from "@angular/material/sidenav";
         CommonAuthModule
     ],
     declarations: [
-        LayoutComponent,
+        ...publicDeclarations,
         LayoutCurrentUserComponent
     ],
     providers: [
         LayoutFacade
     ],
-    exports: [
-        LayoutComponent
-    ]
+    exports: publicDeclarations
 })
 export class LayoutModule {}

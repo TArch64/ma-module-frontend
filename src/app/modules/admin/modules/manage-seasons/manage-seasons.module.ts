@@ -6,7 +6,7 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
 import {MatCardModule} from "@angular/material/card";
 import {CommonCoreModule} from "@common/core";
-import {AuthInterceptor} from "@common/auth";
+import {CommonAuthModule} from "@common/auth";
 import {ManageSeasonsPageComponent, AddSeasonInitiatorComponent, FinishSeasonInitiatorComponent} from "./components";
 import {ManageSeasonsResolver} from "./resolvers";
 import {ManageSeasonsFacade} from "./manage-seasons.facade";
@@ -14,6 +14,8 @@ import {ActiveSeasonService} from "./services";
 import {SeasonManagerSync} from "./sync";
 import {ToastrModule} from "@common/toastr";
 import {ConfirmModule} from "@common/confirm";
+import {MatToolbarModule} from "@angular/material/toolbar";
+import {LayoutModule} from "@common/layout";
 
 @NgModule({
     imports: [
@@ -26,12 +28,15 @@ import {ConfirmModule} from "@common/confirm";
             }
         ]),
         HttpClientModule,
+        MatToolbarModule,
         MatButtonModule,
         MatIconModule,
         MatCardModule,
         CommonCoreModule,
+        CommonAuthModule,
         ToastrModule,
-        ConfirmModule
+        ConfirmModule,
+        LayoutModule,
     ],
     declarations: [
         ManageSeasonsPageComponent,
@@ -42,8 +47,7 @@ import {ConfirmModule} from "@common/confirm";
         ManageSeasonsFacade,
         ActiveSeasonService,
         SeasonManagerSync,
-        ManageSeasonsResolver,
-        AuthInterceptor.getProvider()
+        ManageSeasonsResolver
     ]
 })
 export class ManageSeasonsModule {}

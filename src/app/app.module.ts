@@ -4,14 +4,7 @@ import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {RouterModule, Routes} from "@angular/router";
 import {CommonCoreModule} from "@common/core";
-import {
-    CommonAuthModule,
-    AuthOnlyGuard,
-    InauthOnlyGuard,
-    AuthInterceptor,
-    RoleAccessGuard
-} from "@common/auth";
-import {UserRoles} from "@common/auth/enums";
+import {CommonAuthModule, AuthOnlyGuard, InauthOnlyGuard, RoleAccessGuard, UserRoles} from "@common/auth";
 import {CommonSeasonModule, LoadSeasonsResolver} from "@common/season";
 
 const routes: Routes = [
@@ -59,9 +52,6 @@ const routes: Routes = [
         CommonCoreModule,
         CommonAuthModule,
         CommonSeasonModule
-    ],
-    providers: [
-        AuthInterceptor.getProvider()
     ],
     bootstrap: [AppComponent]
 })

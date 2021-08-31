@@ -1,5 +1,11 @@
-<app-finish-season-initiator *ngIf="isAnySeasonActive | async; else addSeasonInitiator"></app-finish-season-initiator>
+<mat-toolbar>
+    <h2>Manage Seasons</h2>
+</mat-toolbar>
 
-<ng-template #addSeasonInitiator>
-    <app-add-season-initiator></app-add-season-initiator>
-</ng-template>
+<app-layout-content>
+    <app-finish-season-initiator *ngIf="isAnySeasonActive | async; else addSeasonInitiator"></app-finish-season-initiator>
+
+    <ng-template #addSeasonInitiator>
+        <app-add-season-initiator></app-add-season-initiator>
+    </ng-template>
+</app-layout-content>

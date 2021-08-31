@@ -16,7 +16,7 @@ import {CommonAuthFacade} from "./common-auth.facade";
         CommonAuthSyncService,
         AuthOnlyGuard,
         InauthOnlyGuard,
-        AuthInterceptor,
+        AuthInterceptor.getProvider(),
         RoleAccessGuard
     ]
 })

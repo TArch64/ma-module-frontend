@@ -17,6 +17,10 @@ import {MatButtonModule} from "@angular/material/button";
                     {
                         path: 'manage-seasons',
                         loadChildren: () => import('./modules/manage-seasons').then(m => m.ManageSeasonsModule)
+                    },
+                    {
+                        path: 'manage-courses',
+                        loadChildren: () => import('./modules/manage-courses').then(m => m.ManageCoursesModule)
                     }
                 ]
             }

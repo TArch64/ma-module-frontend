@@ -32,7 +32,3 @@
 .layout__page {
     flex-grow: 1;
 }
-
-.layout__content {
-    padding: var(--offset-md);
-}
