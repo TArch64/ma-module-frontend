@@ -1,1 +1,1 @@
-export {CoursesSync} from './courses.sync';
+export {CoursesSync, AddCoursePayload} from './courses.sync';

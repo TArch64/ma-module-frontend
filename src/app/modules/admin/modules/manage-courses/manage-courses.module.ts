@@ -25,6 +25,7 @@ import {CommonFormModule} from "@common/form";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {MatCheckboxModule} from "@angular/material/checkbox";
+import {ToastrModule} from "@common/toastr";
 
 @NgModule({
     imports: [
@@ -49,7 +50,8 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
         MatFormFieldModule,
         MatInputModule,
         MatCheckboxModule,
-        LayoutModule
+        LayoutModule,
+        ToastrModule
     ],
     declarations: [
         ManageCoursesPageComponent,

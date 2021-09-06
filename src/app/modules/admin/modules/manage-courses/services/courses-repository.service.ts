@@ -1,9 +1,10 @@
 import {Injectable} from "@angular/core";
 import {BehaviorSubject, Observable} from "rxjs";
-import {CoursesSync} from "../sync";
+import {CoursesSync, AddCoursePayload} from "../sync";
 import {map, tap} from "rxjs/operators";
-import {Course} from "@common/course";
-import {CommonSeasonsService} from "@common/season";
+import {Course, CourseTypes} from "@common/course";
+import {CommonSeasonsService, Season} from "@common/season";
+import {IAddCourseOptions} from "../entities";
 
 @Injectable()
 export class CoursesRepositoryService {
@@ -15,13 +16,25 @@ export class CoursesRepositoryService {
     ) {}
 
     public loadCourses(): Observable<Course[]> {
-        return this.coursesSync.loadCourses(this.seasonsService.activeSeasonSnapshot!).pipe(
+        return this.coursesSync.loadCourses(this.activeSeason).pipe(
             map(json => json.map(Course.fromJSON)),
             tap(courses => this.coursesSubject.next(courses))
         );
     }
 
+    private get activeSeason(): Season {
+        return this.seasonsService.activeSeasonSnapshot!
+    }
+
     public get courses$(): Observable<Course[]> {
         return this.coursesSubject.asObservable();
+    }
+
+    public addCourse(options: IAddCourseOptions): Observable<Course> {
+        const payload: AddCoursePayload = {
+            name: options.name,
+            type: options.isGeneral ? CourseTypes.GENERAL : CourseTypes.ADDITIONAL
+        };
+        return this.coursesSync.addCourse(this.activeSeason, payload).pipe(map(Course.fromJSON));
     }
 }
