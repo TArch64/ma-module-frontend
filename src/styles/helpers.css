@@ -20,3 +20,9 @@
 .margin-bottom--xxs { margin-bottom: var(--offset-xxs) !important }
 
 .text--left { text-align: left !important; }
+
+.list--none {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+}

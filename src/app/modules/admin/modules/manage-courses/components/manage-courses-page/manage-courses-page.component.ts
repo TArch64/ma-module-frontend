@@ -9,8 +9,7 @@ import {Disposable} from "@common/core";
 
 @Component({
   selector: 'app-manage-courses-page',
-  templateUrl: './manage-courses-page.component.html',
-  styleUrls: ['./manage-courses-page.component.css']
+  templateUrl: './manage-courses-page.component.html'
 })
 export class ManageCoursesPageComponent implements OnDestroy {
     private readonly disposable = new Disposable();

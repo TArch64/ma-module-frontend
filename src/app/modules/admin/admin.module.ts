@@ -5,6 +5,7 @@ import {AdminLayoutComponent, AdminPageComponent} from "./components";
 import {LayoutModule} from "@common/layout";
 import {CommonSeasonModule} from "@common/season";
 import {MatButtonModule} from "@angular/material/button";
+import {AdminFacade} from "./admin.facade";
 
 @NgModule({
     imports: [
@@ -32,6 +33,9 @@ import {MatButtonModule} from "@angular/material/button";
     declarations: [
         AdminLayoutComponent,
         AdminPageComponent
+    ],
+    providers: [
+        AdminFacade
     ]
 })
 export class AdminModule {}

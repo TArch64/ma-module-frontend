@@ -1,6 +1,6 @@
 <app-layout>
     <ng-container appSidenavContent>
-        <app-season-selector></app-season-selector>
+        <app-season-selector *ngIf="hasSeasons$ | async"></app-season-selector>
 
         <ng-content select="[layoutSidenavContent]"></ng-content>
     </ng-container>

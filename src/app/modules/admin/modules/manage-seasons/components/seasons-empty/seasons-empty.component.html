@@ -1,18 +1,19 @@
 <mat-card class="mat-card-xs">
     <mat-card-header>
-        <h2 mat-card-title>Start new season</h2>
+        <h2 mat-card-title>There are no seasons yet</h2>
     </mat-card-header>
 
     <mat-card-actions>
         <button
             class="block margin-left--auto"
             mat-raised-button
-            [appMatLoadingButton]="isSeasonStarting"
             type="button"
             color="primary"
-            (click)="startSeason()"
+            [appMatLoadingButton]="isAdding"
+            (click)="addSeason()"
         >
-            Start season
+            Add season
         </button>
     </mat-card-actions>
 </mat-card>
+

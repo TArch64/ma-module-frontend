@@ -1,29 +1,28 @@
 import {Injectable} from "@angular/core";
-import {BehaviorSubject, Observable} from "rxjs";
-import {ManagerState} from "../entities";
-import {captureExistsValues, formatValidationHttpResponse} from "@common/core";
+import {Observable} from "rxjs";
+import {formatValidationHttpResponse} from "@common/core";
 import {SeasonManagerSync} from "../sync";
-import {mapTo} from "rxjs/operators";
-import {CommonSeasonsService} from "@common/season";
+import {map, mapTo, tap} from "rxjs/operators";
+import {CommonSeasonsService, Season} from "@common/season";
 
 @Injectable()
 export class ActiveSeasonService {
-    private stateSubject = new BehaviorSubject<ManagerState | null>(null);
-
     constructor(
         private readonly commonService: CommonSeasonsService,
         private readonly syncService: SeasonManagerSync
     ) {}
 
-    public get state$(): Observable<ManagerState> {
-        return this.stateSubject.asObservable().pipe(captureExistsValues);
-    }
+    public addSeason(makeActive: boolean): Observable<Season> {
+        return this.syncService.addSeason(makeActive).pipe(
+            map(Season.fromJSON),
+            tap(() => {
+                if (!makeActive || !this.commonService.activeSeason) return;
 
-    public loadManagerState(): void {
-        const state = ManagerState.fromJSON({
-            isAnySeasonActive: this.commonService.isAnySeasonActive
-        });
-        this.stateSubject.next(state);
+                const oldActiveSeason = this.commonService.activeSeason.clone({ active: false });
+                this.commonService.updateSeason(oldActiveSeason)
+            }),
+            tap(season => this.commonService.addSeason(season))
+        );
     }
 
     public startSeason(): Observable<null> {

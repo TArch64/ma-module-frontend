@@ -1,2 +1,2 @@
 export {IConfirmOptions, ConfirmOptions} from './confirm-options';
-export {ConfirmResult} from './confirm-result';
+export {ConfirmResult, IAdditionalAction} from './confirm-result';

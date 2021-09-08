@@ -1,7 +1,13 @@
-<app-layout-content>
-    <app-finish-season-initiator *ngIf="isAnySeasonActive | async; else addSeasonInitiator"></app-finish-season-initiator>
+<app-manage-seasons-toolbar
+    (onAddSeason)="addSeason($event)"
+    [isAdding]="isSeasonAdding"
+    *ngIf="hasSeasons$ | async"
+></app-manage-seasons-toolbar>
 
-    <ng-template #addSeasonInitiator>
-        <app-add-season-initiator></app-add-season-initiator>
+<app-layout-content>
+    <app-seasons-list *ngIf="hasSeasons$ | async; else emptyState"></app-seasons-list>
+
+    <ng-template #emptyState>
+        <app-seasons-empty (onAddSeason)="addSeason(true)" [isAdding]="isSeasonAdding"></app-seasons-empty>
     </ng-template>
 </app-layout-content>

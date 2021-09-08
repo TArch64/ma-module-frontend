@@ -1,6 +1,17 @@
-<p class="confirm-dialog__text" mat-dialog-content>
-    {{ bodyText }}
-</p>
+<div mat-dialog-content>
+    <p class="confirm-dialog__text">
+        {{ bodyText }}
+    </p>
+
+    <mat-checkbox
+        class="confirm-dialog__additional-action margin-bottom--xs"
+        [formControl]="additionalActionControl!"
+        color="primary"
+        *ngIf="hasAdditionalAction"
+    >
+        {{ additionalActionText }}
+    </mat-checkbox>
+</div>
 
 <div mat-dialog-actions class="confirm-dialog__actions">
     <button

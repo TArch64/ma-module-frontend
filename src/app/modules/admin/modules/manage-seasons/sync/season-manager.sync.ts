@@ -1,8 +1,8 @@
 import {Injectable} from "@angular/core";
 import {Observable} from "rxjs";
 import {ApiPathService} from "@common/core";
-import {IManagerStateJSON} from "../entities";
 import {HttpClient} from "@angular/common/http";
+import {ISeasonJSON} from "@common/season/entities";
 
 @Injectable()
 export class SeasonManagerSync {
@@ -11,9 +11,9 @@ export class SeasonManagerSync {
         private readonly httpClient: HttpClient
     ) {}
 
-    public loadState(): Observable<IManagerStateJSON> {
-        const url = this.apiPath.buildRolePath(['course-seasons', 'manager-state']);
-        return this.httpClient.get<IManagerStateJSON>(url);
+    public addSeason(makeActive: boolean): Observable<ISeasonJSON> {
+        const url = this.apiPath.buildRolePath(['course-seasons']);
+        return this.httpClient.post<ISeasonJSON>(url, { makeActive });
     }
 
     public startSeason(): Observable<object> {

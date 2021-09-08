@@ -5,10 +5,17 @@ import {RouterModule} from "@angular/router";
 import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
 import {MatCardModule} from "@angular/material/card";
+import {MatToolbarModule} from "@angular/material/toolbar";
+import {MatListModule} from "@angular/material/list";
 import {CommonCoreModule} from "@common/core";
 import {CommonAuthModule} from "@common/auth";
-import {ManageSeasonsPageComponent, AddSeasonInitiatorComponent, FinishSeasonInitiatorComponent} from "./components";
-import {ManageSeasonsResolver} from "./resolvers";
+import {
+    ManageSeasonsPageComponent,
+    SeasonsListComponent,
+    SeasonsListItemComponent,
+    SeasonsEmptyComponent,
+    ManageSeasonsToolbarComponent
+} from "./components";
 import {ManageSeasonsFacade} from "./manage-seasons.facade";
 import {ActiveSeasonService} from "./services";
 import {SeasonManagerSync} from "./sync";
@@ -22,14 +29,15 @@ import {LayoutModule} from "@common/layout";
         RouterModule.forChild([
             {
                 path: '',
-                component: ManageSeasonsPageComponent,
-                resolve: { state: ManageSeasonsResolver }
+                component: ManageSeasonsPageComponent
             }
         ]),
         HttpClientModule,
         MatButtonModule,
         MatIconModule,
         MatCardModule,
+        MatToolbarModule,
+        MatListModule,
         CommonCoreModule,
         CommonAuthModule,
         ToastrModule,
@@ -38,14 +46,15 @@ import {LayoutModule} from "@common/layout";
     ],
     declarations: [
         ManageSeasonsPageComponent,
-        AddSeasonInitiatorComponent,
-        FinishSeasonInitiatorComponent
+        ManageSeasonsToolbarComponent,
+        SeasonsListComponent,
+        SeasonsListItemComponent,
+        SeasonsEmptyComponent
     ],
     providers: [
         ManageSeasonsFacade,
         ActiveSeasonService,
-        SeasonManagerSync,
-        ManageSeasonsResolver
+        SeasonManagerSync
     ]
 })
 export class ManageSeasonsModule {}

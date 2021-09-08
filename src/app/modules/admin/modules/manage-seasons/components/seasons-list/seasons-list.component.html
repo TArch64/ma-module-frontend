@@ -1,0 +1,17 @@
+<mat-card class="mat-card--no-offsets">
+    <mat-list mat-card-content>
+        <ng-container *ngIf="activeSeason$ | async as activeSeason">
+            <h3 mat-subheader>Active</h3>
+            <app-seasons-list-item [season]="activeSeason"></app-seasons-list-item>
+        </ng-container>
+
+        <ng-container *ngIf="(inactiveSeasons$ | async)?.length">
+            <mat-divider></mat-divider>
+            <h3 mat-subheader>Other</h3>
+            <app-seasons-list-item
+                *ngFor="let season of inactiveSeasons$ | async"
+                [season]="season"
+            ></app-seasons-list-item>
+        </ng-container>
+    </mat-list>
+</mat-card>

@@ -16,14 +16,14 @@ export class CoursesRepositoryService {
     ) {}
 
     public loadCourses(): Observable<Course[]> {
-        return this.coursesSync.loadCourses(this.activeSeason).pipe(
+        return this.coursesSync.loadCourses(this.currentSeason).pipe(
             map(json => json.map(Course.fromJSON)),
             tap(courses => this.coursesSubject.next(courses))
         );
     }
 
-    private get activeSeason(): Season {
-        return this.seasonsService.activeSeasonSnapshot!
+    private get currentSeason(): Season {
+        return this.seasonsService.currentSeasonSnapshot!
     }
 
     public get courses$(): Observable<Course[]> {
@@ -35,6 +35,6 @@ export class CoursesRepositoryService {
             name: options.name,
             type: options.isGeneral ? CourseTypes.GENERAL : CourseTypes.ADDITIONAL
         };
-        return this.coursesSync.addCourse(this.activeSeason, payload).pipe(map(Course.fromJSON));
+        return this.coursesSync.addCourse(this.currentSeason, payload).pipe(map(Course.fromJSON));
     }
 }

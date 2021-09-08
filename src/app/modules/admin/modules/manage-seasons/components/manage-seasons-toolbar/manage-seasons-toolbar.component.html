@@ -1,0 +1,14 @@
+<mat-toolbar>
+    <h2>Manage Seasons</h2>
+
+    <button
+        mat-raised-button
+        class="margin-left--auto"
+        type="button"
+        color="primary"
+        [appMatLoadingButton]="isAdding"
+        (click)="addSeason()"
+    >
+        Add season
+    </button>
+</mat-toolbar>

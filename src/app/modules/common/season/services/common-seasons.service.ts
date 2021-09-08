@@ -23,8 +23,8 @@ export class CommonSeasonsService {
         return !!this.seasonsSnapshot.length;
     }
 
-    public get isAnySeasonActive(): boolean {
-        return this.seasonsSnapshot.some(season => season.active);
+    public get activeSeason(): Season | null {
+        return this.seasonsSnapshot.find(season => season.active) ?? null;
     }
 
     public loadSeasons(): Observable<Season[]> {
@@ -38,7 +38,7 @@ export class CommonSeasonsService {
         return this.activeSeasonSubject.asObservable();
     }
 
-    public get activeSeasonSnapshot(): Season | null {
+    public get currentSeasonSnapshot(): Season | null {
         return this.activeSeasonSubject.value;
     }
 
@@ -52,7 +52,19 @@ export class CommonSeasonsService {
     }
 
     private getActiveSeason(): Season | null {
+        if (!this.seasonsSnapshot.length) return null;
         const activeSeason = this.seasonsSnapshot.find(season => season.active);
         return activeSeason ?? this.seasonsSnapshot.reduce((prev, current) => (prev.value > current.value) ? prev : current)
+    }
+
+    public addSeason(season: Season): void {
+        this.refreshSeasonsState([season, ...this.seasonsSnapshot])
+    }
+
+    public updateSeason(season: Season): void {
+        const seasonIndex = this.seasonsSnapshot.findIndex(s => s.id === season.id);
+        const seasons = this.seasonsSnapshot.slice();
+        seasons.splice(seasonIndex, 1, season);
+        this.refreshSeasonsState(seasons);
     }
 }
