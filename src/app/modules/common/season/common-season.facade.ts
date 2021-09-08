@@ -11,8 +11,8 @@ export class CommonSeasonFacade {
         return this.seasonsService.seasons$;
     }
 
-    public get activeSeason$(): Observable<Season | null> {
-        return this.seasonsService.activeSeason$;
+    public get currentSeason$(): Observable<Season | null> {
+        return this.seasonsService.currentSeason$;
     }
 
     public get isSeasonsLoaded(): boolean {
@@ -23,7 +23,7 @@ export class CommonSeasonFacade {
         return this.seasonsService.loadSeasons();
     }
 
-    public changeActiveSeason(season: Season): void {
-        this.seasonsService.changeActiveSeason(season);
+    public changeCurrentSeason(season: Season): void {
+        this.seasonsService.changeCurrentSeason(season);
     }
 }

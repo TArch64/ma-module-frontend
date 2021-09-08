@@ -15,9 +15,9 @@ export class SeasonSelectorComponent implements OnDestroy {
 
     constructor(private seasonFacade: CommonSeasonFacade) {
         this.disposable.subscribeTo(this.selectControl.valueChanges, (season: Season) => {
-            this.seasonFacade.changeActiveSeason(season)
+            this.seasonFacade.changeCurrentSeason(season)
         });
-        this.disposable.subscribeTo(this.seasonFacade.activeSeason$, (season: Season | null) => {
+        this.disposable.subscribeTo(this.seasonFacade.currentSeason$, (season: Season | null) => {
             this.selectControl.setValue(season, { emitEvent: false });
         })
     }

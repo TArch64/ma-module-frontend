@@ -37,6 +37,6 @@ export class ManageCoursesPageComponent implements OnDestroy {
     }
 
     private attachRefreshListener(): void {
-        this.disposable.subscribeTo(this.facade.activeSeasonChange$, () => this.facade.loadState().subscribe())
+        this.disposable.subscribeTo(this.facade.currentSeasonChange$, () => this.facade.loadState().subscribe())
     }
 }

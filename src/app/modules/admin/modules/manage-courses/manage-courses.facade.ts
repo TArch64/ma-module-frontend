@@ -23,8 +23,8 @@ export class ManageCoursesFacade {
         return this.repository.courses$;
     }
 
-    public get activeSeasonChange$(): Observable<Season> {
-        return this.seasonsService.activeSeason$.pipe(captureExistsValues, skip(1))
+    public get currentSeasonChange$(): Observable<Season> {
+        return this.seasonsService.currentSeason$.pipe(captureExistsValues, skip(1))
     }
 
     public addCourse(options: IAddCourseOptions): Observable<Course> {

@@ -7,7 +7,7 @@ import {CommonSeasonSyncService} from "../sync";
 @Injectable({ providedIn: 'root' })
 export class CommonSeasonsService {
     private seasonsSubject = new BehaviorSubject<Season[]>([]);
-    private activeSeasonSubject = new BehaviorSubject<Season | null>(null);
+    private currentSeasonSubject = new BehaviorSubject<Season | null>(null);
 
     constructor(private syncService: CommonSeasonSyncService) {}
 
@@ -34,27 +34,26 @@ export class CommonSeasonsService {
         )
     }
 
-    public get activeSeason$(): Observable<Season | null> {
-        return this.activeSeasonSubject.asObservable();
+    public get currentSeason$(): Observable<Season | null> {
+        return this.currentSeasonSubject.asObservable();
     }
 
     public get currentSeasonSnapshot(): Season | null {
-        return this.activeSeasonSubject.value;
+        return this.currentSeasonSubject.value;
     }
 
-    public changeActiveSeason(season: Season): void {
-        this.activeSeasonSubject.next(season);
+    public changeCurrentSeason(season: Season): void {
+        this.currentSeasonSubject.next(season);
     }
 
     private refreshSeasonsState(seasons: Season[]): void {
         this.seasonsSubject.next(seasons);
-        this.activeSeasonSubject.next(this.getActiveSeason() ?? null);
+        this.currentSeasonSubject.next(this.getCurrentSeason() ?? null);
     }
 
-    private getActiveSeason(): Season | null {
+    private getCurrentSeason(): Season | null {
         if (!this.seasonsSnapshot.length) return null;
-        const activeSeason = this.seasonsSnapshot.find(season => season.active);
-        return activeSeason ?? this.seasonsSnapshot.reduce((prev, current) => (prev.value > current.value) ? prev : current)
+        return this.activeSeason ?? this.seasonsSnapshot.reduce((prev, current) => (prev.value > current.value) ? prev : current)
     }
 
     public addSeason(season: Season): void {
