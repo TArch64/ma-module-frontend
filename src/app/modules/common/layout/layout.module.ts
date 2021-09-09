@@ -10,6 +10,7 @@ import {LayoutComponent, LayoutContentComponent, LayoutCurrentUserComponent, Sid
 import {LayoutFacade} from "./layout.facade";
 import {MatSidenavModule} from "@angular/material/sidenav";
 import {RouterModule} from "@angular/router";
+import {MatProgressBarModule} from "@angular/material/progress-bar";
 
 const publicDeclarations = [
     LayoutComponent,
@@ -25,6 +26,7 @@ const publicDeclarations = [
         MatButtonModule,
         MatMenuModule,
         MatIconModule,
+        MatProgressBarModule,
         MatSidenavModule,
         CommonCoreModule,
         CommonAuthModule

@@ -1,3 +1,9 @@
 .layout-content--offset-md {
     padding: var(--offset-md);
 }
+
+@media (max-width: 599px) {
+    .layout-content--offset-md {
+        padding: var(--offset-sm);
+    }
+}

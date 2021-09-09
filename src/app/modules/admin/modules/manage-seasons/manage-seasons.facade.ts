@@ -34,4 +34,16 @@ export class ManageSeasonsFacade {
     public addSeason(makeActive: boolean): Observable<null> {
         return this.activeSeasonService.addSeason(makeActive).pipe(mapTo(null));
     }
+
+    public activateSeason(season: Season): Observable<null> {
+        return this.activeSeasonService.activateSeason(season);
+    }
+
+    public deactivateSeason(season: Season): Observable<null> {
+        return this.activeSeasonService.deactivateSeason(season);
+    }
+
+    public removeSeason(season: Season): Observable<null> {
+        return this.activeSeasonService.removeSeason(season);
+    }
 }

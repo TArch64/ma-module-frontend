@@ -1,6 +1,5 @@
 import {Injectable} from "@angular/core";
 import {Observable} from "rxjs";
-import {formatValidationHttpResponse} from "@common/core";
 import {SeasonManagerSync} from "../sync";
 import {map, mapTo, tap} from "rxjs/operators";
 import {CommonSeasonsService, Season} from "@common/season";
@@ -16,26 +15,39 @@ export class ActiveSeasonService {
         return this.syncService.addSeason(makeActive).pipe(
             map(Season.fromJSON),
             tap(() => {
-                if (!makeActive || !this.commonService.activeSeason) return;
-
-                const oldActiveSeason = this.commonService.activeSeason.clone({ active: false });
-                this.commonService.updateSeason(oldActiveSeason)
+                if (makeActive) this.deactivateActiveSeason();
             }),
             tap(season => this.commonService.addSeason(season))
         );
     }
 
-    public startSeason(): Observable<null> {
-        return this.syncService.startSeason().pipe(
-            mapTo(null),
-            formatValidationHttpResponse
+    private deactivateActiveSeason(): void {
+        const activeSeason = this.commonService.activeSeason;
+        if (!activeSeason) return;
+
+        const oldActiveSeason = activeSeason.clone({ active: false });
+        this.commonService.updateSeason(oldActiveSeason)
+    }
+
+    public activateSeason(season: Season): Observable<null> {
+        return this.syncService.activateSeason(season).pipe(
+            tap(() => this.deactivateActiveSeason()),
+            tap(() => this.commonService.updateSeason(season.clone({ active: true }))),
+            mapTo(null)
         );
     }
 
-    public finishSeason(): Observable<null> {
-        return this.syncService.finishActiveSeason().pipe(
-            mapTo(null),
-            formatValidationHttpResponse
+    public deactivateSeason(season: Season): Observable<null> {
+        return this.syncService.deactivateSeason(season).pipe(
+            tap(() => this.commonService.updateSeason(season.clone({ active: false }))),
+            mapTo(null)
+        );
+    }
+
+    public removeSeason(season: Season): Observable<null> {
+        return this.syncService.removeSeason(season).pipe(
+            tap(() => this.commonService.removeSeason(season)),
+            mapTo(null)
         );
     }
 }

@@ -1,3 +1,26 @@
-<mat-list-item>
-    <h2 mat-line>{{ season.value }}th ({{ season.year }})</h2>
+<mat-list-item class="seasons-list-item">
+    <div class="flex flex--align-center" mat-line>
+        <h2 class="seasons-list-item__title">{{ season.value }}th ({{ season.year }})</h2>
+
+        <div class="margin-left--auto"></div>
+
+        <button
+            mat-icon-button
+            color="primary"
+            (click)="deactivateSeason()"
+            *ngIf="season.active; else inactiveActions"
+        >
+            <mat-icon>stop</mat-icon>
+        </button>
+
+        <ng-template #inactiveActions>
+            <button mat-icon-button color="primary" (click)="activateSeason()">
+                <mat-icon>play_arrow</mat-icon>
+            </button>
+
+            <button class="margin-left--xs" mat-icon-button color="warn" (click)="removeSeason()">
+                <mat-icon>delete</mat-icon>
+            </button>
+        </ng-template>
+    </div>
 </mat-list-item>

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {ManageSeasonsFacade} from "../../manage-seasons.facade";
 import {ToastrService} from "@common/toastr";
+import {ProgressBarService} from "@common/layout";
 
 @Component({
   selector: 'app-manage-seasons-page',
@@ -12,10 +13,12 @@ export class ManageSeasonsPageComponent {
 
     constructor(
         private readonly facade: ManageSeasonsFacade,
-        private readonly toastr: ToastrService
+        private readonly toastr: ToastrService,
+        private readonly progressBar: ProgressBarService
     ) {}
 
     public addSeason(makeActive: boolean): void {
+        this.progressBar.show();
         this.isSeasonAdding = true;
 
         this.facade.addSeason(makeActive).subscribe({
@@ -25,10 +28,12 @@ export class ManageSeasonsPageComponent {
     }
 
     private onSeasonAdded(): void {
+        this.progressBar.hide();
         this.isSeasonAdding = false;
     }
 
     private onSeasonAddingError(error: Error): void {
+        this.progressBar.hide();
         this.isSeasonAdding = false;
         this.toastr.show(error.message);
     }

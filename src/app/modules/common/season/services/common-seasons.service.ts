@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
-import {BehaviorSubject, Observable} from "rxjs";
-import {map, tap} from "rxjs/operators";
+import {asyncScheduler, BehaviorSubject, Observable} from "rxjs";
+import {map, tap, throttleTime} from "rxjs/operators";
 import {Season} from "../entities";
 import {CommonSeasonSyncService} from "../sync";
 
@@ -12,7 +12,9 @@ export class CommonSeasonsService {
     constructor(private syncService: CommonSeasonSyncService) {}
 
     public get seasons$(): Observable<Season[]> {
-        return this.seasonsSubject.asObservable();
+        return this.seasonsSubject.asObservable().pipe(
+            throttleTime(50, asyncScheduler, { leading: true, trailing: true })
+        );
     }
 
     public get seasonsSnapshot(): Season[] {
@@ -65,5 +67,9 @@ export class CommonSeasonsService {
         const seasons = this.seasonsSnapshot.slice();
         seasons.splice(seasonIndex, 1, season);
         this.refreshSeasonsState(seasons);
+    }
+
+    public removeSeason(season: Season): void {
+        this.refreshSeasonsState(this.seasonsSnapshot.filter(s => s.id !== season.id));
     }
 }

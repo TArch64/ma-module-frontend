@@ -22,13 +22,20 @@
     </mat-sidenav>
 
     <mat-sidenav-content>
-        <mat-toolbar color="primary">
+        <mat-toolbar class="layout__main-toolbar mat-elevation-z1" color="primary">
             <button mat-icon-button type="button" (click)="toggleSidenav()">
                 <mat-icon>menu</mat-icon>
             </button>
 
             <h1 class="margin-left--xs">MA Module</h1>
         </mat-toolbar>
+
+        <mat-progress-bar
+            class="layout__progress-bar"
+            mode="indeterminate"
+            color="primary"
+            *ngIf="isProgressBarVisible$ | async"
+        ></mat-progress-bar>
 
         <ng-content></ng-content>
     </mat-sidenav-content>

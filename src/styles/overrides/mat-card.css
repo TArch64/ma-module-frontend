@@ -16,9 +16,3 @@
         width: 100%;
     }
 }
-
-
-.mat-card--no-offsets,
-.mat-card--no-offsets .mat-card-content {
-    padding: 0 !important;
-}

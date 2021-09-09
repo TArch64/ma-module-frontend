@@ -13,9 +13,7 @@ export class ManageSeasonsToolbarComponent {
     @Output()
     public readonly onAddSeason = new EventEmitter<boolean>();
 
-    constructor(
-        private readonly confirm: ConfirmService
-    ) {}
+    constructor(private readonly confirm: ConfirmService) {}
 
     public addSeason(): void {
         this.confirmAdding().subscribe((result) => {

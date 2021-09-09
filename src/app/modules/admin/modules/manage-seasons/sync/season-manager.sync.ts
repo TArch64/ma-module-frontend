@@ -1,8 +1,8 @@
 import {Injectable} from "@angular/core";
 import {Observable} from "rxjs";
-import {ApiPathService} from "@common/core";
+import {ApiPathService, formatValidationHttpResponse} from "@common/core";
 import {HttpClient} from "@angular/common/http";
-import {ISeasonJSON} from "@common/season/entities";
+import {ISeasonJSON, Season} from "@common/season/entities";
 
 @Injectable()
 export class SeasonManagerSync {
@@ -16,13 +16,18 @@ export class SeasonManagerSync {
         return this.httpClient.post<ISeasonJSON>(url, { makeActive });
     }
 
-    public startSeason(): Observable<object> {
-        const url = this.apiPath.buildRolePath(['course-seasons']);
-        return this.httpClient.post(url, null);
+    public activateSeason(season: Season): Observable<object> {
+        const url = this.apiPath.buildRolePath(['course-seasons', 'activate']);
+        return this.httpClient.post(url, { seasonId: season.id }).pipe(formatValidationHttpResponse);
     }
 
-    public finishActiveSeason(): Observable<object> {
-        const url = this.apiPath.buildRolePath(['course-seasons', 'active', 'finish']);
-        return this.httpClient.post(url, null);
+    public deactivateSeason(season: Season): Observable<object> {
+        const url = this.apiPath.buildRolePath(['course-seasons', 'deactivate']);
+        return this.httpClient.post(url, { seasonId: season.id }).pipe(formatValidationHttpResponse);
+    }
+
+    public removeSeason(season: Season): Observable<object> {
+        const url = this.apiPath.buildRolePath(['course-seasons', season.id]);
+        return this.httpClient.delete(url);
     }
 }
