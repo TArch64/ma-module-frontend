@@ -20,6 +20,10 @@ import {AdminFacade} from "./admin.facade";
                         loadChildren: () => import('./modules/manage-seasons').then(m => m.ManageSeasonsModule)
                     },
                     {
+                        path: 'courses/:courseId',
+                        loadChildren: () => import('./modules/manage-course').then(m => m.ManageCourseModule)
+                    },
+                    {
                         path: 'courses',
                         loadChildren: () => import('./modules/manage-courses').then(m => m.ManageCoursesModule)
                     }

@@ -6,18 +6,26 @@ import {ManageCourseFacade} from "./manage-course.facade";
 import {RouterModule} from "@angular/router";
 import {ManageCoursePageComponent} from "./components";
 import {LoadCourseResolver} from "./resolvers";
+import {CourseService} from "./services";
+import {ManageCourseSync} from "./sync";
+import {CommonCoreModule} from "@common/core";
+import {HttpClientModule} from "@angular/common/http";
+import {CommonAuthModule} from "@common/auth";
 
 @NgModule({
     imports: [
         CommonModule,
         RouterModule.forChild([
             {
-                path: ':courseId',
+                path: '',
                 component: ManageCoursePageComponent,
-                data: { course: LoadCourseResolver }
+                resolve: { course: LoadCourseResolver }
             }
         ]),
+        HttpClientModule,
         LayoutModule,
+        CommonAuthModule,
+        CommonCoreModule,
         MatToolbarModule
     ],
     declarations: [
@@ -25,6 +33,8 @@ import {LoadCourseResolver} from "./resolvers";
     ],
     providers: [
         ManageCourseFacade,
+        CourseService,
+        ManageCourseSync,
         LoadCourseResolver
     ]
 })
