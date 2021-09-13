@@ -12,3 +12,16 @@
     font-weight: normal;
     font-size: inherit;
 }
+
+.courses-list-item__link {
+    color: inherit;
+    text-decoration: none;
+    align-self: stretch;
+    display: flex;
+    align-items: center;
+    padding-right: var(--offset-sm);
+}
+
+.courses-list-item__link:hover {
+    text-decoration: underline;
+}

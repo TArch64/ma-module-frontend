@@ -36,6 +36,10 @@ const routes: Routes = [
                 canActivate: [RoleAccessGuard],
                 data: { requireRole: UserRoles.STUDENT },
                 loadChildren: () => import('./modules/student').then(m => m.StudentModule)
+            },
+            {
+                path: '**',
+                redirectTo: '/'
             }
         ]
     }

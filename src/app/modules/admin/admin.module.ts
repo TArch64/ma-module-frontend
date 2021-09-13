@@ -16,11 +16,11 @@ import {AdminFacade} from "./admin.facade";
                 component: AdminPageComponent,
                 children: [
                     {
-                        path: 'manage-seasons',
+                        path: 'seasons',
                         loadChildren: () => import('./modules/manage-seasons').then(m => m.ManageSeasonsModule)
                     },
                     {
-                        path: 'manage-courses',
+                        path: 'courses',
                         loadChildren: () => import('./modules/manage-courses').then(m => m.ManageCoursesModule)
                     }
                 ]

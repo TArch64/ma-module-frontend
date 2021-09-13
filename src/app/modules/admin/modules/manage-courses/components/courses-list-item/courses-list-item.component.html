@@ -1,6 +1,8 @@
 <mat-list-item class="courses-list-item">
     <div class="flex flex--align-center" mat-line>
-        <h2 class="courses-list-item__title">{{ course.name }}</h2>
+        <a class="courses-list-item__link" [routerLink]="['/admin', 'courses', course.id]">
+            <h2 class="courses-list-item__title">{{ course.name }}</h2>
+        </a>
 
         <button class="block margin-left--auto" mat-icon-button color="warn" matTooltip="Remove course" (click)="removeCourse()">
             <mat-icon>delete</mat-icon>

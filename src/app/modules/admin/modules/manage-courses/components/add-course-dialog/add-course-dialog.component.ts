@@ -35,7 +35,6 @@ export class AddCourseDialogComponent {
     private onCourseAdded(): void {
         this.toastr.show('Course successfully added');
         this.dialogRef.close();
-
     }
 
     private onAddFailed(error: Error): void {
