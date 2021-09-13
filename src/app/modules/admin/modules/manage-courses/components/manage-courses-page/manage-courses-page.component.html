@@ -1,21 +1,25 @@
-<mat-toolbar *ngIf="hasCourses$ | async">
-    <h2>Manage Courses</h2>
+<ng-container *ngIf="hasCourses$ | async; else emptyState">
+    <mat-toolbar>
+        <h2>Manage Courses</h2>
 
-    <button
-        mat-raised-button
-        class="margin-left--auto"
-        type="button"
-        color="primary"
-        (click)="addCourse()"
-    >
-        Add Course
-    </button>
-</mat-toolbar>
+        <button
+            mat-raised-button
+            class="margin-left--auto"
+            type="button"
+            color="primary"
+            (click)="addCourse()"
+        >
+            Add Course
+        </button>
+    </mat-toolbar>
 
-<app-layout-content>
-    <app-courses-list *ngIf="hasCourses$ | async; else emptyState"></app-courses-list>
+    <app-layout-content>
+        <app-courses-list></app-courses-list>
+    </app-layout-content>
+</ng-container>
 
-    <ng-template #emptyState>
+<ng-template #emptyState>
+    <app-layout-content>
         <app-courses-empty (onAddCourse)="addCourse()"></app-courses-empty>
-    </ng-template>
-</app-layout-content>
+    </app-layout-content>
+</ng-template>

@@ -8,17 +8,18 @@
             mat-icon-button
             color="primary"
             (click)="deactivateSeason()"
+            matTooltip="Deactivate season"
             *ngIf="season.active; else inactiveActions"
         >
             <mat-icon>stop</mat-icon>
         </button>
 
         <ng-template #inactiveActions>
-            <button mat-icon-button color="primary" (click)="activateSeason()">
+            <button mat-icon-button color="primary" matTooltip="Activate season" (click)="activateSeason()">
                 <mat-icon>play_arrow</mat-icon>
             </button>
 
-            <button class="margin-left--xs" mat-icon-button color="warn" (click)="removeSeason()">
+            <button class="margin-left--xs" mat-icon-button color="warn" matTooltip="Remove season" (click)="removeSeason()">
                 <mat-icon>delete</mat-icon>
             </button>
         </ng-template>

@@ -1,1 +1,8 @@
-<p>courses-list works!</p>
+<mat-card class="courses-list__card">
+    <mat-list>
+        <app-courses-list-item
+            *ngFor="let course of courses$ | async"
+            [course]="course"
+        ></app-courses-list-item>
+    </mat-list>
+</mat-card>

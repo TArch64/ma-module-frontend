@@ -36,7 +36,7 @@ export class SeasonsListItemComponent {
 
     private confirmDeactivatingSeason(): Observable<ConfirmResult> {
         return this.confirm.open({
-            text: 'Are you sure you want to make season inactive?'
+            text: 'Are you sure you want to make the season inactive?'
         });
     }
 
@@ -53,7 +53,7 @@ export class SeasonsListItemComponent {
 
     private confirmActivatingSeason(): Observable<ConfirmResult> {
         return this.confirm.open({
-            text: 'Are you sure you want to make season active?'
+            text: 'Are you sure you want to make the season active?'
         });
     }
 
@@ -70,7 +70,7 @@ export class SeasonsListItemComponent {
 
     private confirmRemovingSeason(): Observable<ConfirmResult> {
         return this.confirm.open({
-            text: 'Are you sure you want to remove season?'
+            text: 'Are you sure you want to remove the season?'
         });
     }
 

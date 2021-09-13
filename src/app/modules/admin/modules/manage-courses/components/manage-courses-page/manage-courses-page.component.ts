@@ -1,7 +1,7 @@
 import {Component, OnDestroy} from '@angular/core';
 import {Observable} from "rxjs";
 import {ManageCoursesFacade} from "../../manage-courses.facade";
-import {map} from "rxjs/operators";
+import {map, switchMap} from "rxjs/operators";
 import {MatDialog} from "@angular/material/dialog";
 import {AddCourseDialogComponent} from "../add-course-dialog";
 import {DialogSizes} from "@common/dialog";
@@ -37,6 +37,9 @@ export class ManageCoursesPageComponent implements OnDestroy {
     }
 
     private attachRefreshListener(): void {
-        this.disposable.subscribeTo(this.facade.currentSeasonChange$, () => this.facade.loadState().subscribe())
+        const refresh$ = this.facade.currentSeasonChange$.pipe(
+            switchMap(() => this.facade.loadState())
+        );
+        this.disposable.subscribeTo(refresh$, () => {});
     }
 }

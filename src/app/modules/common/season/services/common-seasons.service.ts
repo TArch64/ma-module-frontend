@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
-import {asyncScheduler, BehaviorSubject, Observable} from "rxjs";
-import {map, tap, throttleTime} from "rxjs/operators";
+import {BehaviorSubject, Observable} from "rxjs";
+import {debounceTime, map, startWith, tap} from "rxjs/operators";
 import {Season} from "../entities";
 import {CommonSeasonSyncService} from "../sync";
 
@@ -13,7 +13,8 @@ export class CommonSeasonsService {
 
     public get seasons$(): Observable<Season[]> {
         return this.seasonsSubject.asObservable().pipe(
-            throttleTime(50, asyncScheduler, { leading: true, trailing: true })
+            debounceTime(100),
+            startWith(this.seasonsSnapshot)
         );
     }
 

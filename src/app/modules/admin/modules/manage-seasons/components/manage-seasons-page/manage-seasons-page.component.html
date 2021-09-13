@@ -1,13 +1,16 @@
-<app-manage-seasons-toolbar
-    (onAddSeason)="addSeason($event)"
-    [isAdding]="isSeasonAdding"
-    *ngIf="hasSeasons$ | async"
-></app-manage-seasons-toolbar>
+<ng-container *ngIf="hasSeasons$ | async; else emptyState">
+    <app-manage-seasons-toolbar
+        (onAddSeason)="addSeason($event)"
+        [isAdding]="isSeasonAdding"
+    ></app-manage-seasons-toolbar>
 
-<app-layout-content>
-    <app-seasons-list *ngIf="hasSeasons$ | async; else emptyState"></app-seasons-list>
+    <app-layout-content>
+        <app-seasons-list ></app-seasons-list>
+    </app-layout-content>
+</ng-container>
 
-    <ng-template #emptyState>
+<ng-template #emptyState>
+    <app-layout-content>
         <app-seasons-empty (onAddSeason)="addSeason(true)" [isAdding]="isSeasonAdding"></app-seasons-empty>
-    </ng-template>
-</app-layout-content>
+    </app-layout-content>
+</ng-template>

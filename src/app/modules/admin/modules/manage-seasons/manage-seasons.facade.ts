@@ -28,7 +28,9 @@ export class ManageSeasonsFacade {
     }
 
     public get hasSeasons$(): Observable<boolean> {
-        return this.seasons$.pipe(map(seasons => !!seasons.length))
+        return this.seasons$.pipe(
+            map(seasons => !!seasons.length)
+        )
     }
 
     public addSeason(makeActive: boolean): Observable<null> {

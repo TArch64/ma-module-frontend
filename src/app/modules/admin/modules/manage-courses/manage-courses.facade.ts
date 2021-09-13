@@ -1,18 +1,18 @@
 import {Injectable} from "@angular/core";
 import {Observable} from "rxjs";
-import {CoursesRepositoryService} from "./services";
+import {ManageCoursesService} from "./services";
 import {mapTo, skip} from "rxjs/operators";
-import {Course} from "@common/course";
+import {Course, CoursesRepositoryService} from "@common/course";
 import {IAddCourseOptions} from "./entities";
 import {CommonSeasonsService, Season} from "@common/season";
 import {captureExistsValues} from "@common/core";
 
 @Injectable()
 export class ManageCoursesFacade {
-
     constructor(
-        private readonly repository: CoursesRepositoryService,
-        private readonly seasonsService: CommonSeasonsService
+        private readonly manageCoursesService: ManageCoursesService,
+        private readonly seasonsService: CommonSeasonsService,
+        private readonly repository: CoursesRepositoryService
     ) {}
 
     public loadState(): Observable<null> {
@@ -28,7 +28,7 @@ export class ManageCoursesFacade {
     }
 
     public addCourse(options: IAddCourseOptions): Observable<Course> {
-        return this.repository.addCourse(options);
+        return this.manageCoursesService.addCourse(options);
     }
 }
 

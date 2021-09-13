@@ -1,5 +1,7 @@
 import {Component} from '@angular/core';
 import {ManageSeasonsFacade} from "../../manage-seasons.facade";
+import {combineLatest} from "rxjs";
+import {map} from "rxjs/operators";
 
 @Component({
     selector: 'app-seasons-list',
@@ -7,8 +9,15 @@ import {ManageSeasonsFacade} from "../../manage-seasons.facade";
     styleUrls: ['./seasons-list.component.css']
 })
 export class SeasonsListComponent {
-    public readonly activeSeason$ = this.facade.activeSeason$;
-    public readonly inactiveSeasons$ = this.facade.inactiveSeasons$;
+    public readonly state$ = combineLatest([
+        this.facade.activeSeason$,
+        this.facade.inactiveSeasons$
+    ]).pipe(
+        map(([activeSeason, inactiveSeasons]) => ({
+            activeSeason,
+            inactiveSeasons,
+        })
+    ));
 
     constructor(private readonly facade: ManageSeasonsFacade) {}
 }

@@ -7,6 +7,7 @@ import {
     AddCourseDialogComponent,
     CoursesEmptyComponent,
     CoursesListComponent,
+    CoursesListItemComponent,
     ManageCoursesPageComponent
 } from "./components";
 import {RouterModule} from "@angular/router";
@@ -16,7 +17,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {LayoutModule} from "@common/layout";
 import {MatListModule} from "@angular/material/list";
 import {ManageCoursesResolver} from "./resolvers/manage-courses.resolver";
-import {CoursesRepositoryService} from "./services";
+import {ManageCoursesService} from "./services";
 import {CoursesSync} from "./sync";
 import {CommonSeasonModule} from "@common/season";
 import {MatCardModule} from "@angular/material/card";
@@ -26,6 +27,10 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {ToastrModule} from "@common/toastr";
+import {CommonCourseModule} from "@common/course";
+import {MatTooltipModule} from "@angular/material/tooltip";
+import {MatIconModule} from "@angular/material/icon";
+import {ConfirmModule} from "@common/confirm";
 
 @NgModule({
     imports: [
@@ -41,6 +46,8 @@ import {ToastrModule} from "@common/toastr";
         CommonAuthModule,
         CommonSeasonModule,
         CommonFormModule,
+        CommonCourseModule,
+        ConfirmModule,
         HttpClientModule,
         MatToolbarModule,
         MatButtonModule,
@@ -50,6 +57,8 @@ import {ToastrModule} from "@common/toastr";
         MatFormFieldModule,
         MatInputModule,
         MatCheckboxModule,
+        MatTooltipModule,
+        MatIconModule,
         LayoutModule,
         ToastrModule
     ],
@@ -57,11 +66,12 @@ import {ToastrModule} from "@common/toastr";
         ManageCoursesPageComponent,
         CoursesEmptyComponent,
         CoursesListComponent,
+        CoursesListItemComponent,
         AddCourseDialogComponent
     ],
     providers: [
         ManageCoursesFacade,
-        CoursesRepositoryService,
+        ManageCoursesService,
         CoursesSync,
         ManageCoursesResolver
     ]

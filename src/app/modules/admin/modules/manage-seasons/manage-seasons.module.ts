@@ -22,6 +22,7 @@ import {SeasonManagerSync} from "./sync";
 import {ToastrModule} from "@common/toastr";
 import {ConfirmModule} from "@common/confirm";
 import {LayoutModule} from "@common/layout";
+import {MatTooltipModule} from "@angular/material/tooltip";
 
 @NgModule({
     imports: [
@@ -38,6 +39,7 @@ import {LayoutModule} from "@common/layout";
         MatCardModule,
         MatToolbarModule,
         MatListModule,
+        MatTooltipModule,
         CommonCoreModule,
         CommonAuthModule,
         ToastrModule,

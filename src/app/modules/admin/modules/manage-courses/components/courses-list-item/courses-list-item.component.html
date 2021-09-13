@@ -1,0 +1,9 @@
+<mat-list-item class="courses-list-item">
+    <div class="flex flex--align-center" mat-line>
+        <h2 class="courses-list-item__title">{{ course.name }}</h2>
+
+        <button class="block margin-left--auto" mat-icon-button color="warn" matTooltip="Remove course" (click)="removeCourse()">
+            <mat-icon>delete</mat-icon>
+        </button>
+    </div>
+</mat-list-item>

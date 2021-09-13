@@ -4,8 +4,6 @@ import {requireField} from "@common/form";
 import {MatDialogRef} from "@angular/material/dialog";
 import {ManageCoursesFacade} from "../../manage-courses.facade";
 import {ToastrService} from "@common/toastr";
-import {Course} from "@common/course";
-import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-add-course-dialog',
@@ -23,8 +21,7 @@ export class AddCourseDialogComponent {
         private readonly dialogRef: MatDialogRef<AddCourseDialogComponent>,
         private readonly formBuilder: FormBuilder,
         private readonly facade: ManageCoursesFacade,
-        private readonly toastr: ToastrService,
-        private readonly router: Router
+        private readonly toastr: ToastrService
     ) {}
 
     public addCourse(): void {
@@ -35,9 +32,8 @@ export class AddCourseDialogComponent {
         });
     }
 
-    private onCourseAdded(course: Course): void {
+    private onCourseAdded(): void {
         this.toastr.show('Course successfully added');
-        this.router.navigate(['/admin', 'courses', course.id])
         this.dialogRef.close();
 
     }
