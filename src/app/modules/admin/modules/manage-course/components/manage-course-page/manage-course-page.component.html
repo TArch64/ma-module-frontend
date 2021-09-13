@@ -1,1 +1,24 @@
-<p>manage-course-page works!</p>
+<mat-toolbar>
+    <a routerLink="/admin/courses" mat-icon-button color="primary">
+        <mat-icon>arrow_back</mat-icon>
+    </a>
+
+    <h2 class="margin-left--xs text--truncate">Manage "{{ course.name }}"</h2>
+</mat-toolbar>
+
+<nav mat-tab-nav-bar>
+    <a
+        *ngFor="let link of links"
+        mat-tab-link
+        [routerLink]="link.path"
+        routerLinkActive
+        #linkActive="routerLinkActive"
+        [active]="linkActive.isActive"
+    >
+        {{ link.title }}
+    </a>
+</nav>
+
+<app-layout-content>
+    <router-outlet></router-outlet>
+</app-layout-content>

@@ -10,6 +10,10 @@
 </ng-container>
 
 <ng-template #emptyState>
+    <mat-toolbar>
+        <h2>Manage Seasons</h2>
+    </mat-toolbar>
+
     <app-layout-content>
         <app-seasons-empty (onAddSeason)="addSeason(true)" [isAdding]="isSeasonAdding"></app-seasons-empty>
     </app-layout-content>

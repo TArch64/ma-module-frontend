@@ -10,4 +10,8 @@ export class ManageCourseFacade {
     public loadCourse(courseId: number): Observable<Course | null> {
         return this.courseService.loadCourse(courseId);
     }
+
+    public get course(): Course | null {
+        return this.courseService.courseSnapshot;
+    }
 }

@@ -19,6 +19,10 @@
 </ng-container>
 
 <ng-template #emptyState>
+    <mat-toolbar>
+        <h2>Manage Courses</h2>
+    </mat-toolbar>
+
     <app-layout-content>
         <app-courses-empty (onAddCourse)="addCourse()"></app-courses-empty>
     </app-layout-content>
