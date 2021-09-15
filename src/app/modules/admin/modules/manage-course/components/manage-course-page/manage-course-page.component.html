@@ -10,10 +10,9 @@
     <a
         *ngFor="let link of links"
         mat-tab-link
-        [routerLink]="link.path"
         routerLinkActive
-        #linkActive="routerLinkActive"
-        [active]="linkActive.isActive"
+        appMatTabRouterLink
+        [routerLink]="link.path"
     >
         {{ link.title }}
     </a>
