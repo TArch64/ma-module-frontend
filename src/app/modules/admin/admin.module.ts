@@ -26,6 +26,10 @@ import {AdminFacade} from "./admin.facade";
                     {
                         path: 'courses',
                         loadChildren: () => import('./modules/manage-courses').then(m => m.ManageCoursesModule)
+                    },
+                    {
+                        path: '',
+                        redirectTo: 'courses'
                     }
                 ]
             }

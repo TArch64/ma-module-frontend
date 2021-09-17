@@ -5,15 +5,10 @@ import {Season} from "./entities";
 
 @Injectable()
 export class CommonSeasonFacade {
+    public readonly seasons$ = this.seasonsService.seasons$;
+    public readonly currentSeason$ = this.seasonsService.currentSeason$;
+
     constructor(private readonly seasonsService: CommonSeasonsService) {}
-
-    public get seasons$(): Observable<Season[]> {
-        return this.seasonsService.seasons$;
-    }
-
-    public get currentSeason$(): Observable<Season | null> {
-        return this.seasonsService.currentSeason$;
-    }
 
     public get isSeasonsLoaded(): boolean {
         return this.seasonsService.isSeasonsLoaded;

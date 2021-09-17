@@ -6,32 +6,24 @@ import {CommonSeasonsService, Season} from "@common/season";
 
 @Injectable()
 export class ManageSeasonsFacade {
+    public readonly seasons$ = this.commonSeasonsService.seasons$;
+
+    public readonly activeSeason$ = this.seasons$.pipe(
+        map(seasons => seasons.find(season => season.active) ?? null)
+    );
+
+    public readonly inactiveSeasons$ = this.seasons$.pipe(
+        map(seasons => seasons.filter(season => !season.active))
+    );
+
+    public readonly hasSeasons$ = this.seasons$.pipe(
+        map(seasons => !!seasons.length)
+    );
+
     constructor(
         private readonly activeSeasonService: ActiveSeasonService,
         private readonly commonSeasonsService: CommonSeasonsService
     ) {}
-
-    public get activeSeason$(): Observable<Season | null> {
-        return this.seasons$.pipe(
-            map(seasons => seasons.find(season => season.active) ?? null)
-        );
-    }
-
-    public get inactiveSeasons$(): Observable<Season[]> {
-        return this.seasons$.pipe(
-            map(seasons => seasons.filter(season => !season.active))
-        );
-    }
-
-    public get seasons$(): Observable<Season[]> {
-        return this.commonSeasonsService.seasons$;
-    }
-
-    public get hasSeasons$(): Observable<boolean> {
-        return this.seasons$.pipe(
-            map(seasons => !!seasons.length)
-        )
-    }
 
     public addSeason(makeActive: boolean): Observable<null> {
         return this.activeSeasonService.addSeason(makeActive).pipe(mapTo(null));

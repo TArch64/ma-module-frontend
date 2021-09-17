@@ -4,11 +4,18 @@ import {ManageCoursesService} from "./services";
 import {mapTo, skip} from "rxjs/operators";
 import {Course, CoursesRepositoryService} from "@common/course";
 import {IAddCourseOptions} from "./entities";
-import {CommonSeasonsService, Season} from "@common/season";
+import {CommonSeasonsService} from "@common/season";
 import {captureExistsValues} from "@common/core";
 
 @Injectable()
 export class ManageCoursesFacade {
+    public readonly courses$ = this.repository.courses$;
+
+    public readonly currentSeasonChange$ = this.seasonsService.currentSeason$.pipe(
+        captureExistsValues,
+        skip(1)
+    );
+
     constructor(
         private readonly manageCoursesService: ManageCoursesService,
         private readonly seasonsService: CommonSeasonsService,
@@ -17,14 +24,6 @@ export class ManageCoursesFacade {
 
     public loadState(): Observable<null> {
         return this.repository.loadCourses().pipe(mapTo(null));
-    }
-
-    public get courses$(): Observable<Course[]> {
-        return this.repository.courses$;
-    }
-
-    public get currentSeasonChange$(): Observable<Season> {
-        return this.seasonsService.currentSeason$.pipe(captureExistsValues, skip(1))
     }
 
     public addCourse(options: IAddCourseOptions): Observable<Course> {

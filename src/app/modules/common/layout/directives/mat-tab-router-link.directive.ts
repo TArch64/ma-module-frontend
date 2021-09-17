@@ -2,7 +2,6 @@ import {Directive, DoCheck} from '@angular/core';
 import {MatTabLink} from "@angular/material/tabs";
 import {RouterLinkActive} from "@angular/router";
 
-
 @Directive({
     selector: '[appMatTabRouterLink]'
 })

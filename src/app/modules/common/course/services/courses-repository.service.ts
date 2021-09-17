@@ -8,6 +8,7 @@ import {CommonSeasonsService} from "@common/season";
 @Injectable({ providedIn: 'root' })
 export class CoursesRepositoryService {
     private readonly coursesSubject = new BehaviorSubject<Course[]>([]);
+    public readonly courses$ = this.coursesSubject.asObservable();
 
     constructor(
         private readonly coursesSync: CoursesRepositorySync,
@@ -20,10 +21,6 @@ export class CoursesRepositoryService {
             map(json => json.map(Course.fromJSON)),
             tap(courses => this.coursesSubject.next(courses))
         );
-    }
-
-    public get courses$(): Observable<Course[]> {
-        return this.coursesSubject.asObservable();
     }
 
     public get coursesSnapshot(): Course[] {

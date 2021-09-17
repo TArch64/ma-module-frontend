@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import {UserRoles} from "@common/auth/enums";
+import {UserRoles} from "@common/auth";
 
 @Pipe({
   name: 'roleTitle'

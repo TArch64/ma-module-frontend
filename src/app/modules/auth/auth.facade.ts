@@ -1,7 +1,6 @@
 import {Injectable} from "@angular/core";
-import {CommonAuthService} from "@common/auth";
+import {CommonAuthService, User} from "@common/auth";
 import {Observable} from "rxjs";
-import {User} from "@common/auth/entities";
 
 @Injectable()
 export class AuthFacade {

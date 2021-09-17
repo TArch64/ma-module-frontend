@@ -8,7 +8,7 @@ import {CommonAuthFacade} from "../common-auth.facade";
 
 @Injectable()
 export class RoleAccessGuard implements CanActivate {
-    private static HOME_URL_COMMANDS: Record<UserRoles, string[]> = {
+    private static readonly HOME_URL_COMMANDS: Record<UserRoles, string[]> = {
         [UserRoles.ADMIN]: ['/admin'],
         [UserRoles.MENTOR]: ['/mentor'],
         [UserRoles.STUDENT]: ['/']

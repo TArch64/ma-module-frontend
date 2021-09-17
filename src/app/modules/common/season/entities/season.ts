@@ -26,8 +26,8 @@ export class Season implements IPrototype<ISeasonJSON>, ISerializable<ISeasonJSO
         return `${this.value}th - ${year}`;
     }
 
-    clone(overrides?: Partial<ISeasonJSON>): Season {
-        return Season.fromJSON({ ...this.toJSON(), ...(overrides || {}) })
+    clone(overrides: Partial<ISeasonJSON> = {}): Season {
+        return Season.fromJSON({ ...this.toJSON(), ...overrides })
     }
 
     toJSON(): ISeasonJSON {

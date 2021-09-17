@@ -1,22 +1,18 @@
 import {Injectable} from "@angular/core";
 import {BehaviorSubject, Observable} from "rxjs";
-import {debounceTime, map, startWith, tap} from "rxjs/operators";
+import {map, tap} from "rxjs/operators";
 import {Season} from "../entities";
 import {CommonSeasonSyncService} from "../sync";
 
 @Injectable({ providedIn: 'root' })
 export class CommonSeasonsService {
-    private seasonsSubject = new BehaviorSubject<Season[]>([]);
-    private currentSeasonSubject = new BehaviorSubject<Season | null>(null);
+    private readonly seasonsSubject = new BehaviorSubject<Season[]>([]);
+    private readonly currentSeasonSubject = new BehaviorSubject<Season | null>(null);
+    public readonly seasons$ = this.seasonsSubject.asObservable();
 
-    constructor(private syncService: CommonSeasonSyncService) {}
+    public readonly currentSeason$ = this.currentSeasonSubject.asObservable();
 
-    public get seasons$(): Observable<Season[]> {
-        return this.seasonsSubject.asObservable().pipe(
-            debounceTime(100),
-            startWith(this.seasonsSnapshot)
-        );
-    }
+    constructor(private readonly syncService: CommonSeasonSyncService) {}
 
     public get seasonsSnapshot(): Season[] {
         return this.seasonsSubject.value;
@@ -35,10 +31,6 @@ export class CommonSeasonsService {
             map(json => json.map(Season.fromJSON)),
             tap(this.refreshSeasonsState.bind(this))
         )
-    }
-
-    public get currentSeason$(): Observable<Season | null> {
-        return this.currentSeasonSubject.asObservable();
     }
 
     public get currentSeasonSnapshot(): Season | null {

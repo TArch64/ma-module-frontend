@@ -4,9 +4,9 @@ import {LayoutModule} from "@common/layout";
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {ManageCourseFacade} from "./manage-course.facade";
 import {RouterModule} from "@angular/router";
-import {ManageCoursePageComponent, ManageMentorsPageComponent, ManageStudentsPageComponent} from "./components";
+import {ManageCoursePageComponent, ManageStudentsPageComponent} from "./components";
 import {LoadCourseResolver} from "./resolvers";
-import {CourseService} from "./services";
+import {ManageCourseService} from "./services";
 import {ManageCourseSync} from "./sync";
 import {CommonCoreModule} from "@common/core";
 import {HttpClientModule} from "@angular/common/http";
@@ -14,6 +14,7 @@ import {CommonAuthModule} from "@common/auth";
 import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
 import {MatTabsModule} from "@angular/material/tabs";
+import {ManageMentorsModule, ManageMentorsPageComponent} from "./modules";
 
 @NgModule({
     imports: [
@@ -46,16 +47,16 @@ import {MatTabsModule} from "@angular/material/tabs";
         MatToolbarModule,
         MatButtonModule,
         MatIconModule,
-        MatTabsModule
+        MatTabsModule,
+        ManageMentorsModule
     ],
     declarations: [
         ManageCoursePageComponent,
-        ManageMentorsPageComponent,
         ManageStudentsPageComponent
     ],
     providers: [
         ManageCourseFacade,
-        CourseService,
+        ManageCourseService,
         ManageCourseSync,
         LoadCourseResolver
     ]

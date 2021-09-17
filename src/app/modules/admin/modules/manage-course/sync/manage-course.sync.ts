@@ -1,8 +1,8 @@
 import {Injectable} from "@angular/core";
 import {Observable} from "rxjs";
-import {ICourseJSON} from "@common/course";
 import {ApiPathService} from "@common/core";
 import {HttpClient} from "@angular/common/http";
+import {IFullCourseJSON} from "../entities";
 
 @Injectable()
 export class ManageCourseSync {
@@ -11,8 +11,8 @@ export class ManageCourseSync {
         private readonly httpClient: HttpClient
     ) {}
 
-    public loadCourse(courseId: number): Observable<ICourseJSON | null> {
+    public loadCourse(courseId: number): Observable<IFullCourseJSON | null> {
         const url = this.apiPath.buildRolePath(['courses', courseId]);
-        return this.httpClient.get<ICourseJSON | null>(url);
+        return this.httpClient.get<IFullCourseJSON | null>(url);
     }
 }
