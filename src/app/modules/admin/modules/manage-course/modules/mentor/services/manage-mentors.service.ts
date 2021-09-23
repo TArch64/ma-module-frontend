@@ -1,8 +1,9 @@
 import {Injectable} from "@angular/core";
 import {ManageCourseService} from "../../../services";
-import {Observable, of} from "rxjs";
-import {map, tap} from "rxjs/operators";
+import {Observable} from "rxjs";
+import {map, mapTo, tap} from "rxjs/operators";
 import {Mentor, MentorRoles} from "@common/course";
+import {ManageMentorsSync} from "../sync";
 
 @Injectable()
 export class ManageMentorsService {
@@ -18,17 +19,25 @@ export class ManageMentorsService {
         tap(mentor => this.leadMentorSnapshot = mentor)
     );
 
-    constructor(private readonly manageCourseService: ManageCourseService) {}
+    constructor(
+        private readonly manageCourseService: ManageCourseService,
+        private readonly syncService: ManageMentorsSync
+    ) {}
 
     public changeLeadMentor(mentor: Mentor): Observable<null> {
-        const mentors = this.mentorsSnapshot.slice();
-        if (this.leadMentorSnapshot) {
-            const oldLead = this.leadMentorSnapshot.clone({ role: MentorRoles.MENTOR });
-            this.replaceMentor(mentors, oldLead)
-        }
-        this.replaceMentor(mentors, mentor.clone({ role: MentorRoles.LEAD }));
-        this.manageCourseService.updateCourseMentors(mentors);
-        return of(null);
+        const courseId = this.manageCourseService.courseSnapshot!.id;
+        return this.syncService.changeLeadMentor(courseId, mentor.id).pipe(
+            tap(() => {
+                const mentors = this.mentorsSnapshot.slice();
+                if (this.leadMentorSnapshot) {
+                    const oldLead = this.leadMentorSnapshot.clone({ role: MentorRoles.MENTOR });
+                    this.replaceMentor(mentors, oldLead)
+                }
+                this.replaceMentor(mentors, mentor.clone({ role: MentorRoles.LEAD }));
+                this.manageCourseService.updateCourseMentors(mentors);
+            }),
+            mapTo(null)
+        );
     }
 
     private replaceMentor(mentors: Mentor[], mentor: Mentor): void {

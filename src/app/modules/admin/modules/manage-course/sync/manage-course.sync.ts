@@ -11,7 +11,7 @@ export class ManageCourseSync {
         private readonly httpClient: HttpClient
     ) {}
 
-    public loadCourse(courseId: number): Observable<IFullCourseJSON | null> {
+    public loadCourse(courseId: string): Observable<IFullCourseJSON | null> {
         const url = this.apiPath.buildRolePath(['courses', courseId]);
         return this.httpClient.get<IFullCourseJSON | null>(url);
     }

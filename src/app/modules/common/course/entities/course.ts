@@ -1,7 +1,7 @@
 import {CourseTypes} from "../enums";
 
 export interface ICourseJSON {
-    id: number,
+    id: string,
     name: string,
     type: CourseTypes
 }
@@ -12,7 +12,7 @@ export class Course {
     }
 
     protected constructor(
-        public readonly id: number,
+        public readonly id: string,
         public readonly name: string,
         public readonly type: CourseTypes
     ) {}

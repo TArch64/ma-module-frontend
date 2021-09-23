@@ -7,7 +7,7 @@ import {ManageCourseService} from "./services";
 export class ManageCourseFacade {
     constructor(private readonly courseService: ManageCourseService) {}
 
-    public loadCourse(courseId: number): Observable<Course | null> {
+    public loadCourse(courseId: string): Observable<Course | null> {
         return this.courseService.loadCourse(courseId);
     }
 

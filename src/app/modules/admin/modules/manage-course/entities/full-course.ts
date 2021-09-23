@@ -16,7 +16,7 @@ export class FullCourse extends Course implements IPrototype<IFullCourseJSON> {
     }
 
     protected constructor(
-        id: number,
+        id: string,
         name: string,
         type: CourseTypes,
         public readonly mentors: Mentor[]

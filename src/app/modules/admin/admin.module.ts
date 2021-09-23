@@ -6,6 +6,7 @@ import {LayoutModule} from "@common/layout";
 import {CommonSeasonModule} from "@common/season";
 import {MatButtonModule} from "@angular/material/button";
 import {AdminFacade} from "./admin.facade";
+import {CoursesGuard} from "./guards";
 
 @NgModule({
     imports: [
@@ -25,6 +26,7 @@ import {AdminFacade} from "./admin.facade";
                     },
                     {
                         path: 'courses',
+                        canActivate: [CoursesGuard],
                         loadChildren: () => import('./modules/manage-courses').then(m => m.ManageCoursesModule)
                     },
                     {
@@ -43,7 +45,8 @@ import {AdminFacade} from "./admin.facade";
         AdminPageComponent
     ],
     providers: [
-        AdminFacade
+        AdminFacade,
+        CoursesGuard
     ]
 })
 export class AdminModule {}

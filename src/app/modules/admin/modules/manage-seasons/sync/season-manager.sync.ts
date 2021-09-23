@@ -12,22 +12,22 @@ export class SeasonManagerSync {
     ) {}
 
     public addSeason(makeActive: boolean): Observable<ISeasonJSON> {
-        const url = this.apiPath.buildRolePath(['course-seasons']);
+        const url = this.apiPath.buildRolePath(['seasons']);
         return this.httpClient.post<ISeasonJSON>(url, { makeActive });
     }
 
     public activateSeason(season: Season): Observable<object> {
-        const url = this.apiPath.buildRolePath(['course-seasons', 'activate']);
+        const url = this.apiPath.buildRolePath(['seasons', 'activate']);
         return this.httpClient.post(url, { seasonId: season.id }).pipe(formatValidationHttpResponse);
     }
 
     public deactivateSeason(season: Season): Observable<object> {
-        const url = this.apiPath.buildRolePath(['course-seasons', 'deactivate']);
+        const url = this.apiPath.buildRolePath(['seasons', 'deactivate']);
         return this.httpClient.post(url, { seasonId: season.id }).pipe(formatValidationHttpResponse);
     }
 
     public removeSeason(season: Season): Observable<object> {
-        const url = this.apiPath.buildRolePath(['course-seasons', season.id]);
+        const url = this.apiPath.buildRolePath(['seasons', season.id]);
         return this.httpClient.delete(url);
     }
 }

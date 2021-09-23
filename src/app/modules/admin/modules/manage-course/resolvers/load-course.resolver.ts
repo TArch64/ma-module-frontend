@@ -13,8 +13,7 @@ export class LoadCourseResolver implements Resolve<null> {
     ) {}
 
     public resolve(route: ActivatedRouteSnapshot): Observable<null> {
-        const courseId = Number(route.paramMap.get('courseId'));
-        return this.facade.loadCourse(courseId).pipe(
+        return this.facade.loadCourse(route.params.courseId).pipe(
             switchMap((course: Course | null) => {
                 if (course) return of(null);
                 this.router.navigate(['/admin/courses']);

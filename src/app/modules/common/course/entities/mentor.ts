@@ -3,7 +3,7 @@ import {MentorRoles} from "../enums";
 import {IPrototype} from "@common/core";
 
 export interface IMentorJSON {
-    id: number;
+    id: string;
     role: MentorRoles;
     user: IUserJSON;
 }
@@ -16,7 +16,7 @@ export class Mentor implements IPrototype<IMentorJSON> {
     public readonly isLead = this.role === MentorRoles.LEAD;
 
     private constructor(
-        public readonly id: number,
+        public readonly id: string,
         public readonly role: MentorRoles,
         public readonly user: User
     ) {}

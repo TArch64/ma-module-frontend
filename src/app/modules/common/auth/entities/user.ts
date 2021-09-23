@@ -2,7 +2,7 @@ import {UserRoles} from "../enums";
 import {IPrototype} from "@common/core";
 
 export interface IUserJSON {
-    id: number;
+    id: string;
     username: string;
     role: UserRoles;
 }
@@ -20,7 +20,7 @@ export class User implements IPrototype<IUserJSON> {
     }
 
     private constructor(
-        public readonly id: number,
+        public readonly id: string,
         public readonly username: string,
         public readonly role: UserRoles,
         public readonly avatarUrl: string

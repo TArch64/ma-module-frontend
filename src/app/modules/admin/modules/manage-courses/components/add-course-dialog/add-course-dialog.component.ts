@@ -7,8 +7,7 @@ import {ToastrService} from "@common/toastr";
 
 @Component({
   selector: 'app-add-course-dialog',
-  templateUrl: './add-course-dialog.component.html',
-  styleUrls: ['./add-course-dialog.component.css']
+  templateUrl: './add-course-dialog.component.html'
 })
 export class AddCourseDialogComponent {
     public isAdding: boolean = false;

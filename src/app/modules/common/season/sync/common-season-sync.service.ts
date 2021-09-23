@@ -12,7 +12,7 @@ export class CommonSeasonSyncService {
     ) {}
 
     public loadSeasons(): Observable<ISeasonJSON[]> {
-        const url = this.apiPath.buildRolePath(['course-seasons']);
+        const url = this.apiPath.buildRolePath(['seasons']);
         return this.httpClient.get<ISeasonJSON[]>(url);
     }
 }

@@ -1,7 +1,7 @@
 import {IPrototype, ISerializable} from "@common/core";
 
 export interface ISeasonJSON {
-    id: number
+    id: string
     value: number
     active: boolean
     year: number
@@ -15,7 +15,7 @@ export class Season implements IPrototype<ISeasonJSON>, ISerializable<ISeasonJSO
     public readonly title = this.buildTitle();
 
     private constructor(
-        public readonly id: number,
+        public readonly id: string,
         public readonly value: number,
         public readonly active: boolean,
         public readonly year: number

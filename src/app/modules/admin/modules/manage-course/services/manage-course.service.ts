@@ -12,7 +12,7 @@ export class ManageCourseService {
 
     constructor(private readonly syncService: ManageCourseSync) {}
 
-    public loadCourse(courseId: number): Observable<FullCourse | null> {
+    public loadCourse(courseId: string): Observable<FullCourse | null> {
         return this.syncService.loadCourse(courseId).pipe(
             map((course) => course ? FullCourse.fromJSON(course) : null),
             tap(course => this.courseSubject.next(course))

@@ -1,0 +1,27 @@
+<h1 mat-dialog-title>Add mentor</h1>
+
+<form [formGroup]="mentorForm" appBindFormErrors (ngSubmit)="addMentor()">
+    <div mat-card-content class="margin-bottom--none">
+
+    </div>
+
+    <div mat-dialog-actions class="flex flex--justify-end">
+        <button
+            mat-button
+            mat-dialog-close
+            type="button"
+            color="primary"
+        >
+            Cancel
+        </button>
+
+        <button
+            mat-raised-button
+            [appMatLoadingButton]="isAdding"
+            type="submit"
+            color="primary"
+        >
+            Add Mentor
+        </button>
+    </div>
+</form>

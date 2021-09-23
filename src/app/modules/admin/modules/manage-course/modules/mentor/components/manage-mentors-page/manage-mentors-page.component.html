@@ -1,1 +1,5 @@
-<app-course-lead-selector></app-course-lead-selector>
+<app-course-lead-selector *ngIf="hasMentors$ | async; else emptyState"></app-course-lead-selector>
+
+<ng-template #emptyState>
+    <app-mentors-empty (onAddMentor)="addMentor()"></app-mentors-empty>
+</ng-template>
