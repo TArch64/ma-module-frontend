@@ -5,7 +5,7 @@ import {
     ManageMentorsPageComponent,
     MentorsEmptyComponent
 } from "./components";
-import {ManageMentorsService} from "./services";
+import {SearchMentorsService, ManageMentorsService} from "./services";
 import {CommonModule} from "@angular/common";
 import {MatCardModule} from "@angular/material/card";
 import {MatFormFieldModule} from "@angular/material/form-field";
@@ -18,6 +18,8 @@ import {CommonCoreModule} from "@common/core";
 import {MatDialogModule} from "@angular/material/dialog";
 import {ToastrModule} from "@common/toastr";
 import {CommonFormModule} from "@common/form";
+import {MatInputModule} from "@angular/material/input";
+import {MatAutocompleteModule} from "@angular/material/autocomplete";
 
 const publicDeclarations = [
     ManageMentorsPageComponent
@@ -29,6 +31,8 @@ const publicDeclarations = [
         ReactiveFormsModule,
         MatCardModule,
         MatFormFieldModule,
+        MatInputModule,
+        MatAutocompleteModule,
         MatSelectModule,
         MatButtonModule,
         MatDialogModule,
@@ -45,7 +49,8 @@ const publicDeclarations = [
     providers: [
         ManageMentorsFacade,
         ManageMentorsSync,
-        ManageMentorsService
+        ManageMentorsService,
+        SearchMentorsService
     ],
     exports: publicDeclarations
 })

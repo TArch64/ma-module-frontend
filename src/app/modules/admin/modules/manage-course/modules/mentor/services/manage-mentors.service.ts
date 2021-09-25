@@ -31,16 +31,16 @@ export class ManageMentorsService {
                 const mentors = this.mentorsSnapshot.slice();
                 if (this.leadMentorSnapshot) {
                     const oldLead = this.leadMentorSnapshot.clone({ role: MentorRoles.MENTOR });
-                    this.replaceMentor(mentors, oldLead)
+                    this.updateMentor(mentors, oldLead)
                 }
-                this.replaceMentor(mentors, mentor.clone({ role: MentorRoles.LEAD }));
+                this.updateMentor(mentors, mentor.clone({ role: MentorRoles.LEAD }));
                 this.manageCourseService.updateCourseMentors(mentors);
             }),
             mapTo(null)
         );
     }
 
-    private replaceMentor(mentors: Mentor[], mentor: Mentor): void {
+    private updateMentor(mentors: Mentor[], mentor: Mentor): void {
         const index = mentors.findIndex(m => m.id === mentor.id);
         mentors.splice(index, 1, mentor);
     }

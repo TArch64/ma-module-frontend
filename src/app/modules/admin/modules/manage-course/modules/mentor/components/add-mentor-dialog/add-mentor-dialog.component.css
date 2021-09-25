@@ -1,0 +1,12 @@
+.mentor-autocomplete__option-avatar {
+    max-width: 30px;
+    max-height: 30px;
+    vertical-align: middle;
+}
+
+.mentor-autocomplete__option-title {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: var(--offset-xs);
+    display: inline-block;
+}
