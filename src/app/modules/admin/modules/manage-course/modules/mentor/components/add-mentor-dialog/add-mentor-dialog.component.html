@@ -3,18 +3,21 @@
 <form [formGroup]="mentorForm" appBindFormErrors (ngSubmit)="addMentor()">
     <div mat-card-content class="margin-bottom--none">
         <mat-form-field class="form-field--md">
-            <mat-label>Username</mat-label>
+            <mat-label>Email</mat-label>
+
             <input
                 matInput
                 type="text"
-                formControlName="username"
+                formControlName="query"
                 [matAutocomplete]="usernameAutocomplete"
             >
-            <mat-error appBindControlError="username"></mat-error>
+
+            <mat-error appBindControlError="query"></mat-error>
+
             <mat-autocomplete #usernameAutocomplete="matAutocomplete">
                 <mat-option
                     *ngFor="let mentor of mentors$ | async"
-                    [value]="mentor.username"
+                    [value]="mentor.email"
                 >
                     <img
                         class="mentor-autocomplete__option-avatar"
@@ -23,7 +26,7 @@
                     >
 
                     <p class="mentor-autocomplete__option-title">
-                        {{ mentor.username }}
+                        {{ mentor.email }}
                     </p>
                 </mat-option>
             </mat-autocomplete>

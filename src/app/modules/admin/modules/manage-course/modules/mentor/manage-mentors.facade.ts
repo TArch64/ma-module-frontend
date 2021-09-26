@@ -19,8 +19,8 @@ export class ManageMentorsFacade {
         return this.mentorsService.changeLeadMentor(mentor);
     }
 
-    public searchMentors(username: string): Observable<null> {
-        return this.searchService.loadMentors(username).pipe(mapTo(null));
+    public searchMentors(query: string): Observable<null> {
+        return this.searchService.loadMentors(query).pipe(mapTo(null));
     }
 
     public addMentor(): Observable<null> {

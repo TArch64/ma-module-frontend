@@ -2,7 +2,7 @@ import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {ApiPathService} from "@common/core";
 import {Observable} from "rxjs";
-import {IUserJSON} from "@common/auth";
+import {IInsecureUserJSON} from "@common/auth";
 
 @Injectable()
 export class ManageMentorsSync {
@@ -16,9 +16,9 @@ export class ManageMentorsSync {
         return this.httpClient.post<object>(url, { mentorId });
     }
 
-    public filterByUsername(username: string, limit: number): Observable<IUserJSON[]> {
-        const url = this.apiPath.build(['users', 'mentors']);
-        const params = { username, limit };
-        return this.httpClient.get<IUserJSON[]>(url, { params });
+    public search(query: string, limit: number): Observable<IInsecureUserJSON[]> {
+        const url = this.apiPath.buildRolePath(['users', 'mentors']);
+        const params = { query, limit };
+        return this.httpClient.get<IInsecureUserJSON[]>(url, { params });
     }
 }

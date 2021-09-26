@@ -15,9 +15,9 @@ export class CommonAuthSyncService {
         private readonly httpClient: HttpClient
     ) {}
 
-    public signIn(username: string, password: string): Observable<ISignInResponse> {
+    public signIn(email: string, password: string): Observable<ISignInResponse> {
         const url = this.apiPath.build(['auth', 'sign-in']);
-        return this.httpClient.post<ISignInResponse>(url, { username, password });
+        return this.httpClient.post<ISignInResponse>(url, { email, password });
     }
 
     public loadCurrentUser(): Observable<IUserJSON> {

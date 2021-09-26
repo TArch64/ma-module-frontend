@@ -33,8 +33,8 @@ export class CommonAuthService {
         return !!this.authToken;
     }
 
-    public signIn(username: string, password: string): Observable<User> {
-        return this.syncService.signIn(username, password).pipe(
+    public signIn(email: string, password: string): Observable<User> {
+        return this.syncService.signIn(email, password).pipe(
             formatValidationHttpResponse,
             tap(({ token }) => this.saveAuthToken(token)),
             switchMap(() => this.actualizeUser())

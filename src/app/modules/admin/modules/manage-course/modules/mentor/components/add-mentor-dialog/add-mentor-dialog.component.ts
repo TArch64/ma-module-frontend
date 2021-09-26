@@ -3,7 +3,7 @@ import {MatDialogRef} from "@angular/material/dialog";
 import {FormBuilder} from "@angular/forms";
 import {ToastrService} from "@common/toastr";
 import {ManageMentorsFacade} from "../../manage-mentors.facade";
-import {requireField} from "@common/form";
+import {requireEmail, requireField} from "@common/form";
 import {Disposable} from "@common/core";
 import {throttleTime} from "rxjs/operators";
 import {asyncScheduler} from "rxjs";
@@ -16,7 +16,10 @@ import {asyncScheduler} from "rxjs";
 export class AddMentorDialogComponent implements OnDestroy {
     public isAdding: boolean = false;
     public readonly mentorForm = this.formBuilder.group({
-        username: ['', requireField()]
+        query: [
+            '',
+            [requireField(), requireEmail()]
+        ]
     })
     public readonly mentors$ = this.facade.mentorsSearch$;
     private readonly disposable = new Disposable()
@@ -35,11 +38,11 @@ export class AddMentorDialogComponent implements OnDestroy {
     }
 
     private attachSearchListener(): void {
-        const usernameChange$ = this.mentorForm.valueChanges.pipe(
+        const queryChange$ = this.mentorForm.valueChanges.pipe(
             throttleTime(500, asyncScheduler, { leading: true, trailing: true })
         );
-        this.disposable.subscribeTo(usernameChange$, (form) => {
-            this.facade.searchMentors(form.username).subscribe();
+        this.disposable.subscribeTo(queryChange$, (form) => {
+            this.facade.searchMentors(form.query).subscribe();
         });
     }
 

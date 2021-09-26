@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {FormBuilder} from "@angular/forms";
-import {requireField} from "@common/form";
+import {requireEmail, requireField} from "@common/form";
 import {AuthFacade} from "../../auth.facade";
 import {ToastrService} from "@common/toastr";
 import {Router} from "@angular/router";
@@ -13,7 +13,10 @@ import {Router} from "@angular/router";
 export class LoginFormComponent {
     public isProcessing: boolean = false;
     public readonly loginForm = this.formBuilder.group({
-        username: ['', requireField()],
+        email: [
+            '',
+            [requireField(), requireEmail()]
+        ],
         password: ['', requireField()]
     })
 
@@ -29,9 +32,9 @@ export class LoginFormComponent {
         if (this.loginForm.invalid) return;
 
         this.isProcessing = true;
-        const {username, password} = this.loginForm.value;
+        const {email, password} = this.loginForm.value;
 
-        this.authFacade.signIn(username, password).subscribe({
+        this.authFacade.signIn(email, password).subscribe({
             next: this.onSignedIn.bind(this),
             error: this.onSignInError.bind(this)
         });

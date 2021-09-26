@@ -8,7 +8,7 @@ export class AuthFacade {
         private readonly commonAuthService: CommonAuthService
     ) {}
 
-    public signIn(username: string, password: string): Observable<User> {
-        return this.commonAuthService.signIn(username, password);
+    public signIn(email: string, password: string): Observable<User> {
+        return this.commonAuthService.signIn(email, password);
     }
 }
