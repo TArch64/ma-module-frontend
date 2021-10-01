@@ -1,0 +1,40 @@
+<mat-chip-list #userChips>
+    <mat-chip
+        *ngFor="let user of value"
+        [removable]="true"
+        [selectable]="false"
+        (removed)="removeUser(user.email)"
+    >
+        {{ user.email }}
+
+        <button class="users-chip__remove" type="button" matChipRemove>
+            <mat-icon class="users-chip__remove-icon">cancel</mat-icon>
+        </button>
+    </mat-chip>
+</mat-chip-list>
+
+<input
+    type="email"
+    [disabled]="disabled"
+    [attr.aria-describedby]="ariaDescribedBy"
+    [matAutocomplete]="autocomplete"
+    [matChipInputFor]="userChips"
+    [matChipInputSeparatorKeyCodes]="emailInputSeparators"
+    [matChipInputAddOnBlur]="false"
+    (input)="loadAutocomplete(emailInput.value)"
+    (matChipInputTokenEnd)="addUser($event.value)"
+    #emailInput
+>
+
+<mat-autocomplete
+    panelWidth="300px"
+    (optionSelected)="addUser($event.option.viewValue)"
+    #autocomplete="matAutocomplete"
+>
+    <mat-option
+        *ngFor="let user of autocompleteUsers$ | async"
+        [value]="user.email"
+    >
+        {{ user.email }}
+    </mat-option>
+</mat-autocomplete>

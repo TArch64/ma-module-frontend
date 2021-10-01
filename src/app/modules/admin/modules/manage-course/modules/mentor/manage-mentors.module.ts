@@ -5,7 +5,7 @@ import {
     ManageMentorsPageComponent,
     MentorsEmptyComponent
 } from "./components";
-import {SearchMentorsService, ManageMentorsService} from "./services";
+import {MentorsAutocompleteService, ManageMentorsService} from "./services";
 import {CommonModule} from "@angular/common";
 import {MatCardModule} from "@angular/material/card";
 import {MatFormFieldModule} from "@angular/material/form-field";
@@ -20,6 +20,7 @@ import {ToastrModule} from "@common/toastr";
 import {CommonFormModule} from "@common/form";
 import {MatInputModule} from "@angular/material/input";
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
+import {ManageCourseCommonModule} from "../common";
 
 const publicDeclarations = [
     ManageMentorsPageComponent
@@ -38,7 +39,8 @@ const publicDeclarations = [
         MatDialogModule,
         CommonCoreModule,
         CommonFormModule,
-        ToastrModule
+        ToastrModule,
+        ManageCourseCommonModule
     ],
     declarations: [
         ...publicDeclarations,
@@ -50,7 +52,7 @@ const publicDeclarations = [
         ManageMentorsFacade,
         ManageMentorsSync,
         ManageMentorsService,
-        SearchMentorsService
+        MentorsAutocompleteService
     ],
     exports: publicDeclarations
 })

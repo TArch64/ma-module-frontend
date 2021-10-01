@@ -1,2 +1,2 @@
 export {ManageMentorsService} from './manage-mentors.service';
-export {SearchMentorsService} from './search-mentors.service';
+export {MentorsAutocompleteService} from './mentors-autocomplete.service';

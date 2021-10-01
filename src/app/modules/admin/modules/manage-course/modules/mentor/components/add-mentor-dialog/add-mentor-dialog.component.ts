@@ -1,50 +1,35 @@
-import {Component, OnDestroy} from '@angular/core';
+import {Component} from '@angular/core';
 import {MatDialogRef} from "@angular/material/dialog";
 import {FormBuilder} from "@angular/forms";
 import {ToastrService} from "@common/toastr";
 import {ManageMentorsFacade} from "../../manage-mentors.facade";
-import {requireEmail, requireField} from "@common/form";
-import {Disposable} from "@common/core";
-import {throttleTime} from "rxjs/operators";
-import {asyncScheduler} from "rxjs";
+import {USERS_AUTOCOMPLETE_SERVICE} from "../../../common";
+import {MentorsAutocompleteService} from "../../services";
+import {requireArrayLength} from "@common/form";
 
 @Component({
     selector: 'app-add-mentor-dialog',
     templateUrl: './add-mentor-dialog.component.html',
-    styleUrls: ['./add-mentor-dialog.component.css']
+    styleUrls: ['./add-mentor-dialog.component.css'],
+    providers: [
+        {
+            provide: USERS_AUTOCOMPLETE_SERVICE,
+            useClass: MentorsAutocompleteService
+        }
+    ]
 })
-export class AddMentorDialogComponent implements OnDestroy {
+export class AddMentorDialogComponent {
     public isAdding: boolean = false;
-    public readonly mentorForm = this.formBuilder.group({
-        query: [
-            '',
-            [requireField(), requireEmail()]
-        ]
-    })
-    public readonly mentors$ = this.facade.mentorsSearch$;
-    private readonly disposable = new Disposable()
+    public readonly mentorsForm = this.formBuilder.group({
+        users: [[], requireArrayLength(1, 'Add at list one mentor')]
+    });
 
     constructor(
         private readonly dialogRef: MatDialogRef<AddMentorDialogComponent>,
         private readonly formBuilder: FormBuilder,
         private readonly facade: ManageMentorsFacade,
         private readonly toastr: ToastrService
-    ) {
-        this.attachSearchListener();
-    }
-
-    public ngOnDestroy() {
-        this.disposable.dispose();
-    }
-
-    private attachSearchListener(): void {
-        const queryChange$ = this.mentorForm.valueChanges.pipe(
-            throttleTime(500, asyncScheduler, { leading: true, trailing: true })
-        );
-        this.disposable.subscribeTo(queryChange$, (form) => {
-            this.facade.searchMentors(form.query).subscribe();
-        });
-    }
+    ) {}
 
     public addMentor(): void {
         this.isAdding = true;
@@ -60,6 +45,8 @@ export class AddMentorDialogComponent implements OnDestroy {
     }
 
     private onAddFailed(error: Error): void {
+        if (this.mentorsForm.invalid) return;
+
         this.toastr.show(error.message);
     }
 }

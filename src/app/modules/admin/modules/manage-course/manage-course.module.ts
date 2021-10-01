@@ -23,7 +23,7 @@ import {ManageMentorsModule, ManageMentorsPageComponent} from "./modules";
             {
                 path: '',
                 component: ManageCoursePageComponent,
-                resolve: { course: LoadCourseResolver },
+                resolve: {course: LoadCourseResolver},
                 children: [
                     {
                         path: 'mentors',
