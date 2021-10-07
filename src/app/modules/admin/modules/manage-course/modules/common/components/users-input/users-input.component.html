@@ -3,6 +3,7 @@
         *ngFor="let user of value"
         [removable]="true"
         [selectable]="false"
+        [disabled]="disabled"
         (removed)="removeUser(user.email)"
     >
         {{ user.email }}
@@ -15,9 +16,9 @@
 
 <input
     type="email"
-    [disabled]="disabled"
     [attr.aria-describedby]="ariaDescribedBy"
     [matAutocomplete]="autocomplete"
+    [matAutocompleteDisabled]="disabled"
     [matChipInputFor]="userChips"
     [matChipInputSeparatorKeyCodes]="emailInputSeparators"
     [matChipInputAddOnBlur]="false"

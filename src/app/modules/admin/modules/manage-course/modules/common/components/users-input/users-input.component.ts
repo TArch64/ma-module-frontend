@@ -88,6 +88,10 @@ export class UsersInputComponent implements MatFormFieldControl<UserInputData[]>
         if (watchingProps.some(prop => prop in changes)) {
             this.stateChanges.next();
         }
+
+        if ('disabled' in changes) {
+            this.disabled ? this.emailControl.disable() : this.emailControl.enable();
+        }
     }
 
     public ngOnDestroy() {
@@ -108,12 +112,18 @@ export class UsersInputComponent implements MatFormFieldControl<UserInputData[]>
         this.notifyControlTouched = notifyTouched;
     }
 
+    setDisabledState(isDisabled: boolean): void {
+        this.disabled = isDisabled;
+        this.disabled ? this.emailControl.disable() : this.emailControl.enable();
+        this.stateChanges.next();
+    }
+
     @HostListener('focusin')
     public onFocusIn() {
-        if (!this.focused) {
-            this.focused = true;
-            this.stateChanges.next();
-        }
+        if (this.focused || this.disabled) return;
+
+        this.focused = true;
+        this.stateChanges.next();
     }
 
     @HostListener('focusout', ['$event'])

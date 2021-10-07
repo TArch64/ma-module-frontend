@@ -40,6 +40,8 @@ export class AddMentorDialogComponent {
         if (this.mentorsForm.invalid) return;
 
         this.isAdding = true;
+        this.mentorsForm.disable();
+
         this.facade.addMentor().subscribe({
             next: this.onMentorAdded.bind(this),
             error: this.onAddFailed.bind(this)
@@ -52,6 +54,8 @@ export class AddMentorDialogComponent {
     }
 
     private onAddFailed(error: Error): void {
+        this.isAdding = false;
+        this.mentorsForm.enable();
         this.toastr.show(error.message);
     }
 }
