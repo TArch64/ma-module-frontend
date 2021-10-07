@@ -21,7 +21,8 @@
     [matChipInputFor]="userChips"
     [matChipInputSeparatorKeyCodes]="emailInputSeparators"
     [matChipInputAddOnBlur]="false"
-    (input)="loadAutocomplete(emailInput.value)"
+    [formControl]="emailControl"
+    (input)="updateAutocomplete()"
     (matChipInputTokenEnd)="addUser($event.value)"
     #emailInput
 >

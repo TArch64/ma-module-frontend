@@ -13,8 +13,8 @@ import {
 import {MatFormFieldControl} from "@angular/material/form-field";
 import {Subject} from "rxjs";
 import {Disposable, KeyFactory, NgChanges, TypedOnChanges} from "@common/core";
-import {ControlValueAccessor, NgControl} from "@angular/forms";
-import {NotifyControlChange, NotifyControlTouched} from "@common/form";
+import {ControlValueAccessor, FormControl, NgControl} from "@angular/forms";
+import {NotifyControlChange, NotifyControlTouched, requireEmail, requireField} from "@common/form";
 import {BooleanInput} from "ngx-boolean-input";
 import {COMMA, ENTER, SPACE} from "@angular/cdk/keycodes";
 import {IUsersAutocompleteService, USERS_AUTOCOMPLETE_SERVICE} from "../../services";
@@ -55,6 +55,7 @@ export class UsersInputComponent implements MatFormFieldControl<UserInputData[]>
 
     @ViewChild('emailInput')
     public emailInputRef!: ElementRef<HTMLInputElement>;
+    public emailControl = new FormControl('', [requireEmail(), requireField()]);
 
     private notifyControlChange!: NotifyControlChange<UserInputData[]>;
     private notifyControlTouched!: NotifyControlTouched;
@@ -65,22 +66,24 @@ export class UsersInputComponent implements MatFormFieldControl<UserInputData[]>
     public readonly id = this.keyFactory.nextKey();
 
     constructor(
-        @Optional() @Self()
-        public readonly ngControl: NgControl,
+        private readonly keyFactory: KeyFactory,
+        private readonly elementRef: ElementRef<HTMLElement>,
         @Inject(USERS_AUTOCOMPLETE_SERVICE)
         private readonly autocompleteService: IUsersAutocompleteService,
-        private readonly keyFactory: KeyFactory,
-        private readonly elementRef: ElementRef<HTMLElement>
+        @Optional() @Self()
+        public readonly ngControl: NgControl,
     ) {
-        if (this.ngControl) this.ngControl.valueAccessor = this;
+        if (ngControl) {
+            ngControl.valueAccessor = this;
+
+            this.disposable.subscribeTo(this.emailControl.valueChanges, () => {
+                ngControl.control?.setErrors(null)
+            });
+        }
     }
 
     ngOnChanges(changes: NgChanges<this>) {
-        const watchingProps: Array<keyof this> = [
-            'placeholder',
-            'required',
-            'disabled'
-        ];
+        const watchingProps: Array<keyof this> = ['placeholder', 'required', 'disabled'];
 
         if (watchingProps.some(prop => prop in changes)) {
             this.stateChanges.next();
@@ -120,10 +123,14 @@ export class UsersInputComponent implements MatFormFieldControl<UserInputData[]>
 
         if (!isInnerFocus) {
             this.focused = false;
-            this.touched = true;
-            this.notifyControlTouched();
-            this.stateChanges.next();
+            this.markAsTouched();
         }
+    }
+
+    private markAsTouched() {
+        this.touched = true;
+        this.notifyControlTouched();
+        this.stateChanges.next();
     }
 
     public get empty(): boolean {
@@ -131,7 +138,7 @@ export class UsersInputComponent implements MatFormFieldControl<UserInputData[]>
     }
 
     public get shouldLabelFloat() {
-        return this.focused || !this.empty;
+        return this.focused || !this.empty || !!this.emailControl.value;
     }
 
     public get errorState(): boolean {
@@ -153,6 +160,15 @@ export class UsersInputComponent implements MatFormFieldControl<UserInputData[]>
     }
 
     public addUser(email: string): void {
+        this.emailControl.setValue(email.trim(), { emitEvent: false });
+        this.emailControl.markAsTouched();
+
+        if (this.emailControl.invalid) {
+            this.ngControl?.control?.setErrors(this.emailControl.errors);
+            this.markAsTouched();
+            return;
+        }
+
         const isAlreadyAdded = this.value.some(user => user.email.toLowerCase() === email.toLowerCase());
 
         if (!isAlreadyAdded) {
@@ -161,7 +177,7 @@ export class UsersInputComponent implements MatFormFieldControl<UserInputData[]>
             this.stateChanges.next();
         }
 
-        this.emailInputRef.nativeElement.value = '';
+        this.emailControl.reset('');
     }
 
     public removeUser(email: string): void {
@@ -173,7 +189,7 @@ export class UsersInputComponent implements MatFormFieldControl<UserInputData[]>
         this.emailInputRef.nativeElement.focus();
     }
 
-    public loadAutocomplete(query: string): void {
-        this.autocompleteService.triggerRequest(query.trim());
+    public updateAutocomplete(): void {
+        this.autocompleteService.triggerRequest(this.emailControl.value.trim());
     }
 }
