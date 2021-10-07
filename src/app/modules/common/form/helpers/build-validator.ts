@@ -5,7 +5,6 @@ export interface IBuildValidatorOptions {
     validate: ValidatorFn;
 }
 
-
 export function buildValidator(options: IBuildValidatorOptions): ValidatorFn {
     return (control: AbstractControl) => {
         const validationResult = options.validate(control);

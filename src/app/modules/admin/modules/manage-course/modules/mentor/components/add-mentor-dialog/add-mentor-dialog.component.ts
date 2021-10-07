@@ -31,7 +31,14 @@ export class AddMentorDialogComponent {
         private readonly toastr: ToastrService
     ) {}
 
+    public get isAddDisabled(): boolean {
+        return !this.mentorsForm.value.users.length;
+    }
+
     public addMentor(): void {
+        this.mentorsForm.markAllAsTouched();
+        if (this.mentorsForm.invalid) return;
+
         this.isAdding = true;
         this.facade.addMentor().subscribe({
             next: this.onMentorAdded.bind(this),
@@ -45,8 +52,6 @@ export class AddMentorDialogComponent {
     }
 
     private onAddFailed(error: Error): void {
-        if (this.mentorsForm.invalid) return;
-
         this.toastr.show(error.message);
     }
 }

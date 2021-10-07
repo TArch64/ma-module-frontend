@@ -4,6 +4,8 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import {MatChipsModule} from "@angular/material/chips";
 import {UsersInputComponent} from "./components";
+import {MatInputModule} from "@angular/material/input";
+import {ReactiveFormsModule} from "@angular/forms";
 
 const publicDeclarations = [
     UsersInputComponent
@@ -12,9 +14,11 @@ const publicDeclarations = [
 @NgModule({
     imports: [
         CommonModule,
+        ReactiveFormsModule,
         MatIconModule,
         MatAutocompleteModule,
-        MatChipsModule
+        MatChipsModule,
+        MatInputModule
     ],
     declarations: publicDeclarations,
     exports: publicDeclarations

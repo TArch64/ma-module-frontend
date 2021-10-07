@@ -2,7 +2,8 @@ import {
     Component,
     ElementRef,
     HostBinding,
-    HostListener, Inject,
+    HostListener,
+    Inject,
     Input,
     OnDestroy,
     Optional,
@@ -66,10 +67,8 @@ export class UsersInputComponent implements MatFormFieldControl<UserInputData[]>
     constructor(
         @Optional() @Self()
         public readonly ngControl: NgControl,
-
         @Inject(USERS_AUTOCOMPLETE_SERVICE)
         private readonly autocompleteService: IUsersAutocompleteService,
-
         private readonly keyFactory: KeyFactory,
         private readonly elementRef: ElementRef<HTMLElement>
     ) {
@@ -78,9 +77,7 @@ export class UsersInputComponent implements MatFormFieldControl<UserInputData[]>
 
     ngOnChanges(changes: NgChanges<this>) {
         const watchingProps: Array<keyof this> = [
-            'value',
             'placeholder',
-            'focused',
             'required',
             'disabled'
         ];
@@ -97,6 +94,7 @@ export class UsersInputComponent implements MatFormFieldControl<UserInputData[]>
 
     writeValue(users: UserInputData[]) {
         this.value = users;
+        this.stateChanges.next();
     }
 
     registerOnChange(notifyChange: NotifyControlChange<UserInputData[]>) {
@@ -109,26 +107,29 @@ export class UsersInputComponent implements MatFormFieldControl<UserInputData[]>
 
     @HostListener('focusin')
     public onFocusIn() {
-        if (!this.focused) this.focused = true;
+        if (!this.focused) {
+            this.focused = true;
+            this.stateChanges.next();
+        }
     }
 
     @HostListener('focusout', ['$event'])
     public onFocusOut(event: FocusEvent) {
-        const focusedElement = event.target as HTMLElement;
+        const focusedElement = event.relatedTarget as HTMLElement;
         const isInnerFocus = this.elementRef.nativeElement.contains(focusedElement);
 
         if (!isInnerFocus) {
             this.focused = false;
             this.touched = true;
             this.notifyControlTouched();
+            this.stateChanges.next();
         }
     }
 
     public get empty(): boolean {
-        return !!this.value.length;
+        return !this.value.length;
     }
 
-    @HostBinding('class.floating')
     public get shouldLabelFloat() {
         return this.focused || !this.empty;
     }
@@ -155,20 +156,21 @@ export class UsersInputComponent implements MatFormFieldControl<UserInputData[]>
         const isAlreadyAdded = this.value.some(user => user.email.toLowerCase() === email.toLowerCase());
 
         if (!isAlreadyAdded) {
-            this.value.push(new UserInputData(email));
+            this.value = [...this.value, new UserInputData(email)];
             this.notifyControlChange(this.value);
+            this.stateChanges.next();
         }
 
         this.emailInputRef.nativeElement.value = '';
     }
 
     public removeUser(email: string): void {
-        const userIndex = this.value.findIndex(user => user.email.toLowerCase() === email.toLowerCase())
+        this.value = this.value.filter(user => user.email.toLowerCase() !== email.toLowerCase())
+        this.notifyControlChange(this.value);
+        this.stateChanges.next();
 
-        if (userIndex >= 0) {
-            this.value.splice(userIndex, 1)
-            this.notifyControlChange(this.value);
-        }
+        this.autocompleteService.reset();
+        this.emailInputRef.nativeElement.focus();
     }
 
     public loadAutocomplete(query: string): void {

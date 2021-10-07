@@ -2,7 +2,7 @@
 
 <form [formGroup]="mentorsForm" appBindFormErrors (ngSubmit)="addMentor()">
     <div mat-card-content class="margin-bottom--none">
-        <mat-form-field class="form-field--md">
+        <mat-form-field class="block block--full-width">
             <mat-label>User emails</mat-label>
 
             <app-users-input
@@ -11,7 +11,6 @@
             ></app-users-input>
 
             <mat-error appBindControlError="users"></mat-error>
-
         </mat-form-field>
     </div>
 
@@ -28,7 +27,7 @@
         <button
             mat-raised-button
             [appMatLoadingButton]="isAdding"
-            [disabled]="mentorsForm.invalid"
+            [disabled]="isAddDisabled"
             type="submit"
             color="primary"
         >

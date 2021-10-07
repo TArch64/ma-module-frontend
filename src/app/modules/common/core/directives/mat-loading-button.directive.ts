@@ -22,7 +22,11 @@ export class MatLoadingButtonDirective implements OnChanges {
     @Input('appMatLoadingButton')
     @BooleanInput()
     @HostBinding('class.loading-button')
-    public isLoading: boolean = false;
+    public isLoading!: boolean;
+
+    @Input('disabled')
+    @BooleanInput()
+    public originalDisabled: boolean = false;
 
     constructor(
         private readonly matButtonRef: MatButton,
@@ -45,7 +49,7 @@ export class MatLoadingButtonDirective implements OnChanges {
     }
 
     private renderInitial(): void {
-        this.matButtonRef.disabled = false;
+        this.matButtonRef.disabled = this.originalDisabled;
         if (this.loadingComponentRef) {
             this.loadingComponentRef?.destroy();
             this.loadingComponentRef = null;

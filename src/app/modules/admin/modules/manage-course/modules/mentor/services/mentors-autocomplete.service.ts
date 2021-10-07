@@ -22,6 +22,10 @@ export class MentorsAutocompleteService implements IUsersAutocompleteService {
         this.searchTrigger.next(query);
     }
 
+    public reset() {
+        this.searchTrigger.next('');
+    }
+
     private load(query: string): Observable<UserInputData[]> {
         return this.searchUsers(query).pipe(map(this.createModels.bind(this)));
     }

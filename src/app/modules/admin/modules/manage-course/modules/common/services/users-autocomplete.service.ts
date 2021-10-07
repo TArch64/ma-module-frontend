@@ -7,4 +7,5 @@ export const USERS_AUTOCOMPLETE_SERVICE = new InjectionToken('USERS_AUTOCOMPLETE
 export interface IUsersAutocompleteService {
     users$: Observable<UserInputData[]>;
     triggerRequest(query: string): void;
+    reset(): void;
 }
