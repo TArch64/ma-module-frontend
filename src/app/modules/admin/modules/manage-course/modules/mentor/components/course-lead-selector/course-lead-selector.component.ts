@@ -16,7 +16,7 @@ export class CourseLeadSelectorComponent implements OnDestroy {
 
     constructor(private readonly facade: ManageMentorsFacade) {
         this.disposable.subscribeTo(this.control.valueChanges, (mentor: Mentor) => {
-            this.facade.changeLeadMentor(mentor);
+            this.facade.changeLeadMentor(mentor).subscribe();
         });
         this.disposable.subscribeTo(this.facade.leadMentor$, (mentor) => {
             this.control.setValue(mentor, { emitEvent: false });
