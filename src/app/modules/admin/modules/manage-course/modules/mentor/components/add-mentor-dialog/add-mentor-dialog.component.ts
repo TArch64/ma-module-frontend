@@ -3,7 +3,7 @@ import {MatDialogRef} from "@angular/material/dialog";
 import {FormBuilder} from "@angular/forms";
 import {ToastrService} from "@common/toastr";
 import {ManageMentorsFacade} from "../../manage-mentors.facade";
-import {USERS_AUTOCOMPLETE_SERVICE} from "../../../common";
+import {UserInputData, USERS_AUTOCOMPLETE_SERVICE} from "../../../common";
 import {MentorsAutocompleteService} from "../../services";
 import {requireArrayLength} from "@common/form";
 
@@ -41,8 +41,9 @@ export class AddMentorDialogComponent {
 
         this.isAdding = true;
         this.mentorsForm.disable();
+        const emails = this.mentorsForm.value.users.map((user: UserInputData) => user.email);
 
-        this.facade.addMentor().subscribe({
+        this.facade.addMentors(emails).subscribe({
             next: this.onMentorAdded.bind(this),
             error: this.onAddFailed.bind(this)
         });

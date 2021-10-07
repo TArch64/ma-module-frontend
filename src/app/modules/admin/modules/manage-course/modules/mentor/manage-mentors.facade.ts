@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 import {ManageMentorsService} from "./services";
-import {Observable, of} from "rxjs";
+import {Observable} from "rxjs";
 import {Mentor} from "@common/course";
 
 @Injectable()
@@ -16,7 +16,7 @@ export class ManageMentorsFacade {
         return this.mentorsService.changeLeadMentor(mentor);
     }
 
-    public addMentor(): Observable<null> {
-        return of(null);
+    public addMentors(emails: string[]): Observable<null> {
+        return this.mentorsService.addMentors(emails);
     }
 }

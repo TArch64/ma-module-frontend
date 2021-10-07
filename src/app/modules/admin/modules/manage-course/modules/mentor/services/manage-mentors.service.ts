@@ -44,4 +44,18 @@ export class ManageMentorsService {
         const index = mentors.findIndex(m => m.id === mentor.id);
         mentors.splice(index, 1, mentor);
     }
+
+    public addMentors(emails: string[]): Observable<null> {
+        const courseId = this.manageCourseService.courseSnapshot!.id;
+        return this.syncService.addMentors(courseId, emails).pipe(
+            map(mentors => mentors.map(Mentor.fromJSON)),
+            tap(mentors => {
+                this.manageCourseService.updateCourseMentors([
+                    ...mentors,
+                    ...this.mentorsSnapshot
+                ]);
+            }),
+            mapTo(null)
+        );
+    }
 }
