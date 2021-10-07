@@ -20,7 +20,6 @@ export class CourseLeadSelectorComponent implements OnDestroy {
         });
         this.disposable.subscribeTo(this.facade.leadMentor$, (mentor) => {
             this.control.setValue(mentor, { emitEvent: false });
-            console.log(mentor);
         });
     }
 

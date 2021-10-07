@@ -1,0 +1,29 @@
+.banner {
+    border-left: 4px solid;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+@media (max-width: 599px) {
+    .banner {
+        padding: var(--offset-sm) var(--offset-xxs);
+        padding-left: var(--offset-xs);
+    }
+}
+
+.banner--warning {
+    border-color: var(--mat-warn)
+}
+
+.banner__icon {
+    width: 32px;
+    height: 32px;
+    font-size: 32px;
+}
+
+@media (min-width: 600px) {
+    .banner__actions.banner__actions {
+        padding-top: 0;
+        margin-top: -16px !important;
+    }
+}

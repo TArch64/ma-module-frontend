@@ -1,0 +1,13 @@
+<mat-card class="banner" [ngClass]="bannerClasses">
+    <mat-card-content class="flex flex--align-center margin-bottom--none">
+        <mat-icon class="banner__icon" [color]="primaryColor">{{ bannerIcon }}</mat-icon>
+
+        <p class="mat-body-2 margin-left--sm">{{ options.title }}</p>
+    </mat-card-content>
+
+    <mat-card-actions class="banner__actions flex flex--justify-end" *ngIf="options.closable">
+        <button type="button" mat-button (click)="close()" [color]="primaryColor">
+            Dismiss
+        </button>
+    </mat-card-actions>
+</mat-card>

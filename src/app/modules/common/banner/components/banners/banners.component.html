@@ -1,0 +1,5 @@
+<ul class="banners">
+    <li class="banners__item" *ngFor="let banner of banners$ | async">
+        <ng-template [cdkPortalOutlet]="banner.portal"></ng-template>
+    </li>
+</ul>

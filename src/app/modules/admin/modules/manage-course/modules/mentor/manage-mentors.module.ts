@@ -21,6 +21,7 @@ import {CommonFormModule} from "@common/form";
 import {MatInputModule} from "@angular/material/input";
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import {ManageCourseCommonModule} from "../common";
+import {BannerModule} from "@common/banner";
 
 const publicDeclarations = [
     ManageMentorsPageComponent
@@ -40,6 +41,7 @@ const publicDeclarations = [
         CommonCoreModule,
         CommonFormModule,
         ToastrModule,
+        BannerModule,
         ManageCourseCommonModule
     ],
     declarations: [
