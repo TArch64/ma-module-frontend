@@ -1,1 +1,1 @@
-export {CommonAuthService} from './common-auth.service';
+export {CommonAuthService, ICommonAuthService} from './common-auth.service';

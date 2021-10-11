@@ -1,8 +1,9 @@
 import {Inject, Injectable, OnDestroy} from "@angular/core";
 import {fromEvent, Observable} from "rxjs";
-import {Disposable, ResizeEvent, ScreenBreakpointEvent} from "@common/core";
-import {WindowProvider} from "./window.provider";
 import {distinctUntilKeyChanged, map, startWith} from "rxjs/operators";
+import {Disposable} from "../helpers";
+import {ResizeEvent, ScreenBreakpointEvent} from "../entities";
+import {WindowProvider} from "./window.provider";
 
 @Injectable({ providedIn: 'root' })
 export class WindowService implements OnDestroy {

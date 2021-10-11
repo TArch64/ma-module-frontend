@@ -1,8 +1,13 @@
 import {Injectable} from "@angular/core";
 
+export interface ISerializerService {
+    fromJSON<T>(json: string): T | null;
+    toJSON<T>(value: T): string;
+}
+
 @Injectable()
-export class SerializerService {
-    public parse<T>(json: string): T | null {
+export class SerializerService implements ISerializerService {
+    public fromJSON<T>(json: string): T | null {
         try {
             return JSON.parse(json);
         } catch (error) {
@@ -11,7 +16,7 @@ export class SerializerService {
         }
     }
 
-    public stringify<T>(value: T): string {
+    public toJSON<T>(value: T): string {
         return JSON.stringify(value);
     }
 }

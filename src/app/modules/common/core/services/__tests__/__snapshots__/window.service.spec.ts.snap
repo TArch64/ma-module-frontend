@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`breakpoint should broadcast breakpoint event 1`] = `
+ScreenBreakpointEvent {
+  "breakpoint": 2,
+  "isDesktop": true,
+  "isMobile": false,
+  "isTablet": false,
+  "windowWidth": 1234,
+}
+`;
+
+exports[`breakpoint should save event snapshot 1`] = `
+ScreenBreakpointEvent {
+  "breakpoint": 2,
+  "isDesktop": true,
+  "isMobile": false,
+  "isTablet": false,
+  "windowWidth": 1234,
+}
+`;
+
+exports[`resize should proxy resize event 1`] = `
+ResizeEvent {
+  "height": 1234,
+  "width": 1234,
+}
+`;
+
+exports[`resize should save event snapshot 1`] = `
+ResizeEvent {
+  "height": 1234,
+  "width": 1234,
+}
+`;

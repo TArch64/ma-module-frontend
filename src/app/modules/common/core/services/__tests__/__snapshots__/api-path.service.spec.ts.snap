@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`build role path should build admin path 1`] = `"http://test/admin/users/11"`;
+
+exports[`build role path should build mentor path 1`] = `"http://test/mentor/users/11"`;
+
+exports[`build role path should build student path 1`] = `"http://test/student/users/11"`;
+
+exports[`build role path should throw error if there are no user 1`] = `"Current user is not initialized yet"`;
+
+exports[`build should build api path 1`] = `"http://test/users/11"`;

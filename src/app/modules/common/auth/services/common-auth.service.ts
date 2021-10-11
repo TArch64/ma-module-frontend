@@ -5,8 +5,19 @@ import {formatValidationHttpResponse, StorageService} from "@common/core";
 import {CommonAuthSyncService} from "../sync";
 import {map, switchMap, tap} from "rxjs/operators";
 
+export interface ICommonAuthService {
+    authToken: string | null;
+    currentUser: User | null;
+    currentUser$: Observable<User | null>;
+    isSignedIn: boolean;
+    signIn(email: string, password: string): Observable<User>;
+    signOut(): void;
+    actualizeUser(): Observable<User>;
+    fetchCurrentUser(): Observable<User>;
+}
+
 @Injectable({ providedIn: 'root' })
-export class CommonAuthService {
+export class CommonAuthService implements ICommonAuthService {
     private static readonly TOKEN_KEY = 'ct';
     public authToken: string | null = this.fetchSavedToken();
     private readonly currentUserSubject = new BehaviorSubject<null | User>(null);
@@ -46,7 +57,7 @@ export class CommonAuthService {
         this.localStorage.setItem(CommonAuthService.TOKEN_KEY, token);
     }
 
-    public signOut() {
+    public signOut(): void {
         this.localStorage.removeItem(CommonAuthService.TOKEN_KEY);
         window.location.reload();
     }
