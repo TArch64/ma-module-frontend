@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`subscribe to should subscribe until disposed 1`] = `
+Array [
+  "first",
+  "second",
+]
+`;
+
+exports[`subscribe to should subscribe until disposed via next callback 1`] = `
+Array [
+  "first",
+  "second",
+]
+`;
+
+exports[`take until disposed should take events until disposed 1`] = `
+Array [
+  "first",
+  "second",
+]
+`;

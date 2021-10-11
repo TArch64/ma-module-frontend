@@ -3,7 +3,7 @@ import {filter, map} from "rxjs/operators";
 
 export function captureExistsValues<T>(source: Observable<T>): Observable<NonNullable<T>> {
     return source.pipe(
-        filter(value => !!value),
+        filter(value => value !== null && value !== undefined),
         map(value => value!)
     );
 }
