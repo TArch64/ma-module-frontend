@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`transform should get admin title 1`] = `"Admin Module"`;
+
+exports[`transform should get mentor title 1`] = `"Mentor Module"`;
+
+exports[`transform should get student title 1`] = `"Student Module"`;

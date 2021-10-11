@@ -1,6 +1,7 @@
 import {Inject, Injectable} from "@angular/core";
 import {EnvironmentProvider, IEnvironment} from "./environment.provider";
-import {CommonAuthService, UserRoles} from "@common/auth";
+import {UserRoles} from "@common/auth/enums";
+import {CommonAuthService} from "@common/auth/services";
 
 type Path = string | number;
 
