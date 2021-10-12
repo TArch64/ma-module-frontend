@@ -50,6 +50,7 @@ export class MatLoadingButtonDirective implements OnChanges {
 
     private renderInitial(): void {
         this.matButtonRef.disabled = this.originalDisabled;
+
         if (this.loadingComponentRef) {
             this.loadingComponentRef?.destroy();
             this.loadingComponentRef = null;
