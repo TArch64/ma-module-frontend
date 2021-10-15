@@ -1,5 +1,6 @@
 import {DOMWindow, JSDOM} from "jsdom";
 import {WindowService} from "../window.service";
+import {first} from "rxjs/operators";
 
 const createWindow = (): DOMWindow => new JSDOM().window;
 
@@ -17,15 +18,13 @@ function dispatchResizeEvent(window: DOMWindow, width: number): void {
 }
 
 describe('resize', () => {
-    test('should proxy resize event', (done) => {
+    test('should proxy resize event', async () => {
         const { service, window } = createService();
 
         dispatchResizeEvent(window, 1234);
 
-        service.resize$.subscribe(event => {
-            expect(event).toMatchSnapshot();
-            done();
-        });
+        const event = await service.resize$.pipe(first()).toPromise();
+        expect(event).toMatchSnapshot();
     });
 
     test('should save event snapshot', () => {
@@ -38,15 +37,13 @@ describe('resize', () => {
 });
 
 describe('breakpoint', () => {
-    test('should broadcast breakpoint event', (done) => {
+    test('should broadcast breakpoint event', async () => {
         const { service, window } = createService();
 
         dispatchResizeEvent(window, 1234);
 
-        service.breakpoint$.subscribe(event => {
-            expect(event).toMatchSnapshot();
-            done();
-        });
+        const event = await service.breakpoint$.pipe(first()).toPromise();
+        expect(event).toMatchSnapshot();
     });
 
     test('should save event snapshot', () => {

@@ -4,8 +4,12 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {ISeasonJSON} from "../entities";
 
+export interface ICommonSeasonSync {
+    loadSeasons(): Observable<ISeasonJSON[]>;
+}
+
 @Injectable()
-export class CommonSeasonSyncService {
+export class CommonSeasonSync implements ICommonSeasonSync {
     constructor(
         private readonly apiPath: ApiPathService,
         private readonly httpClient: HttpClient

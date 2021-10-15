@@ -1,8 +1,8 @@
-import {Injectable} from "@angular/core";
+import {Inject, Injectable} from "@angular/core";
 import {BehaviorSubject, Observable} from "rxjs";
 import {map, tap} from "rxjs/operators";
 import {Season} from "../entities";
-import {CommonSeasonSyncService} from "../sync";
+import {CommonSeasonSync, ICommonSeasonSync} from "../sync";
 
 @Injectable({ providedIn: 'root' })
 export class CommonSeasonsService {
@@ -12,7 +12,10 @@ export class CommonSeasonsService {
 
     public readonly currentSeason$ = this.currentSeasonSubject.asObservable();
 
-    constructor(private readonly syncService: CommonSeasonSyncService) {}
+    constructor(
+        @Inject(CommonSeasonSync)
+        private readonly syncService: ICommonSeasonSync
+    ) {}
 
     public get seasonsSnapshot(): Season[] {
         return this.seasonsSubject.value;
