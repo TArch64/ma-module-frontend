@@ -1,4 +1,4 @@
-import {ApiPathService} from "../api-path.service";
+import {ApiPathService} from "./api-path.service";
 import {ICommonAuthService, User, UserRoles} from "@common/auth";
 import {Observable, of} from "rxjs";
 

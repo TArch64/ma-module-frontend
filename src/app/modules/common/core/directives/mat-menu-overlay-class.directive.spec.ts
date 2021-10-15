@@ -1,6 +1,6 @@
 import {Component, Input, ViewChild} from "@angular/core";
 import {ComponentFixture, TestBed} from "@angular/core/testing";
-import {MatMenuOverlayClassDirective} from "../mat-menu-overlay-class.directive";
+import {MatMenuOverlayClassDirective} from "./mat-menu-overlay-class.directive";
 import {MatMenu, MatMenuModule} from "@angular/material/menu";
 
 const TEST_CLASS = 'test-class';

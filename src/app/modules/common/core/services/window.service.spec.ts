@@ -1,5 +1,5 @@
 import {DOMWindow, JSDOM} from "jsdom";
-import {WindowService} from "../window.service";
+import {WindowService} from "./window.service";
 import {first} from "rxjs/operators";
 
 const createWindow = (): DOMWindow => new JSDOM().window;
