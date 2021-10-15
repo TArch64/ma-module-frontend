@@ -1,13 +1,8 @@
-enum ScreenBreakpoints {
-    MOBILE,
-    TABLET,
-    DESKTOP
-}
+import {ScreenBreakpoints} from "../enums";
 
 export class ScreenBreakpointEvent {
     private static readonly MOBILE_BREAKPOINT = 600;
     private static readonly TABLET_BREAKPOINT = 1200;
-    public static readonly Breakpoints = ScreenBreakpoints;
 
     public readonly breakpoint = this.matchBreakpoint();
     public readonly isMobile = this.isBreakpoint(ScreenBreakpoints.MOBILE);
