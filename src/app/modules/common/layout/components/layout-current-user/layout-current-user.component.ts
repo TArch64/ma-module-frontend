@@ -1,5 +1,5 @@
-import {Component, ViewChild, ViewEncapsulation} from '@angular/core';
-import {LayoutFacade} from "@common/layout/layout.facade";
+import {Component, Inject, ViewChild, ViewEncapsulation} from '@angular/core';
+import {ILayoutFacade, LayoutFacade} from "@common/layout/layout.facade";
 import {MatMenu} from "@angular/material/menu";
 
 @Component({
@@ -14,7 +14,10 @@ export class LayoutCurrentUserComponent {
     @ViewChild('userMenu')
     private matMenu!: MatMenu
 
-    constructor(private readonly layoutFacade: LayoutFacade) {}
+    constructor(
+        @Inject(LayoutFacade)
+        private readonly layoutFacade: ILayoutFacade
+    ) {}
 
     public signOut(): void {
         this.layoutFacade.signOut();

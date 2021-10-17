@@ -1,10 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {Observable} from "rxjs";
 import {MatDrawerMode} from "@angular/material/sidenav";
-import {Disposable, WindowService} from "@common/core";
-import {debounceTime, distinctUntilChanged, filter, map} from "rxjs/operators";
-import {Router} from "@angular/router";
-import {LayoutFacade} from "@common/layout/layout.facade";
+import {Disposable} from "@common/core";
+import {debounceTime, distinctUntilChanged, map} from "rxjs/operators";
+import {ILayoutFacade, LayoutFacade} from "@common/layout/layout.facade";
 
 @Component({
   selector: 'app-layout',
@@ -12,27 +11,29 @@ import {LayoutFacade} from "@common/layout/layout.facade";
   styleUrls: ['./layout.component.css']
 })
 export class LayoutComponent implements OnInit {
+    public static readonly SIDENAV_DESKTOP_BEHAVIOR: MatDrawerMode = 'side';
+    public static readonly SIDENAV_MOBILE_BEHAVIOR: MatDrawerMode = 'over';
+
     private readonly disposable = new Disposable();
     public readonly sidenavMode$: Observable<MatDrawerMode> = this.createSidenavModeStream();
     public readonly isProgressBarVisible$ = this.createProgressBarVisibilityStream();
-    public isSidenavOpened: boolean = this.getInitialSidenavState();
+    public isSidenavOpened: boolean = !this.facade.isMobileSnapshot
 
     constructor(
-        private readonly windowService: WindowService,
-        private readonly facade: LayoutFacade,
-        private readonly router: Router
+        @Inject(LayoutFacade)
+        private readonly facade: ILayoutFacade
     ) {}
 
     public ngOnInit() {
-        const mobileNavigation$ = this.router.events.pipe(
-            filter(() => this.windowService.breakpointSnapshot.isMobile)
-        )
-        this.disposable.subscribeTo(mobileNavigation$, this.closeSidenav.bind(this));
+        this.disposable.subscribeTo(this.facade.mobileNavigation$, this.closeSidenav.bind(this));
     }
 
     private createSidenavModeStream(): Observable<MatDrawerMode> {
-        return this.windowService.breakpoint$.pipe(
-            map(event => event.isMobile ? 'over' : 'side')
+        return this.facade.isMobile$.pipe(
+            map(isMobile => isMobile
+                ? LayoutComponent.SIDENAV_MOBILE_BEHAVIOR
+                : LayoutComponent.SIDENAV_DESKTOP_BEHAVIOR
+            )
         );
     }
 
@@ -41,10 +42,6 @@ export class LayoutComponent implements OnInit {
             debounceTime(200),
             distinctUntilChanged()
         );
-    }
-
-    private getInitialSidenavState(): boolean {
-        return !this.windowService.breakpointSnapshot.isMobile;
     }
 
     public toggleSidenav(): void {

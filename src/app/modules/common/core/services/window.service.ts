@@ -5,13 +5,20 @@ import {Disposable} from "../helpers";
 import {ResizeEvent, ScreenBreakpointEvent} from "../entities";
 import {WindowProvider} from "./window.provider";
 
+export interface IWindowService {
+    resizeSnapshot: ResizeEvent;
+    resize$: Observable<ResizeEvent>;
+    breakpointSnapshot: ScreenBreakpointEvent;
+    breakpoint$: Observable<ScreenBreakpointEvent>;
+}
+
 @Injectable({ providedIn: 'root' })
-export class WindowService implements OnDestroy {
+export class WindowService implements IWindowService, OnDestroy {
     private readonly disposable = new Disposable();
     public resizeSnapshot!: ResizeEvent;
     public breakpointSnapshot!: ScreenBreakpointEvent;
-    public readonly resize$: Observable<ResizeEvent> = this.createResizeStream();
-    public readonly breakpoint$: Observable<ScreenBreakpointEvent> = this.createBreakpointStream();
+    public readonly resize$ = this.createResizeStream();
+    public readonly breakpoint$ = this.createBreakpointStream();
 
     constructor(@Inject(WindowProvider) private readonly window: Window) {
         this.disposable.subscribeTo(this.resize$, value => this.resizeSnapshot = value);
