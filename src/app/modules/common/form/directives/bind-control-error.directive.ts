@@ -1,4 +1,4 @@
-import {Directive, Input, OnDestroy, ViewContainerRef} from '@angular/core';
+import {Directive, Input, OnDestroy, Renderer2, ViewContainerRef} from '@angular/core';
 import { AbstractControl, FormGroup } from '@angular/forms';
 import {Disposable} from "@common/core";
 
@@ -11,7 +11,10 @@ export class BindControlErrorDirective implements OnDestroy {
     private control!: AbstractControl;
     private readonly disposable = new Disposable();
 
-    constructor(private readonly viewContainerRef: ViewContainerRef) {}
+    constructor(
+        private readonly viewContainerRef: ViewContainerRef,
+        private readonly renderer: Renderer2
+    ) {}
 
     public ngOnDestroy(): void {
         this.disposable.dispose();
@@ -25,7 +28,8 @@ export class BindControlErrorDirective implements OnDestroy {
     }
 
     private renderError(): void {
-        const nativeElement = this.viewContainerRef.element.nativeElement as HTMLElement;
-        nativeElement.innerHTML = this.control.errors?.message as string ?? '';
+        const nativeElement = this.viewContainerRef.element.nativeElement;
+        const message = this.control.errors?.message as string ?? '';
+        this.renderer.setProperty(nativeElement, 'innerText', message)
     }
 }
