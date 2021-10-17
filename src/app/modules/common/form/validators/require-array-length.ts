@@ -1,5 +1,5 @@
 import {ValidatorFn} from "@angular/forms";
-import {buildValidator} from "@common/form";
+import {buildValidator} from "../helpers";
 
 export function requireArrayLength(length: number, message: string): ValidatorFn {
     return buildValidator({
