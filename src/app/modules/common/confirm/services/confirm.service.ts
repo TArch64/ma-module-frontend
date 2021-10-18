@@ -7,14 +7,12 @@ import {filter, map} from "rxjs/operators";
 import {DialogSizes} from "@common/dialog";
 
 type ConfirmRef = MatDialogRef<ConfirmDialogComponent>;
-type ConfirmResult$ = Observable<ConfirmResult>;
-
 
 @Injectable()
 export class ConfirmService {
     constructor(private readonly matDialog: MatDialog) {}
 
-    public open(rawOptions: IConfirmOptions): ConfirmResult$ {
+    public open(rawOptions: IConfirmOptions): Observable<ConfirmResult> {
         const options = ConfirmOptions.create(rawOptions);
         const dialogRef: ConfirmRef = this.matDialog.open(ConfirmDialogComponent, {
             width: DialogSizes.XS,
