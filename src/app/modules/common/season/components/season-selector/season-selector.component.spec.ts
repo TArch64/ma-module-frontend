@@ -2,7 +2,7 @@ import {Observable, of, Subject} from "rxjs";
 import {FormControlDirective, ReactiveFormsModule} from "@angular/forms";
 import {By} from "@angular/platform-browser";
 import {NoopAnimationsModule} from "@angular/platform-browser/animations";
-import {TestBed} from "@angular/core/testing";
+import {ComponentFixture, TestBed} from "@angular/core/testing";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatSelectModule} from "@angular/material/select";
 import {CommonSeasonFacade, ICommonSeasonFacade} from "../../common-season.facade";
@@ -30,8 +30,11 @@ class MockCommonSeasonFacade implements ICommonSeasonFacade {
     }
 }
 
-function createComponent(seasons: Season[]) {
-    const facade = new MockCommonSeasonFacade(seasons);
+function createFacade(seasons: Season[]): MockCommonSeasonFacade {
+    return new MockCommonSeasonFacade(seasons);
+}
+
+function createComponent(facade: ICommonSeasonFacade): ComponentFixture<SeasonSelectorComponent> {
     const module = TestBed.configureTestingModule({
         imports: [
             MatFormFieldModule,
@@ -47,8 +50,7 @@ function createComponent(seasons: Season[]) {
             }
         ]
     });
-    const fixture = module.createComponent(SeasonSelectorComponent);
-    return { fixture, facade };
+    return module.createComponent(SeasonSelectorComponent);
 }
 
 function createSeason(attrs: Partial<ISeasonJSON> = {}): Season {
@@ -65,12 +67,13 @@ describe('sync selected value', () => {
     test('should change value on ui if current changed', async () => {
         const season = createSeason({ id: 'test 1' });
         const current = createSeason({ id: 'test 2' });
-        const { fixture, facade } = createComponent([
+        const facade = createFacade([
             season,
             current,
             createSeason({ id: 'test 3' }),
             createSeason({ id: 'test 4' }),
         ]);
+        const fixture = createComponent(facade);
 
         facade.mockCurrentSeasonSubject.next(season);
         fixture.detectChanges();
@@ -83,12 +86,14 @@ describe('sync selected value', () => {
     test('should change current after selector changes', () => {
         const season = createSeason({ id: 'test 1' });
         const current = createSeason({ id: 'test 2' });
-        const { fixture, facade } = createComponent([
+        const facade = createFacade([
             season,
             current,
             createSeason({ id: 'test 3' }),
             createSeason({ id: 'test 4' }),
         ]);
+
+        const fixture = createComponent(facade);
         fixture.componentInstance.selectControl.setValue(current);
         fixture.detectChanges();
 
