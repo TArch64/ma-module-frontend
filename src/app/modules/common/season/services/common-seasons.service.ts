@@ -4,8 +4,24 @@ import {map, tap} from "rxjs/operators";
 import {Season} from "../entities";
 import {CommonSeasonSync, ICommonSeasonSync} from "../sync";
 
+export interface ICommonSeasonsService {
+    seasons$: Observable<Season[]>;
+    seasonsSnapshot: Season[];
+    isSeasonsLoaded: boolean;
+    activeSeason: Season | null;
+
+    currentSeason$: Observable<Season | null>;
+    currentSeasonSnapshot: Season | null;
+
+    loadSeasons(): Observable<Season[]>;
+    changeCurrentSeason(season: Season): void;
+    addSeason(season: Season): void;
+    updateSeason(season: Season): void;
+    removeSeason(season: Season): void;
+}
+
 @Injectable({ providedIn: 'root' })
-export class CommonSeasonsService {
+export class CommonSeasonsService implements ICommonSeasonsService {
     private readonly seasonsSubject = new BehaviorSubject<Season[]>([]);
     private readonly currentSeasonSubject = new BehaviorSubject<Season | null>(null);
     public readonly seasons$ = this.seasonsSubject.asObservable();

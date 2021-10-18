@@ -5,8 +5,12 @@ import {Season} from "@common/season";
 import {ApiPathService} from "@common/core";
 import {HttpClient} from "@angular/common/http";
 
+export interface ICoursesRepositorySync {
+    loadCourses(season: Season): Observable<ICourseJSON[]>;
+}
+
 @Injectable({ providedIn: 'root' })
-export class CoursesRepositorySync {
+export class CoursesRepositorySync implements ICoursesRepositorySync {
     constructor(
         private readonly apiPath: ApiPathService,
         private readonly httpClient: HttpClient

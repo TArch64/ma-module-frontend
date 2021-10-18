@@ -1,1 +1,1 @@
-export {CoursesRepositorySync} from './courses-repository.sync';
+export {CoursesRepositorySync, ICoursesRepositorySync} from './courses-repository.sync';
