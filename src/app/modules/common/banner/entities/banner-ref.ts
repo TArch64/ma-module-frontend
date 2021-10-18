@@ -1,28 +1,20 @@
-import {Injector} from "@angular/core";
 import {ComponentPortal} from "@angular/cdk/portal";
 import {BannerComponent} from "../components";
-import {BannerOptions} from "./banner-options";
-import {BannerEventsProxy} from "./banner-events-proxy";
+import {IBannerEventsProxy} from "./banner-events-proxy";
 
-export class BannerRef {
-    public static create(options: BannerOptions): BannerRef {
-        const events = BannerEventsProxy.create();
-        const injector = Injector.create({
-            providers: [
-                { provide: BannerOptions, useValue: options },
-                { provide: BannerEventsProxy, useValue: events }
-            ]
-        });
-        const portal = new ComponentPortal(BannerComponent, null, injector);
-        return new BannerRef(portal, events)
-    }
+export interface IBannerRef<T> {
+    portal: ComponentPortal<T>;
+    events: IBannerEventsProxy;
+    close(): void;
+}
 
-    private constructor(
-        public readonly portal: ComponentPortal<BannerComponent>,
-        public readonly events: BannerEventsProxy
+export class BannerRef<C = BannerComponent> implements IBannerRef<C> {
+    constructor(
+        public readonly portal: ComponentPortal<C>,
+        public readonly events: IBannerEventsProxy
     ) {}
 
-    close() {
+    close(): void {
         this.events.close();
     }
 }

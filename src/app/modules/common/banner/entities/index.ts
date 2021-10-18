@@ -1,3 +1,3 @@
-export {IBannerOptions, BannerOptions} from './banner-options';
-export {BannerRef} from './banner-ref';
-export {BannerEventsProxy} from './banner-events-proxy';
+export {BannerOptions, IBannerOptions} from './banner-options';
+export {BannerRef, IBannerRef} from './banner-ref';
+export {BannerEventsProxy, IBannerEventsProxy} from './banner-events-proxy';
