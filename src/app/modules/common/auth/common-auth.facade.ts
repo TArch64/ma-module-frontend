@@ -2,8 +2,18 @@ import {Injectable} from "@angular/core";
 import {CommonAuthService, User} from "@common/auth";
 import {Observable} from "rxjs";
 
+export interface ICommonAuthFacade {
+    isSignedOut: boolean;
+    isSignedIn: boolean;
+    authToken: string | null;
+    currentUser: User | null;
+
+    signOut(): void;
+    fetchCurrentUser(): Observable<User>;
+}
+
 @Injectable()
-export class CommonAuthFacade {
+export class CommonAuthFacade implements ICommonAuthFacade {
     constructor(
         private readonly authService: CommonAuthService,
     ) {}

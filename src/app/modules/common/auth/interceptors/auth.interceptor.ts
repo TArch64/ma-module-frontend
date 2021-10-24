@@ -1,4 +1,4 @@
-import {ClassProvider, Injectable} from "@angular/core";
+import {ClassProvider, Inject, Injectable} from "@angular/core";
 import {
     HTTP_INTERCEPTORS,
     HttpErrorResponse,
@@ -9,7 +9,7 @@ import {
 } from "@angular/common/http";
 import {Observable, throwError} from "rxjs";
 import {catchError} from "rxjs/operators";
-import {CommonAuthFacade} from "../common-auth.facade";
+import {CommonAuthFacade, ICommonAuthFacade} from "../common-auth.facade";
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
@@ -21,7 +21,10 @@ export class AuthInterceptor implements HttpInterceptor {
         }
     }
 
-    constructor(private readonly authFacade: CommonAuthFacade) {}
+    constructor(
+        @Inject(CommonAuthFacade)
+        private readonly authFacade: ICommonAuthFacade
+    ) {}
 
     public intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         const headers = this.authFacade.isSignedIn
