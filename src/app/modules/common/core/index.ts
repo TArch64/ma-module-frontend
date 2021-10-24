@@ -1,5 +1,15 @@
 export {CommonCoreModule} from './common-core.module';
-export {SerializerService, StorageService, ApiPathService, WindowService, IWindowService, KeyFactory} from './services';
+export {
+    SerializerService,
+    StorageService,
+    IStorageService,
+    ApiPathService,
+    WindowService,
+    IWindowService,
+    WindowProvider,
+    IWindow,
+    KeyFactory
+} from './services';
 export {captureExistsValues, formatValidationHttpResponse, Disposable} from './helpers';
 export {ResizeEvent, ScreenBreakpointEvent, IPrototype, ISerializable, NgChanges, TypedOnChanges} from './entities';
 export {ScreenBreakpoints} from './enums';

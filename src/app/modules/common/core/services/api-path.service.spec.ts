@@ -14,9 +14,9 @@ class MockAuthService implements ICommonAuthService {
     isSignedIn: boolean = true;
 
     constructor(
-        public currentUser: User | null
+        public currentUserSnapshot: User | null
     ) {
-        this.currentUser$ = of(currentUser);
+        this.currentUser$ = of(currentUserSnapshot);
     }
 
     signIn(email: string, password: string): Observable<User> {

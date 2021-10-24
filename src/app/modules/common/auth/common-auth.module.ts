@@ -1,7 +1,7 @@
 import {NgModule} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {HttpClientModule} from "@angular/common/http";
-import {CommonAuthSyncService} from "./sync";
+import {CommonAuthSync} from "./sync";
 import {AuthOnlyGuard, InauthOnlyGuard, RoleAccessGuard} from "./guards";
 import {AuthInterceptor} from "./interceptors";
 import {CommonAuthFacade} from "./common-auth.facade";
@@ -13,7 +13,7 @@ import {CommonAuthFacade} from "./common-auth.facade";
     ],
     providers: [
         CommonAuthFacade,
-        CommonAuthSyncService,
+        CommonAuthSync,
         AuthOnlyGuard,
         InauthOnlyGuard,
         AuthInterceptor.getProvider(),

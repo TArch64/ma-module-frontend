@@ -8,8 +8,13 @@ export interface ISignInResponse {
     token: string;
 }
 
+export interface ICommonAuthSync {
+    signIn(email: string, password: string): Observable<ISignInResponse>;
+    loadCurrentUser(): Observable<IUserJSON>;
+}
+
 @Injectable({ providedIn: 'root' })
-export class CommonAuthSyncService {
+export class CommonAuthSync implements ICommonAuthSync {
     constructor(
         private readonly apiPath: ApiPathService,
         private readonly httpClient: HttpClient

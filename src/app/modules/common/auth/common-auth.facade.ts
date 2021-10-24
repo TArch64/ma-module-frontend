@@ -21,7 +21,7 @@ export class CommonAuthFacade {
     }
 
     get currentUser(): User | null {
-        return this.authService.currentUser;
+        return this.authService.currentUserSnapshot;
     }
 
     signOut(): void {
