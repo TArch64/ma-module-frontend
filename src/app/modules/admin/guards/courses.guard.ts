@@ -1,20 +1,20 @@
 import {CanActivate, Router, UrlTree} from "@angular/router";
-import {Injectable} from "@angular/core";
+import {Inject, Injectable} from "@angular/core";
 import {Observable} from "rxjs";
-import {CommonSeasonsService, Season} from "@common/season";
 import {map} from "rxjs/operators";
+import {Season} from "@common/season";
+import {AdminFacade, IAdminFacade} from "../admin.facade";
 
 @Injectable()
 export class CoursesGuard implements CanActivate {
     constructor(
         private readonly router: Router,
-        private readonly seasonService: CommonSeasonsService
+        @Inject(AdminFacade)
+        private readonly facade: IAdminFacade
     ) {}
 
-    public canActivate(): Observable<UrlTree | boolean> | boolean {
-        if (this.seasonService.seasonsSnapshot.length) return true;
-
-        return this.seasonService.loadSeasons().pipe(
+    public canActivate(): Observable<UrlTree | boolean> {
+        return this.facade.loadSeasons().pipe(
             map((seasons: Season[]) => {
                 if (seasons.length) return true;
                 return this.router.createUrlTree(['/admin', 'seasons']);
