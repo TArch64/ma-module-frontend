@@ -8,7 +8,6 @@ import {LayoutModule} from "@common/layout";
 import {AdminFacade, IAdminFacade} from "../../admin.facade";
 import {AdminLayoutComponent} from "./admin-layout.component";
 
-
 class MockAdminFacade implements IAdminFacade {
     static create(): MockAdminFacade {
         return new MockAdminFacade();

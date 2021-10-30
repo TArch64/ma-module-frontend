@@ -1,7 +1,7 @@
 import {Inject, Injectable} from "@angular/core";
 import {BehaviorSubject, Observable} from "rxjs";
 import {map, tap} from "rxjs/operators";
-import {Season} from "../entities";
+import {ISeasonJSON, Season} from "../entities";
 import {CommonSeasonSync, ICommonSeasonSync} from "../sync";
 
 export interface ICommonSeasonsService {
@@ -16,7 +16,7 @@ export interface ICommonSeasonsService {
     loadSeasons(): Observable<Season[]>;
     changeCurrentSeason(season: Season): void;
     addSeason(season: Season): void;
-    updateSeason(season: Season): void;
+    updateSeason(season: Season, changes: Partial<ISeasonJSON>): void;
     removeSeason(season: Season): void;
 }
 
@@ -74,10 +74,10 @@ export class CommonSeasonsService implements ICommonSeasonsService {
         this.refreshSeasonsState([season, ...this.seasonsSnapshot])
     }
 
-    public updateSeason(season: Season): void {
+    public updateSeason(season: Season, changes: Partial<ISeasonJSON>): void {
         const seasonIndex = this.seasonsSnapshot.findIndex(s => s.id === season.id);
         const seasons = this.seasonsSnapshot.slice();
-        seasons.splice(seasonIndex, 1, season);
+        seasons.splice(seasonIndex, 1, season.clone(changes));
         this.refreshSeasonsState(seasons);
     }
 
