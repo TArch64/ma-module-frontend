@@ -1,8 +1,7 @@
 import {Inject, Injectable} from "@angular/core";
 import {IUserJSON, User} from "../entities";
 import {BehaviorSubject, Observable, of} from "rxjs";
-import {formatValidationHttpResponse} from "@common/core/helpers";
-import {StorageService} from "@common/core/services";
+import {formatValidationHttpResponse, StorageService} from "@common/core";
 import {CommonAuthSyncService} from "../sync";
 import {map, switchMap, tap} from "rxjs/operators";
 

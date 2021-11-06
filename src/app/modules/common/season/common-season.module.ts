@@ -2,7 +2,7 @@ import {NgModule} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {HttpClientModule} from "@angular/common/http";
 import {CommonCoreModule} from "@common/core";
-import {CommonSeasonSync} from "./sync";
+import {CommonSeasonSyncService} from "./sync";
 import {LoadSeasonsResolver} from "./resolvers";
 import {SeasonSelectorComponent} from "./components";
 import {CommonSeasonFacade} from "./common-season.facade";
@@ -29,7 +29,7 @@ const publicDeclarations = [
     exports: publicDeclarations,
     providers: [
         CommonSeasonFacade,
-        CommonSeasonSync,
+        CommonSeasonSyncService,
         LoadSeasonsResolver
     ]
 })

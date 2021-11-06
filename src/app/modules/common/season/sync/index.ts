@@ -1,1 +1,1 @@
-export {CommonSeasonSync, ICommonSeasonSync} from './common-season.sync';
+export {CommonSeasonSyncService} from './common-season-sync.service';
