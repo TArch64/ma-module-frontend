@@ -31,10 +31,8 @@ export class ApiPathService {
     }
 
     public buildRolePath(paths: Path[]): string {
-        const user = this.authService.currentUserSnapshot;
-
-        if (!user) throw new Error('Current user is not initialized yet');
-        const prefix = ApiPathService.ROLE_PATH_MAPPING[user.role];
+        if (!this.authService.currentUser) throw new Error('Current user is not initialized yet');
+        const prefix = ApiPathService.ROLE_PATH_MAPPING[this.authService.currentUser.role];
         return this.build([prefix, ...paths])
     }
 }

@@ -1,1 +1,1 @@
-export {CommonAuthSync, ICommonAuthSync, ISignInResponse} from './common-auth.sync';
+export {CommonAuthSyncService} from './common-auth-sync.service';

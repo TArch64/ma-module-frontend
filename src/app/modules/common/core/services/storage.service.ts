@@ -1,14 +1,7 @@
 import {inject, InjectionToken} from "@angular/core";
 import {ISerializerService, SerializerService} from "./serializer.service";
 
-export interface IStorageService {
-    getItem<T>(key: string): T | null;
-    setItem<T>(key: string, value: T): void;
-    removeItem(key: string): void;
-    buildKey(key: string): string;
-}
-
-export class StorageService implements IStorageService {
+export class StorageService {
     public static readonly LOCAL_STORAGE = StorageService.createInjector('localStorage', localStorage);
 
     public static createInjector(name: string, storage: Storage): InjectionToken<StorageService> {
