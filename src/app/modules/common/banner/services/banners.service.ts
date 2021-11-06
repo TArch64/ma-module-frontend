@@ -1,48 +1,36 @@
-import {BehaviorSubject} from "rxjs";
-import {Inject, Injectable, OnDestroy} from "@angular/core";
+import {Injectable, OnDestroy} from "@angular/core";
 import {Disposable} from "@common/core";
-import {BannerOptions, IBannerOptions, IBannerRef} from "../entities";
+import {BehaviorSubject} from "rxjs";
+import {BannerOptions, BannerRef, IBannerOptions} from "../entities";
 import {BannerTypes} from "../enums";
-import {BannerComponent} from "../components";
-import {BannerRefFactory, IBannerRefFactory} from "./banner-ref.factory";
 
 @Injectable()
-export class BannersService<C = BannerComponent> implements OnDestroy {
+export class BannersService implements OnDestroy {
     private readonly disposable = new Disposable();
-    private readonly bannersSubject = new BehaviorSubject<IBannerRef<C>[]>([]);
+    private readonly bannersSubject = new BehaviorSubject<BannerRef[]>([]);
     public readonly banners$ = this.bannersSubject.asObservable();
-
-    constructor(
-        @Inject(BannerRefFactory)
-        private readonly bannerRefFactory: IBannerRefFactory<C>
-    ) {}
-
-    public get bannersSnapshot(): IBannerRef<C>[] {
-        return this.bannersSubject.value;
-    }
 
     public ngOnDestroy() {
         this.disposable.dispose();
     }
 
-    public showWarning(options: IBannerOptions): IBannerRef<C> {
+    public showWarning(options: IBannerOptions): BannerRef {
         return this.show(BannerOptions.create(BannerTypes.WARNING, options));
     }
 
-    private show(options: BannerOptions): IBannerRef<C> {
-        const ref = this.bannerRefFactory.create(options);
+    private show(options: BannerOptions): BannerRef {
+        const ref = BannerRef.create(options);
         this.disposable.subscribeTo(ref.events.onClose, () => this.removeBanner(ref))
         this.addBanner(ref);
         return ref;
     }
 
-    private addBanner(bannerRef: IBannerRef<C>): void {
+    private addBanner(bannerRef: BannerRef): void {
         this.bannersSubject.next([bannerRef, ...this.bannersSubject.value]);
     }
 
-    private removeBanner(bannerRef: IBannerRef<C>): void {
+    private removeBanner(bannerRef: BannerRef): void {
         const banners = this.bannersSubject.value.filter(ref => ref !== bannerRef);
         this.bannersSubject.next(banners);
-        bannerRef.events.closed();
     }
 }
