@@ -1,3 +1,3 @@
 export {captureExistsValues} from './capture-exists-values.operator';
-export {formatValidationHttpResponse} from './format-validation-http-response';
+export {formatValidationHttpResponse} from './formatValidationHttpResponse';
 export {Disposable} from './disposable';

@@ -1,3 +1,4 @@
+/* To learn more about this file see: https://angular.io/config/tsconfig. */
 {
     "compileOnSave": false,
     "compilerOptions": {
@@ -16,8 +17,10 @@
         "target": "es2017",
         "module": "es2020",
         "noImplicitAny": true,
-        "lib": ["es2018", "dom"],
-        "types": ["jest"],
+        "lib": [
+            "es2018",
+            "dom"
+        ],
         "paths": {
             "@common/*": ["src/app/modules/common/*"]
         }
