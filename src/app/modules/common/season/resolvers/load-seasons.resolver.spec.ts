@@ -4,10 +4,10 @@ import {ICommonSeasonFacade} from "../common-season.facade";
 import {LoadSeasonsResolver} from './load-seasons.resolver';
 
 class MockCommonSeasonFacade implements ICommonSeasonFacade {
-    public readonly mockLoadSeasons = jest.spyOn<ICommonSeasonFacade, 'loadSeasons'>(this, 'loadSeasons');
-
     public readonly seasons$ = of([]);
     public readonly currentSeason$ = of(null);
+
+    public readonly mockLoadSeasons = jest.spyOn<ICommonSeasonFacade, 'loadSeasons'>(this, 'loadSeasons');
 
     constructor(public readonly isSeasonsLoaded: boolean) {}
 
