@@ -3,16 +3,8 @@ import {CommonSeasonsService} from "./services";
 import {Observable} from "rxjs";
 import {Season} from "./entities";
 
-export interface ICommonSeasonFacade {
-    seasons$: Observable<Season[]>;
-    currentSeason$: Observable<Season | null>;
-    isSeasonsLoaded: boolean;
-    loadSeasons(): Observable<Season[]>;
-    changeCurrentSeason(season: Season): void;
-}
-
 @Injectable()
-export class CommonSeasonFacade implements ICommonSeasonFacade {
+export class CommonSeasonFacade {
     public readonly seasons$ = this.seasonsService.seasons$;
     public readonly currentSeason$ = this.seasonsService.currentSeason$;
 
