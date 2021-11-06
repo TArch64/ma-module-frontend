@@ -4,15 +4,8 @@ import {ApiPathService, formatValidationHttpResponse} from "@common/core";
 import {HttpClient} from "@angular/common/http";
 import {ISeasonJSON, Season} from "@common/season";
 
-export interface ISeasonManagerSync {
-    addSeason(makeActive: boolean): Observable<ISeasonJSON>;
-    activateSeason(season: Season): Observable<object>;
-    deactivateSeason(season: Season): Observable<object>;
-    removeSeason(season: Season): Observable<object>;
-}
-
 @Injectable()
-export class SeasonManagerSync implements ISeasonManagerSync {
+export class SeasonManagerSync {
     constructor(
         private readonly apiPath: ApiPathService,
         private readonly httpClient: HttpClient
