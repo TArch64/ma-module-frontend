@@ -1,0 +1,213 @@
+{
+    "root": true,
+    "ignorePatterns": [
+        "projects/**/*"
+    ],
+    "overrides": [
+        {
+            "files": [
+                "*.ts"
+            ],
+            "plugins": ["import"],
+            "parserOptions": {
+                "project": [
+                    "tsconfig.json"
+                ],
+                "createDefaultProgram": true
+            },
+            "extends": [
+                "plugin:@angular-eslint/recommended"
+            ],
+            "rules": {
+                "no-extra-bind": "error",
+                "no-cond-assign": [
+                    "error",
+                    "always"
+                ],
+                "eqeqeq": [
+                    "warn",
+                    "smart"
+                ],
+                "block-scoped-var": "error",
+                "guard-for-in": "error",
+                "no-loop-func": "error",
+                "no-self-compare": "error",
+                "no-use-before-define": "off",
+                "no-unneeded-ternary": "error",
+                "no-prototype-builtins": "off",
+                "no-extend-native": "error",
+                "padding-line-between-statements": [
+                    "error",
+                    {
+                        "blankLine": "always",
+                        "prev": "import",
+                        "next": "*"
+                    },
+                    {
+                        "blankLine": "any",
+                        "prev": "import",
+                        "next": "import"
+                    }
+                ],
+                "comma-dangle": [
+                    "error",
+                    "never"
+                ],
+                "quotes": [
+                    "error",
+                    "single"
+                ],
+                "semi": [
+                    "error",
+                    "always"
+                ],
+                "curly": [
+                    "error",
+                    "multi-line"
+                ],
+                "lines-between-class-members": [
+                    "error",
+                    "always",
+                    {
+                        "exceptAfterSingleLine": true
+                    }
+                ],
+                "padded-blocks": [
+                    "error",
+                    "never"
+                ],
+                "object-curly-spacing": [
+                    "error",
+                    "always"
+                ],
+                "array-bracket-spacing": [
+                    "error",
+                    "never"
+                ],
+                "comma-spacing": [
+                    "error",
+                    {
+                        "before": false,
+                        "after": true
+                    }
+                ],
+                "space-infix-ops": "error",
+                "keyword-spacing": [
+                    "error",
+                    {
+                        "before": true,
+                        "after": true
+                    }
+                ],
+                "comma-style": [
+                    "error",
+                    "last"
+                ],
+                "space-before-blocks": "error",
+                "arrow-spacing": [
+                    "error",
+                    {
+                        "before": true,
+                        "after": true
+                    }
+                ],
+                "brace-style": [
+                    "error",
+                    "1tbs",
+                    {
+                        "allowSingleLine": true
+                    }
+                ],
+                "template-curly-spacing": [
+                    "error",
+                    "never"
+                ],
+                "prefer-template": "error",
+                "no-useless-concat": "error",
+                "no-duplicate-imports": "error",
+                "no-param-reassign": [
+                    "error",
+                    {
+                        "props": false
+                    }
+                ],
+                "new-parens": [
+                    "error",
+                    "always"
+                ],
+                "default-param-last": "error",
+                "no-useless-computed-key": [
+                    "error",
+                    {
+                        "enforceForClassMembers": true
+                    }
+                ],
+                "dot-notation": "error",
+                "import/default": "error",
+                "import/namespace": "error",
+                "import/no-absolute-path": "error",
+                "import/no-self-import": "error",
+                "import/no-useless-path-segments": "error",
+                "import/export": "error",
+                "import/no-deprecated": "warn",
+                "import/first": "error",
+                "import/no-namespace": "error",
+                "import/order": [
+                    "error",
+                    {
+                        "groups": [
+                            "builtin",
+                            "external",
+                            "internal",
+                            "parent",
+                            "sibling"
+                        ]
+                    }
+                ],
+                "import/newline-after-import": "error",
+                "indent": [
+                    "error",
+                    4,
+                    {
+                        "SwitchCase": 1
+                    }
+                ],
+                "linebreak-style": [
+                    "error",
+                    "unix"
+                ],
+                "arrow-parens": [
+                    "warn",
+                    "always"
+                ],
+                "@angular-eslint/directive-selector": [
+                    "error",
+                    {
+                        "type": "attribute",
+                        "prefix": "app",
+                        "style": "camelCase"
+                    }
+                ],
+                "@angular-eslint/component-selector": [
+                    "error",
+                    {
+                        "type": "element",
+                        "prefix": "app",
+                        "style": "kebab-case"
+                    }
+                ],
+                "@angular-eslint/no-input-rename": "off",
+                "@angular-eslint/no-output-on-prefix": "off"
+            }
+        },
+        {
+            "files": [
+                "*.html"
+            ],
+            "extends": [
+                "plugin:@angular-eslint/template/recommended"
+            ],
+            "rules": {}
+        }
+    ]
+}

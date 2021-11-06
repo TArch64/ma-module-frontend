@@ -5,7 +5,8 @@
         "ng": "ng",
         "start": "ng serve",
         "build": "ng build",
-        "lint": "ng lint"
+        "lint": "ng lint",
+        "prepare": "husky install"
     },
     "private": true,
     "dependencies": {
@@ -38,6 +39,11 @@
         "@typescript-eslint/parser": "4.28.2",
         "eslint": "^7.26.0",
         "eslint-plugin-import": "^2.25.2",
+        "husky": "^7.0.4",
+        "lint-staged": "^11.2.6",
         "typescript": "~4.3.5"
+    },
+    "lint-staged": {
+        "*.{ts,html}": "npm run lint"
     }
 }
