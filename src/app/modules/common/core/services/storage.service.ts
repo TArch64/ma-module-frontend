@@ -1,29 +1,29 @@
 import {inject, InjectionToken} from "@angular/core";
-import {ISerializerService, SerializerService} from "./serializer.service";
+import {SerializerService} from "@common/core";
 
 export class StorageService {
     public static readonly LOCAL_STORAGE = StorageService.createInjector('localStorage', localStorage);
 
-    public static createInjector(name: string, storage: Storage): InjectionToken<StorageService> {
+    private static createInjector(name: string, storage: Storage): InjectionToken<StorageService> {
         return new InjectionToken(name, {
             providedIn: 'root',
             factory: () => new StorageService('ma', inject(SerializerService), storage)
         });
     }
 
-    constructor(
+    private constructor(
         private readonly prefix: string,
-        private readonly serializer: ISerializerService,
+        private readonly serializer: SerializerService,
         private readonly nativeStorage: Storage
     ) {}
 
     public getItem<T>(key: string): T | null {
         const json = this.nativeStorage.getItem(this.buildKey(key))
-        return json ? this.serializer.fromJSON(json) : null;
+        return json ? this.serializer.parse(json) : null;
     }
 
     public setItem<T>(key: string, value: T): void {
-        const json = this.serializer.toJSON(value);
+        const json = this.serializer.stringify(value);
         this.nativeStorage.setItem(this.buildKey(key), json);
     }
 

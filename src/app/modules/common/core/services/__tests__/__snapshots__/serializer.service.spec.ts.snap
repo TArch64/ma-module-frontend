@@ -1,3 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`to json should create json 1`] = `"{\\"test\\":123}"`;

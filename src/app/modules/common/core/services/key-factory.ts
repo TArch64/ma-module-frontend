@@ -10,7 +10,7 @@ export class KeyFactory {
         };
     }
 
-    constructor(
+    private constructor(
         private readonly scope: string,
         private readonly delimiter: string
     ) {}

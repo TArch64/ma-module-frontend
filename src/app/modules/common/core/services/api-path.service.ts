@@ -1,7 +1,7 @@
 import {Inject, Injectable} from "@angular/core";
 import {EnvironmentProvider, IEnvironment} from "./environment.provider";
 import {UserRoles} from "@common/auth/enums";
-import {ICommonAuthService} from "@common/auth/services";
+import {CommonAuthService} from "@common/auth/services";
 
 type Path = string | number;
 
@@ -12,14 +12,14 @@ export class ApiPathService {
         [UserRoles.MENTOR]: 'mentor',
         [UserRoles.ADMIN]: 'admin'
     };
-    private authService!: ICommonAuthService
+    private authService!: CommonAuthService
 
     constructor(
         @Inject(EnvironmentProvider)
         private readonly environment: IEnvironment,
     ) {}
 
-    public setAuthService(authService: ICommonAuthService): void {
+    public setAuthService(authService: CommonAuthService): void {
         this.authService = authService;
     }
 
