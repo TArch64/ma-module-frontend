@@ -1,20 +1,18 @@
-import {Inject, Injectable} from "@angular/core";
+import {Injectable} from "@angular/core";
 import {BehaviorSubject, Observable} from "rxjs";
+import {CoursesRepositorySync} from "../sync";
 import {map, tap} from "rxjs/operators";
 import {Course} from "@common/course";
-import {CommonSeasonsService, ICommonSeasonsService} from "@common/season";
-import {CoursesRepositorySync, ICoursesRepositorySync} from "../sync";
+import {CommonSeasonsService} from "@common/season";
 
 @Injectable({ providedIn: 'root' })
-export class CoursesRepository {
+export class CoursesRepositoryService {
     private readonly coursesSubject = new BehaviorSubject<Course[]>([]);
     public readonly courses$ = this.coursesSubject.asObservable();
 
     constructor(
-        @Inject(CoursesRepositorySync)
-        private readonly coursesSync: ICoursesRepositorySync,
-        @Inject(CommonSeasonsService)
-        private readonly seasonsService: ICommonSeasonsService
+        private readonly coursesSync: CoursesRepositorySync,
+        private readonly seasonsService: CommonSeasonsService
     ) {}
 
     public loadCourses(): Observable<Course[]> {

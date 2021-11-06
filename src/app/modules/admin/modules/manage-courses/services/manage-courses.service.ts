@@ -2,7 +2,7 @@ import {Injectable} from "@angular/core";
 import {Observable} from "rxjs";
 import {CoursesSync, AddCoursePayload} from "../sync";
 import {map, tap} from "rxjs/operators";
-import {Course, CoursesRepository, CourseTypes} from "@common/course";
+import {Course, CoursesRepositoryService, CourseTypes} from "@common/course";
 import {CommonSeasonsService} from "@common/season";
 import {IAddCourseOptions} from "../entities";
 
@@ -11,7 +11,7 @@ export class ManageCoursesService {
     constructor(
         private readonly coursesSync: CoursesSync,
         private readonly seasonsService: CommonSeasonsService,
-        private readonly repository: CoursesRepository
+        private readonly repository: CoursesRepositoryService
     ) {}
 
     public addCourse(options: IAddCourseOptions): Observable<Course> {
