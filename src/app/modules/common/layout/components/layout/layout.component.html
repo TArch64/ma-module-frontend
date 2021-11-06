@@ -11,13 +11,7 @@
             </mat-toolbar>
 
             <div class="layout__sidenav-content mat-drawer-side">
-                <button
-                    class="sidenav-item"
-                    mat-button
-                    type="button"
-                    (click)="closeSidenav()"
-                    data-test-selector="closeSidenav"
-                >
+                <button class="sidenav-item" mat-button type="button" (click)="closeSidenav()">
                     <mat-icon>close</mat-icon>
                     <span class="margin-left--xs">Close navigation</span>
                 </button>
@@ -29,7 +23,7 @@
 
     <mat-sidenav-content>
         <mat-toolbar class="layout__main-toolbar mat-elevation-z1" color="primary">
-            <button mat-icon-button type="button" (click)="toggleSidenav()" data-test-selector="toggleSidenav">
+            <button mat-icon-button type="button" (click)="toggleSidenav()">
                 <mat-icon>menu</mat-icon>
             </button>
 
