@@ -14,6 +14,7 @@ export class Mentor implements IPrototype<IMentorJSON> {
     }
 
     public readonly isLead = this.role === MentorRoles.LEAD;
+    public readonly isRegular = this.role === MentorRoles.MENTOR;
 
     private constructor(
         public readonly id: string,

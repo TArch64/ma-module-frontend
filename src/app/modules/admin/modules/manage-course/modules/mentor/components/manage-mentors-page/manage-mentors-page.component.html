@@ -1,6 +1,9 @@
 <app-banners></app-banners>
 
-<app-course-lead-selector *ngIf="hasMentors$ | async; else emptyState"></app-course-lead-selector>
+<ng-container *ngIf="hasMentors$ | async; else emptyState">
+    <app-course-lead-selector class="block margin-bottom--md" ></app-course-lead-selector>
+    <app-mentors-list></app-mentors-list>
+</ng-container>
 
 <ng-template #emptyState>
     <app-mentors-empty (onAddMentor)="addMentor()"></app-mentors-empty>

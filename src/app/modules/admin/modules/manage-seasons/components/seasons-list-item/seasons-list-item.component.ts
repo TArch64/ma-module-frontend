@@ -9,8 +9,7 @@ import {ProgressBarService} from "@common/layout";
 
 @Component({
   selector: 'app-seasons-list-item',
-  templateUrl: './seasons-list-item.component.html',
-  styleUrls: ['./seasons-list-item.component.css']
+  templateUrl: './seasons-list-item.component.html'
 })
 export class SeasonsListItemComponent {
     @Input()

@@ -1,0 +1,7 @@
+.mat-list-item--interactive {
+    transition: background-color 0.2s var(--mat-transition);
+}
+
+.mat-list-item--interactive:hover {
+    background-color: rgba(0, 0, 0, 0.04);
+}

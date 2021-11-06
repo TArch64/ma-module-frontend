@@ -1,0 +1,19 @@
+<mat-card class="mentors-list__card" *ngIf="state$ | async as state">
+    <mat-list>
+        <ng-container *ngIf="state.leadMentor">
+            <h3 mat-subheader>Lead Mentor</h3>
+            <app-mentors-list-item [mentor]="state.leadMentor"></app-mentors-list-item>
+        </ng-container>
+
+        <mat-divider *ngIf="state.leadMentor && state.mentors.length"></mat-divider>
+
+        <ng-container *ngIf="state.mentors.length">
+            <h3 mat-subheader>Mentors</h3>
+
+            <app-mentors-list-item
+                *ngFor="let mentor of state.mentors"
+                [mentor]="mentor"
+            ></app-mentors-list-item>
+        </ng-container>
+    </mat-list>
+</mat-card>

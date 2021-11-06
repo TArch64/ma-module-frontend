@@ -3,7 +3,9 @@ import {
     AddMentorDialogComponent,
     CourseLeadSelectorComponent,
     ManageMentorsPageComponent,
-    MentorsEmptyComponent
+    MentorsEmptyComponent,
+    MentorsListComponent,
+    MentorsListItemComponent
 } from "./components";
 import {MentorsAutocompleteService, ManageMentorsService} from "./services";
 import {CommonModule} from "@angular/common";
@@ -22,6 +24,7 @@ import {MatInputModule} from "@angular/material/input";
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import {ManageCourseCommonModule} from "../common";
 import {BannerModule} from "@common/banner";
+import {MatListModule} from "@angular/material/list";
 
 const publicDeclarations = [
     ManageMentorsPageComponent
@@ -38,6 +41,7 @@ const publicDeclarations = [
         MatSelectModule,
         MatButtonModule,
         MatDialogModule,
+        MatListModule,
         CommonCoreModule,
         CommonFormModule,
         ToastrModule,
@@ -48,7 +52,9 @@ const publicDeclarations = [
         ...publicDeclarations,
         CourseLeadSelectorComponent,
         MentorsEmptyComponent,
-        AddMentorDialogComponent
+        AddMentorDialogComponent,
+        MentorsListComponent,
+        MentorsListItemComponent
     ],
     providers: [
         ManageMentorsFacade,
