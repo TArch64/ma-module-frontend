@@ -1,7 +1,7 @@
-import {Component, Inject} from '@angular/core';
+import {Component} from '@angular/core';
+import {BannerEventsProxy, BannerOptions} from "@common/banner/entities";
 import {ThemePalette} from "@angular/material/core";
-import {BannerEventsProxy, BannerOptions, IBannerEventsProxy} from "../../entities";
-import {BannerTypes} from "../../enums";
+import {BannerTypes} from "@common/banner/enums";
 
 interface TypeConfig {
     primaryColor: ThemePalette;
@@ -24,13 +24,10 @@ export class BannerComponent {
     public readonly bannerClasses = `banner--${this.options.type.toLowerCase()}`;
     public readonly primaryColor: ThemePalette;
     public readonly bannerIcon: string;
-    public readonly title: string = this.options.title;
-    public readonly isClosable: boolean = this.options.closable;
 
     constructor(
-        @Inject(BannerEventsProxy)
-        private readonly events: IBannerEventsProxy,
-        private readonly options: BannerOptions
+        public readonly options: BannerOptions,
+        private readonly events: BannerEventsProxy
     ) {
         const typeConfig = CONFIG_MAPPING[this.options.type];
         this.primaryColor = typeConfig.primaryColor;
