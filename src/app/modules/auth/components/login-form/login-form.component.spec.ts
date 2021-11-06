@@ -71,9 +71,6 @@ describe('login', () => {
         emailControl.setValue('test');
         fixture.detectChanges();
 
-        const form = fixture.debugElement.query(By.directive(FormGroupDirective));
-        form.triggerEventHandler('submit', null);
-
         expect(facade.mockSignIn).not.toHaveBeenCalled();
     });
 
@@ -87,9 +84,6 @@ describe('login', () => {
 
         passwordControl.setValue('');
         fixture.detectChanges();
-
-        const form = fixture.debugElement.query(By.directive(FormGroupDirective));
-        form.triggerEventHandler('submit', null);
 
         expect(facade.mockSignIn).not.toHaveBeenCalled();
     });
