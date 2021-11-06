@@ -19,8 +19,6 @@ class MockCommonAuthSync implements ICommonAuthSync {
         return new MockCommonAuthSync();
     }
 
-    mockLoadCurrentUser = jest.spyOn<ICommonAuthSync, 'loadCurrentUser'>(this, 'loadCurrentUser');
-
     signIn(email: string, password: string): Observable<ISignInResponse> {
         return of({token: TEST_TOKEN});
     }
@@ -129,28 +127,5 @@ describe('sign out', () => {
         service.signOut();
 
         expect(window.location.reload).toHaveBeenCalled();
-    });
-});
-
-describe('fetch current user', () => {
-    test('should load user if there no any', async () => {
-        const sync = MockCommonAuthSync.create();
-        const service = createService(sync, MockStorageService.create(), MockWindow.create());
-
-        await service.fetchCurrentUser().toPromise();
-
-        expect(sync.mockLoadCurrentUser).toHaveBeenCalled();
-    });
-
-    test('should get cached user', async () => {
-        const sync = MockCommonAuthSync.create();
-        const service = createService(sync, MockStorageService.create(), MockWindow.create());
-
-        await service.signIn('test', 'test').toPromise();
-        sync.mockLoadCurrentUser.mockClear();
-
-        await service.fetchCurrentUser().toPromise();
-
-        expect(sync.mockLoadCurrentUser).not.toHaveBeenCalled();
     });
 });
