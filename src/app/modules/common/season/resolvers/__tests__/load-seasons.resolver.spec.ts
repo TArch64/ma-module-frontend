@@ -1,7 +1,7 @@
+import {LoadSeasonsResolver} from '../load-seasons.resolver';
+import {ICommonSeasonFacade} from "../../common-season.facade";
 import {Observable, of} from "rxjs";
-import {Season} from "../entities";
-import {ICommonSeasonFacade} from "../common-season.facade";
-import {LoadSeasonsResolver} from './load-seasons.resolver';
+import {Season} from "@common/season";
 
 class MockCommonSeasonFacade implements ICommonSeasonFacade {
     public readonly seasons$ = of([]);

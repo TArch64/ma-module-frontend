@@ -1,5 +1,5 @@
-import {ScreenBreakpoints} from "../enums";
-import {ScreenBreakpointEvent} from "./screen-breakpoint-event";
+import {ScreenBreakpoints} from "../../enums";
+import {ScreenBreakpointEvent} from "../screen-breakpoint-event";
 
 describe('match breakpoint', () => {
     test('should match mobile', () => {

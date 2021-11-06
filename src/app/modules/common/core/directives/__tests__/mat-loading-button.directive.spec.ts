@@ -3,8 +3,8 @@ import {ComponentFixture, TestBed} from "@angular/core/testing";
 import {MatButton, MatButtonModule} from "@angular/material/button";
 import {By} from "@angular/platform-browser";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
-import {ButtonLoaderComponent} from "../components";
-import {MatLoadingButtonDirective} from "./mat-loading-button.directive";
+import {ButtonLoaderComponent} from "../../components";
+import {MatLoadingButtonDirective} from "../mat-loading-button.directive";
 
 @Component({
     template: `<button

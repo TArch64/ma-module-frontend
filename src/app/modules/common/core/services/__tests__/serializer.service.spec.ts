@@ -1,4 +1,4 @@
-import {SerializerService} from "./serializer.service";
+import {SerializerService} from "../serializer.service";
 
 const createService = () => new SerializerService()
 

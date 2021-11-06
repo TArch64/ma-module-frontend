@@ -1,4 +1,4 @@
-import { formatValidationHttpResponse } from './format-validation-http-response';
+import { formatValidationHttpResponse } from '../format-validation-http-response';
 import {throwError} from "rxjs";
 import {HttpErrorResponse} from "@angular/common/http";
 

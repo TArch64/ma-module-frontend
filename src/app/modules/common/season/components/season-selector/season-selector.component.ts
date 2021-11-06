@@ -19,7 +19,7 @@ export class SeasonSelectorComponent implements OnDestroy {
         });
         this.disposable.subscribeTo(this.seasonFacade.currentSeason$, (season: Season | null) => {
             this.selectControl.setValue(season, { emitEvent: false });
-        });
+        })
     }
 
     public ngOnDestroy() {

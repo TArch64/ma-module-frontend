@@ -1,4 +1,4 @@
-import {KeyFactory} from "./key.factory";
+import {KeyFactory} from "../key.factory";
 
 function createService(scope: string, delimiter: string): KeyFactory {
     return new KeyFactory(scope, delimiter);

@@ -1,5 +1,5 @@
 import {UserRoles} from "@common/auth";
-import {RoleTitlePipe} from "./role-title.pipe";
+import {RoleTitlePipe} from "../role-title.pipe";
 
 describe('transform', () => {
     const transform = (role: UserRoles) => new RoleTitlePipe().transform(role);

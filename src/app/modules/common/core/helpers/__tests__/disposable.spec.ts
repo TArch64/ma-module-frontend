@@ -1,6 +1,6 @@
 import {Subject} from "rxjs";
 import {toArray} from "rxjs/operators";
-import { Disposable } from './disposable';
+import { Disposable } from '../disposable';
 
 describe('take until disposed', () => {
     test('should take events until disposed', (done) => {

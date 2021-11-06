@@ -4,7 +4,7 @@ const { compilerOptions } = require('../../tsconfig');
 module.exports = {
     preset: 'jest-preset-angular',
     roots: ['<rootDir>/src/'],
-    testMatch: ['**/+(*.)+(spec).+(ts)'],
+    testMatch: ['**/__tests__/+(*.)+(spec).+(ts)'],
     testEnvironment: '<rootDir>/src/jest/environment.js',
     moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths || {}, {prefix: '<rootDir>/'})
 };

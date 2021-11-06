@@ -1,5 +1,5 @@
-import {StorageService} from "./storage.service";
-import {ISerializerService} from "./serializer.service";
+import {StorageService} from "../storage.service";
+import {ISerializerService} from "../serializer.service";
 
 class MockStorage implements Storage {
     public data: Record<string, string> = {};

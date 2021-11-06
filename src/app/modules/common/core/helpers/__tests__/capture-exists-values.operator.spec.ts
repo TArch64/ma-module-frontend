@@ -1,6 +1,6 @@
 import {of} from "rxjs";
 import {toArray} from "rxjs/operators";
-import {captureExistsValues} from "./capture-exists-values.operator";
+import {captureExistsValues} from "../capture-exists-values.operator";
 
 describe('capture exists values', () => {
     test('should capture exists value', async () => {

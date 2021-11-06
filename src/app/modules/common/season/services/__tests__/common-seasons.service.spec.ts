@@ -1,7 +1,7 @@
 import {Observable, of} from "rxjs";
-import {ICommonSeasonSync} from "../sync";
-import {ISeasonJSON, Season} from "../entities";
-import {CommonSeasonsService} from './common-seasons.service';
+import {ICommonSeasonSync} from "../../sync";
+import {ISeasonJSON, Season} from "../../entities";
+import {CommonSeasonsService} from '../common-seasons.service';
 
 class MockCommonSeasonSync implements ICommonSeasonSync {
     constructor(private readonly seasons: ISeasonJSON[]) {}
