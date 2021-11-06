@@ -1,5 +1,5 @@
-import {Component, Inject} from '@angular/core';
-import {AdminFacade, IAdminFacade} from "../../admin.facade";
+import { Component } from '@angular/core';
+import {AdminFacade} from "../../admin.facade";
 
 @Component({
   selector: 'app-admin-layout',
@@ -9,8 +9,5 @@ import {AdminFacade, IAdminFacade} from "../../admin.facade";
 export class AdminLayoutComponent {
     public readonly hasSeasons$ = this.facade.hasSeasons$;
 
-    constructor(
-        @Inject(AdminFacade)
-        private readonly facade: IAdminFacade
-    ) {}
+    constructor(private readonly facade: AdminFacade) {}
 }
