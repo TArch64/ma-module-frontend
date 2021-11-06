@@ -1,3 +1,3 @@
 export {ToastrModule} from './toastr.module';
-export {ToastrService, IToastrService} from './services';
+export {ToastrService} from './services';
 
