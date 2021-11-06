@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {ManageCourseFacade} from "../../manage-course.facade";
+import { ManageCourseFacade } from '../../manage-course.facade';
 
 interface ITabLink {
     title: string;
@@ -7,9 +7,9 @@ interface ITabLink {
 }
 
 @Component({
-  selector: 'app-manage-course-page',
-  templateUrl: './manage-course-page.component.html',
-  styleUrls: ['./manage-course-page.component.css']
+    selector: 'app-manage-course-page',
+    templateUrl: './manage-course-page.component.html',
+    styleUrls: ['./manage-course-page.component.css']
 })
 export class ManageCoursePageComponent {
     public readonly course = this.facade.course!;

@@ -1,19 +1,19 @@
-import {Component, Inject} from '@angular/core';
-import {ConfirmOptions, ConfirmResult, IAdditionalAction} from "@common/confirm";
-import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-import {FormControl} from "@angular/forms";
+import { Component, Inject } from '@angular/core';
+import { ConfirmOptions, ConfirmResult, IAdditionalAction } from '@common/confirm';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { FormControl } from '@angular/forms';
 
 @Component({
-  selector: 'app-confirm-dialog',
-  templateUrl: './confirm-dialog.component.html',
-  styleUrls: ['./confirm-dialog.component.css']
+    selector: 'app-confirm-dialog',
+    templateUrl: './confirm-dialog.component.html',
+    styleUrls: ['./confirm-dialog.component.css']
 })
 export class ConfirmDialogComponent {
     public readonly additionalActionControl?: FormControl;
 
     constructor(
         private readonly dialogRef: MatDialogRef<ConfirmDialogComponent>,
-        @Inject(MAT_DIALOG_DATA) private readonly options: ConfirmOptions,
+        @Inject(MAT_DIALOG_DATA) private readonly options: ConfirmOptions
     ) {
         if (this.hasAdditionalAction) {
             this.additionalActionControl = new FormControl(this.options.additionalAction!.initialValue);

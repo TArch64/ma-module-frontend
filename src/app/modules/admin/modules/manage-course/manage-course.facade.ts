@@ -1,7 +1,7 @@
-import {Injectable} from "@angular/core";
-import {Observable} from "rxjs";
-import {Course} from "@common/course";
-import {ManageCourseService} from "./services";
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Course } from '@common/course';
+import { ManageCourseService } from './services';
 
 @Injectable()
 export class ManageCourseFacade {

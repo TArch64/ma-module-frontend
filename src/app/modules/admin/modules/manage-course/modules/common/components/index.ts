@@ -1,1 +1,1 @@
-export {UsersInputComponent} from './users-input/users-input.component';
+export { UsersInputComponent } from './users-input/users-input.component';

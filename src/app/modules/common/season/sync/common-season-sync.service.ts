@@ -1,8 +1,8 @@
-import {Injectable} from "@angular/core";
-import {ApiPathService} from "@common/core";
-import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
-import {ISeasonJSON} from "../entities";
+import { Injectable } from '@angular/core';
+import { ApiPathService } from '@common/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { ISeasonJSON } from '../entities';
 
 @Injectable()
 export class CommonSeasonSyncService {

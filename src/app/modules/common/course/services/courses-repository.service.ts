@@ -1,9 +1,9 @@
-import {Injectable} from "@angular/core";
-import {BehaviorSubject, Observable} from "rxjs";
-import {CoursesRepositorySync} from "../sync";
-import {map, tap} from "rxjs/operators";
-import {Course} from "@common/course";
-import {CommonSeasonsService} from "@common/season";
+import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { map, tap } from 'rxjs/operators';
+import { Course } from '@common/course';
+import { CommonSeasonsService } from '@common/season';
+import { CoursesRepositorySync } from '../sync';
 
 @Injectable({ providedIn: 'root' })
 export class CoursesRepositoryService {
@@ -18,8 +18,8 @@ export class CoursesRepositoryService {
     public loadCourses(): Observable<Course[]> {
         const currentSeason = this.seasonsService.currentSeasonSnapshot!;
         return this.coursesSync.loadCourses(currentSeason).pipe(
-            map(json => json.map(Course.fromJSON)),
-            tap(courses => this.coursesSubject.next(courses))
+            map((json) => json.map(Course.fromJSON)),
+            tap((courses) => this.coursesSubject.next(courses))
         );
     }
 

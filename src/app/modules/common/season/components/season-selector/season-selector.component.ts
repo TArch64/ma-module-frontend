@@ -1,8 +1,8 @@
-import {Component, OnDestroy} from '@angular/core';
-import {CommonSeasonFacade} from "@common/season/common-season.facade";
-import {Season} from "@common/season";
-import {FormControl} from "@angular/forms";
-import {Disposable} from "@common/core";
+import { Component, OnDestroy } from '@angular/core';
+import { CommonSeasonFacade } from '@common/season/common-season.facade';
+import { Season } from '@common/season';
+import { FormControl } from '@angular/forms';
+import { Disposable } from '@common/core';
 
 @Component({
     selector: 'app-season-selector',
@@ -15,11 +15,11 @@ export class SeasonSelectorComponent implements OnDestroy {
 
     constructor(private readonly seasonFacade: CommonSeasonFacade) {
         this.disposable.subscribeTo(this.selectControl.valueChanges, (season: Season) => {
-            this.seasonFacade.changeCurrentSeason(season)
+            this.seasonFacade.changeCurrentSeason(season);
         });
         this.disposable.subscribeTo(this.seasonFacade.currentSeason$, (season: Season | null) => {
             this.selectControl.setValue(season, { emitEvent: false });
-        })
+        });
     }
 
     public ngOnDestroy() {

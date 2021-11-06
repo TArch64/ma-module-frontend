@@ -4,6 +4,6 @@ import { buildValidator } from '../helpers';
 export function requireField(errorMessage?: string): ValidatorFn {
     return buildValidator({
         validate: Validators.required,
-        message: errorMessage ?? 'Please fill out this field',
+        message: errorMessage ?? 'Please fill out this field'
     });
 }

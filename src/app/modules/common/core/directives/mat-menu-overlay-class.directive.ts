@@ -1,5 +1,5 @@
-import {AfterViewInit, Directive, Input} from "@angular/core";
-import {MatMenu} from "@angular/material/menu";
+import { AfterViewInit, Directive, Input } from '@angular/core';
+import { MatMenu } from '@angular/material/menu';
 
 @Directive({
     selector: '[appMatMenuOverlayClass]'

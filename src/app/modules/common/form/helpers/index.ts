@@ -1,1 +1,1 @@
-export {buildValidator, IBuildValidatorOptions} from './build-validator';
+export { buildValidator, IBuildValidatorOptions } from './build-validator';

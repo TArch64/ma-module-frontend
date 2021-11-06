@@ -1,9 +1,9 @@
-import {Component} from '@angular/core';
-import {FormBuilder} from "@angular/forms";
-import {requireEmail, requireField} from "@common/form";
-import {AuthFacade} from "../../auth.facade";
-import {ToastrService} from "@common/toastr";
-import {Router} from "@angular/router";
+import { Component } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
+import { requireEmail, requireField } from '@common/form';
+import { ToastrService } from '@common/toastr';
+import { Router } from '@angular/router';
+import { AuthFacade } from '../../auth.facade';
 
 @Component({
     selector: 'app-login-form',
@@ -32,7 +32,7 @@ export class LoginFormComponent {
         if (this.loginForm.invalid) return;
 
         this.isProcessing = true;
-        const {email, password} = this.loginForm.value;
+        const { email, password } = this.loginForm.value;
 
         this.authFacade.signIn(email, password).subscribe({
             next: this.onSignedIn.bind(this),
@@ -42,7 +42,7 @@ export class LoginFormComponent {
 
     private onSignedIn(): void {
         this.isProcessing = false;
-        this.router.navigate(['/'])
+        this.router.navigate(['/']);
     }
 
     private onSignInError(error: Error): void {

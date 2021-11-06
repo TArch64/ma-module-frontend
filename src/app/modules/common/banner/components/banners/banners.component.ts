@@ -1,5 +1,5 @@
-import {Component} from '@angular/core';
-import {BannerFacade} from "@common/banner/banner.facade";
+import { Component } from '@angular/core';
+import { BannerFacade } from '@common/banner/banner.facade';
 
 @Component({
     selector: 'app-banners',

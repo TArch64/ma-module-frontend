@@ -1,1 +1,1 @@
-export {ProgressBarService} from './progress-bar.service';
+export { ProgressBarService } from './progress-bar.service';

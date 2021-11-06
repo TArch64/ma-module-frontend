@@ -1,5 +1,5 @@
-import {UserRoles} from "../enums";
-import {IPrototype} from "@common/core";
+import { IPrototype } from '@common/core';
+import { UserRoles } from '../enums';
 
 export interface IUserJSON {
     id: string;
@@ -27,6 +27,6 @@ export class User implements IPrototype<IUserJSON> {
     ) {}
 
     public clone(overrides: Partial<IUserJSON> = {}): User {
-        return User.fromJSON({...this, ...overrides})
+        return User.fromJSON({ ...this, ...overrides });
     }
 }

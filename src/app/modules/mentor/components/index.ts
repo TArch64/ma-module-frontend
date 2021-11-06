@@ -1,1 +1,1 @@
-export {MentorPageComponent} from './mentor-page/mentor-page.component';
+export { MentorPageComponent } from './mentor-page/mentor-page.component';

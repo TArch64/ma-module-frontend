@@ -1,1 +1,1 @@
-export {CommonSeasonsService} from './common-seasons.service';
+export { CommonSeasonsService } from './common-seasons.service';

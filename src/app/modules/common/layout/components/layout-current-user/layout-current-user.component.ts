@@ -1,6 +1,6 @@
-import {Component, ViewChild, ViewEncapsulation} from '@angular/core';
-import {LayoutFacade} from "@common/layout/layout.facade";
-import {MatMenu} from "@angular/material/menu";
+import { Component, ViewChild, ViewEncapsulation } from '@angular/core';
+import { LayoutFacade } from '@common/layout/layout.facade';
+import { MatMenu } from '@angular/material/menu';
 
 @Component({
     selector: 'app-layout-current-user',

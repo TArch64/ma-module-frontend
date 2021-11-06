@@ -1,8 +1,8 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
-  selector: 'app-seasons-empty',
-  templateUrl: './seasons-empty.component.html'
+    selector: 'app-seasons-empty',
+    templateUrl: './seasons-empty.component.html'
 })
 export class SeasonsEmptyComponent {
     @Input()

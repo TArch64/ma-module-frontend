@@ -1,7 +1,7 @@
-import {Injectable} from "@angular/core";
-import {CommonAuthService} from "@common/auth";
-import {captureExistsValues} from "@common/core";
-import {ProgressBarService} from "./services";
+import { Injectable } from '@angular/core';
+import { CommonAuthService } from '@common/auth';
+import { captureExistsValues } from '@common/core';
+import { ProgressBarService } from './services';
 
 @Injectable()
 export class LayoutFacade {

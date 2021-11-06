@@ -1,11 +1,11 @@
-import {Component} from '@angular/core';
-import {MatDialogRef} from "@angular/material/dialog";
-import {FormBuilder} from "@angular/forms";
-import {ToastrService} from "@common/toastr";
-import {ManageMentorsFacade} from "../../manage-mentors.facade";
-import {UserInputData, USERS_AUTOCOMPLETE_SERVICE} from "../../../common";
-import {MentorsAutocompleteService} from "../../services";
-import {requireArrayLength} from "@common/form";
+import { Component } from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
+import { FormBuilder } from '@angular/forms';
+import { ToastrService } from '@common/toastr';
+import { requireArrayLength } from '@common/form';
+import { ManageMentorsFacade } from '../../manage-mentors.facade';
+import { UserInputData, USERS_AUTOCOMPLETE_SERVICE } from '../../../common';
+import { MentorsAutocompleteService } from '../../services';
 
 @Component({
     selector: 'app-add-mentor-dialog',

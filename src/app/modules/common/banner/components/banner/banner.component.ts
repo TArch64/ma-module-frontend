@@ -1,7 +1,7 @@
-import {Component} from '@angular/core';
-import {BannerEventsProxy, BannerOptions} from "@common/banner/entities";
-import {ThemePalette} from "@angular/material/core";
-import {BannerTypes} from "@common/banner/enums";
+import { Component } from '@angular/core';
+import { BannerEventsProxy, BannerOptions } from '@common/banner/entities';
+import { ThemePalette } from '@angular/material/core';
+import { BannerTypes } from '@common/banner/enums';
 
 interface TypeConfig {
     primaryColor: ThemePalette;
@@ -16,9 +16,9 @@ const CONFIG_MAPPING: Record<BannerTypes, TypeConfig> = {
 };
 
 @Component({
-  selector: 'app-banner',
-  templateUrl: './banner.component.html',
-  styleUrls: ['./banner.component.css']
+    selector: 'app-banner',
+    templateUrl: './banner.component.html',
+    styleUrls: ['./banner.component.css']
 })
 export class BannerComponent {
     public readonly bannerClasses = `banner--${this.options.type.toLowerCase()}`;

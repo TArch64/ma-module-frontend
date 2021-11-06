@@ -1,5 +1,5 @@
-import {Injectable} from "@angular/core";
-import {BannersService} from "./services";
+import { Injectable } from '@angular/core';
+import { BannersService } from './services';
 
 @Injectable()
 export class BannerFacade {

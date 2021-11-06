@@ -1,9 +1,9 @@
-import {asyncScheduler, BehaviorSubject, Observable, of} from "rxjs";
-import {ManageMentorsSync} from "../sync";
-import {map, startWith, switchMap, throttleTime} from "rxjs/operators";
-import {IInsecureUserJSON} from "@common/auth";
-import {IUsersAutocompleteService, UserInputData} from "../../common";
-import {Injectable} from "@angular/core";
+import { asyncScheduler, BehaviorSubject, Observable, of } from 'rxjs';
+import { map, startWith, switchMap, throttleTime } from 'rxjs/operators';
+import { IInsecureUserJSON } from '@common/auth';
+import { Injectable } from '@angular/core';
+import { IUsersAutocompleteService, UserInputData } from '../../common';
+import { ManageMentorsSync } from '../sync';
 
 @Injectable()
 export class MentorsAutocompleteService implements IUsersAutocompleteService {
@@ -31,7 +31,7 @@ export class MentorsAutocompleteService implements IUsersAutocompleteService {
     }
 
     private createModels(mentors: IInsecureUserJSON[]): UserInputData[] {
-        return mentors.map(mentor => new UserInputData(mentor.email));
+        return mentors.map((mentor) => new UserInputData(mentor.email));
     }
 
     private searchUsers(query: string): Observable<IInsecureUserJSON[]> {

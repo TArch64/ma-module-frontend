@@ -1,1 +1,1 @@
-export {AddCourseDialogComponent} from './add-course-dialog.component';
+export { AddCourseDialogComponent } from './add-course-dialog.component';

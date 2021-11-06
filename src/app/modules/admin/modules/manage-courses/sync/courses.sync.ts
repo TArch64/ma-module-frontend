@@ -1,9 +1,9 @@
-import {Injectable} from "@angular/core";
-import {Observable} from "rxjs";
-import {ICourseJSON} from "@common/course";
-import {Season} from "@common/season";
-import {ApiPathService, formatValidationHttpResponse} from "@common/core";
-import {HttpClient} from "@angular/common/http";
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { ICourseJSON } from '@common/course';
+import { Season } from '@common/season';
+import { ApiPathService, formatValidationHttpResponse } from '@common/core';
+import { HttpClient } from '@angular/common/http';
 
 export type AddCoursePayload = Omit<ICourseJSON, 'id'>;
 

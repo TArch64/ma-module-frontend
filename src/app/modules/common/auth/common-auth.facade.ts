@@ -1,11 +1,11 @@
-import {Injectable} from "@angular/core";
-import {CommonAuthService, User} from "@common/auth";
-import {Observable} from "rxjs";
+import { Injectable } from '@angular/core';
+import { CommonAuthService, User } from '@common/auth';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class CommonAuthFacade {
     constructor(
-        private readonly authService: CommonAuthService,
+        private readonly authService: CommonAuthService
     ) {}
 
     get isSignedOut(): boolean {

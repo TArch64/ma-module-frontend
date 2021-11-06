@@ -1,1 +1,1 @@
-export {ManageCourseSync} from './manage-course.sync';
+export { ManageCourseSync } from './manage-course.sync';

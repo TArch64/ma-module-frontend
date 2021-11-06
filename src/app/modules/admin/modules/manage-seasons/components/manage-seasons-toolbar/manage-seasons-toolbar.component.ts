@@ -1,10 +1,10 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {ConfirmResult, ConfirmService} from "@common/confirm";
-import {Observable} from "rxjs";
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { ConfirmResult, ConfirmService } from '@common/confirm';
+import { Observable } from 'rxjs';
 
 @Component({
-  selector: 'app-manage-seasons-toolbar',
-  templateUrl: './manage-seasons-toolbar.component.html'
+    selector: 'app-manage-seasons-toolbar',
+    templateUrl: './manage-seasons-toolbar.component.html'
 })
 export class ManageSeasonsToolbarComponent {
     @Input()

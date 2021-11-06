@@ -1,8 +1,8 @@
-import {Injector} from "@angular/core";
-import {ComponentPortal} from "@angular/cdk/portal";
-import {BannerComponent} from "../components";
-import {BannerOptions} from "./banner-options";
-import {BannerEventsProxy} from "./banner-events-proxy";
+import { Injector } from '@angular/core';
+import { ComponentPortal } from '@angular/cdk/portal';
+import { BannerComponent } from '../components';
+import { BannerOptions } from './banner-options';
+import { BannerEventsProxy } from './banner-events-proxy';
 
 export class BannerRef {
     public static create(options: BannerOptions): BannerRef {
@@ -14,7 +14,7 @@ export class BannerRef {
             ]
         });
         const portal = new ComponentPortal(BannerComponent, null, injector);
-        return new BannerRef(portal, events)
+        return new BannerRef(portal, events);
     }
 
     private constructor(

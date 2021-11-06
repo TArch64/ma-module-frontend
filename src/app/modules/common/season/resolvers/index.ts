@@ -1,1 +1,1 @@
-export {LoadSeasonsResolver} from './load-seasons.resolver';
+export { LoadSeasonsResolver } from './load-seasons.resolver';

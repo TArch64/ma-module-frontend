@@ -1,2 +1,2 @@
-export {CourseTypes} from './course-types';
-export {MentorRoles} from './mentor-roles';
+export { CourseTypes } from './course-types';
+export { MentorRoles } from './mentor-roles';

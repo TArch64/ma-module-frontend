@@ -39,6 +39,6 @@ export class ConfirmOptions {
         public readonly confirmAction: IActionOptions,
         public readonly declineAction: IActionOptions,
         public readonly additionalAction: IAdditionalActionOptions | null,
-        public readonly ignoreDismissEvent: boolean,
+        public readonly ignoreDismissEvent: boolean
     ) {}
 }

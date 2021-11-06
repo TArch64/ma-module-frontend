@@ -1,8 +1,8 @@
-import {Injectable} from "@angular/core";
-import {ManageMentorsService} from "./services";
-import {Observable} from "rxjs";
-import {Mentor} from "@common/course";
-import {map} from "rxjs/operators";
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Mentor } from '@common/course';
+import { map } from 'rxjs/operators';
+import { ManageMentorsService } from './services';
 
 @Injectable()
 export class ManageMentorsFacade {
@@ -10,11 +10,11 @@ export class ManageMentorsFacade {
     public readonly leadMentor$ = this.mentorsService.leadMentor$;
 
     public readonly regularMentors$ = this.mentors$.pipe(
-        map(mentors => mentors.filter(mentor => mentor.isRegular))
+        map((mentors) => mentors.filter((mentor) => mentor.isRegular))
     );
 
     constructor(
-        private readonly mentorsService: ManageMentorsService,
+        private readonly mentorsService: ManageMentorsService
     ) {}
 
     public changeLeadMentor(mentor: Mentor): Observable<null> {

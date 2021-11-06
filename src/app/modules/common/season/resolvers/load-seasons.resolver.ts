@@ -1,8 +1,8 @@
-import {Resolve} from "@angular/router";
-import {Injectable} from "@angular/core";
-import {Observable} from "rxjs";
-import {CommonSeasonFacade} from "../common-season.facade";
-import {mapTo} from "rxjs/operators";
+import { Resolve } from '@angular/router';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { mapTo } from 'rxjs/operators';
+import { CommonSeasonFacade } from '../common-season.facade';
 
 @Injectable()
 export class LoadSeasonsResolver implements Resolve<null> {

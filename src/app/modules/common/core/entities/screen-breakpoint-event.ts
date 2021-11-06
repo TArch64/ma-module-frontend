@@ -18,7 +18,7 @@ export class ScreenBreakpointEvent {
 
     private matchBreakpoint(): ScreenBreakpoints {
         if (this.windowWidth < ScreenBreakpointEvent.MOBILE_BREAKPOINT) {
-            return ScreenBreakpoints.MOBILE
+            return ScreenBreakpoints.MOBILE;
         }
         if (this.windowWidth < ScreenBreakpointEvent.TABLET_BREAKPOINT) {
             return ScreenBreakpoints.TABLET;

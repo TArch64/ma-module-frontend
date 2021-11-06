@@ -1,1 +1,1 @@
-export {BannersService} from './banners.service';
+export { BannersService } from './banners.service';

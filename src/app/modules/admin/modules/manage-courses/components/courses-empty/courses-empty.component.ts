@@ -1,8 +1,8 @@
-import {Component, EventEmitter, Output} from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
-  selector: 'app-courses-empty',
-  templateUrl: './courses-empty.component.html'
+    selector: 'app-courses-empty',
+    templateUrl: './courses-empty.component.html'
 })
 export class CoursesEmptyComponent {
     @Output()

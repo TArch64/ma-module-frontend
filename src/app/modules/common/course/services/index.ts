@@ -1,1 +1,1 @@
-export {CoursesRepositoryService} from './courses-repository.service';
+export { CoursesRepositoryService } from './courses-repository.service';

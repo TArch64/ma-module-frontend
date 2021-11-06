@@ -1,5 +1,5 @@
-import {Observable, OperatorFunction, Subject, PartialObserver} from "rxjs";
-import {takeUntil} from "rxjs/operators";
+import { Observable, OperatorFunction, Subject, PartialObserver } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 export type NextOrObserver<T> = PartialObserver<T> | ((value: T) => void);
 

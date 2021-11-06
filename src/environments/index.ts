@@ -1,2 +1,2 @@
-export {environment} from './environment';
-export {IEnvironment} from './environment.interface';
+export { environment } from './environment';
+export { IEnvironment } from './environment.interface';

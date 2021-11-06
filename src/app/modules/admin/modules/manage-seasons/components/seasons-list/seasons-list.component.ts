@@ -1,7 +1,7 @@
-import {Component} from '@angular/core';
-import {ManageSeasonsFacade} from "../../manage-seasons.facade";
-import {combineLatest} from "rxjs";
-import {map} from "rxjs/operators";
+import { Component } from '@angular/core';
+import { combineLatest } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { ManageSeasonsFacade } from '../../manage-seasons.facade';
 
 @Component({
     selector: 'app-seasons-list',
@@ -15,9 +15,9 @@ export class SeasonsListComponent {
     ]).pipe(
         map(([activeSeason, inactiveSeasons]) => ({
             activeSeason,
-            inactiveSeasons,
+            inactiveSeasons
         })
-    ));
+        ));
 
     constructor(private readonly facade: ManageSeasonsFacade) {}
 }

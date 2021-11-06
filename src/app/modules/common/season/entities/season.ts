@@ -1,4 +1,4 @@
-import {IPrototype, ISerializable} from "@common/core";
+import { IPrototype, ISerializable } from '@common/core';
 
 export interface ISeasonJSON {
     id: string
@@ -22,12 +22,12 @@ export class Season implements IPrototype<ISeasonJSON>, ISerializable<ISeasonJSO
     ) {}
 
     private buildTitle(): string {
-        const year: string = this.active ? 'current' : this.year.toString()
+        const year: string = this.active ? 'current' : this.year.toString();
         return `${this.value}th - ${year}`;
     }
 
     clone(overrides: Partial<ISeasonJSON> = {}): Season {
-        return Season.fromJSON({ ...this.toJSON(), ...overrides })
+        return Season.fromJSON({ ...this.toJSON(), ...overrides });
     }
 
     toJSON(): ISeasonJSON {

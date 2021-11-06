@@ -1,6 +1,6 @@
-import {Inject, Injectable} from "@angular/core";
-import {EnvironmentProvider, IEnvironment} from "./environment.provider";
-import {CommonAuthService, UserRoles} from "@common/auth";
+import { Inject, Injectable } from '@angular/core';
+import { CommonAuthService, UserRoles } from '@common/auth';
+import { EnvironmentProvider, IEnvironment } from './environment.provider';
 
 type Path = string | number;
 
@@ -11,11 +11,12 @@ export class ApiPathService {
         [UserRoles.MENTOR]: 'mentor',
         [UserRoles.ADMIN]: 'admin'
     };
+
     private authService!: CommonAuthService
 
     constructor(
         @Inject(EnvironmentProvider)
-        private readonly environment: IEnvironment,
+        private readonly environment: IEnvironment
     ) {}
 
     public setAuthService(authService: CommonAuthService): void {
@@ -25,13 +26,13 @@ export class ApiPathService {
     public build(paths: Path[]): string {
         return [
             this.environment.apiUrl,
-            ...paths.map(path => path.toString())
+            ...paths.map((path) => path.toString())
         ].join('/');
     }
 
     public buildRolePath(paths: Path[]): string {
         if (!this.authService.currentUser) throw new Error('Current user is not initialized yet');
         const prefix = ApiPathService.ROLE_PATH_MAPPING[this.authService.currentUser.role];
-        return this.build([prefix, ...paths])
+        return this.build([prefix, ...paths]);
     }
 }

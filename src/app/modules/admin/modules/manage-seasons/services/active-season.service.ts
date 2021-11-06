@@ -1,8 +1,8 @@
-import {Injectable} from "@angular/core";
-import {Observable} from "rxjs";
-import {SeasonManagerSync} from "../sync";
-import {map, mapTo, tap} from "rxjs/operators";
-import {CommonSeasonsService, Season} from "@common/season";
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { map, mapTo, tap } from 'rxjs/operators';
+import { CommonSeasonsService, Season } from '@common/season';
+import { SeasonManagerSync } from '../sync';
 
 @Injectable()
 export class ActiveSeasonService {
@@ -17,7 +17,7 @@ export class ActiveSeasonService {
             tap(() => {
                 if (makeActive) this.deactivateActiveSeason();
             }),
-            tap(season => this.commonService.addSeason(season))
+            tap((season) => this.commonService.addSeason(season))
         );
     }
 
@@ -26,7 +26,7 @@ export class ActiveSeasonService {
         if (!activeSeason) return;
 
         const oldActiveSeason = activeSeason.clone({ active: false });
-        this.commonService.updateSeason(oldActiveSeason)
+        this.commonService.updateSeason(oldActiveSeason);
     }
 
     public activateSeason(season: Season): Observable<null> {

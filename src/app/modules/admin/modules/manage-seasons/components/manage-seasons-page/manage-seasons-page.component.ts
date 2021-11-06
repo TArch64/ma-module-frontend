@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
-import {ManageSeasonsFacade} from "../../manage-seasons.facade";
-import {ToastrService} from "@common/toastr";
-import {ProgressBarService} from "@common/layout";
-import {Router} from "@angular/router";
+import { ToastrService } from '@common/toastr';
+import { ProgressBarService } from '@common/layout';
+import { Router } from '@angular/router';
+import { ManageSeasonsFacade } from '../../manage-seasons.facade';
 
 @Component({
-  selector: 'app-manage-seasons-page',
-  templateUrl: './manage-seasons-page.component.html'
+    selector: 'app-manage-seasons-page',
+    templateUrl: './manage-seasons-page.component.html'
 })
 export class ManageSeasonsPageComponent {
     public isSeasonAdding: boolean = false;
@@ -32,7 +32,7 @@ export class ManageSeasonsPageComponent {
     private onSeasonAdded(): void {
         this.progressBar.hide();
         this.isSeasonAdding = false;
-        this.router.navigate(['/admin', 'courses'])
+        this.router.navigate(['/admin', 'courses']);
     }
 
     private onSeasonAddingError(error: Error): void {

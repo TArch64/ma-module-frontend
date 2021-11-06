@@ -1,9 +1,9 @@
-import {Inject, Injectable} from "@angular/core";
-import {IUserJSON, User} from "../entities";
-import {BehaviorSubject, Observable, of} from "rxjs";
-import {formatValidationHttpResponse, StorageService} from "@common/core";
-import {CommonAuthSyncService} from "../sync";
-import {map, switchMap, tap} from "rxjs/operators";
+import { Inject, Injectable } from '@angular/core';
+import { BehaviorSubject, Observable, of } from 'rxjs';
+import { formatValidationHttpResponse, StorageService } from '@common/core';
+import { map, switchMap, tap } from 'rxjs/operators';
+import { CommonAuthSyncService } from '../sync';
+import { IUserJSON, User } from '../entities';
 
 @Injectable({ providedIn: 'root' })
 export class CommonAuthService {
@@ -53,12 +53,12 @@ export class CommonAuthService {
 
     public actualizeUser(): Observable<User> {
         return this.syncService.loadCurrentUser().pipe(
-            map(json => this.saveCurrentUser(json))
-        )
+            map((json) => this.saveCurrentUser(json))
+        );
     }
 
     private saveCurrentUser(userJSON: IUserJSON): User {
-        this.currentUserSubject.next(User.fromJSON(userJSON))
+        this.currentUserSubject.next(User.fromJSON(userJSON));
         return this.currentUser!;
     }
 

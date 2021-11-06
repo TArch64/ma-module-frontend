@@ -1,1 +1,1 @@
-export {StudentPageComponent} from './student-page/student-page.component';
+export { StudentPageComponent } from './student-page/student-page.component';

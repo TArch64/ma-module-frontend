@@ -1,1 +1,1 @@
-export {ConfirmService} from './confirm.service';
+export { ConfirmService } from './confirm.service';

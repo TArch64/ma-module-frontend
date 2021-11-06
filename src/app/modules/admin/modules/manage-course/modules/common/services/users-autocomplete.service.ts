@@ -1,6 +1,6 @@
-import {Observable} from "rxjs";
-import {UserInputData} from "../entities";
-import {InjectionToken} from "@angular/core";
+import { Observable } from 'rxjs';
+import { InjectionToken } from '@angular/core';
+import { UserInputData } from '../entities';
 
 export const USERS_AUTOCOMPLETE_SERVICE = new InjectionToken('USERS_AUTOCOMPLETE_SERVICE');
 

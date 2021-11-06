@@ -1,1 +1,1 @@
-export {AddMentorDialogComponent} from './add-mentor-dialog.component';
+export { AddMentorDialogComponent } from './add-mentor-dialog.component';

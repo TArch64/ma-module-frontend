@@ -1,1 +1,1 @@
-export {BannerTypes} from './banner-types';
+export { BannerTypes } from './banner-types';

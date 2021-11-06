@@ -1,1 +1,1 @@
-export {CommonAuthSyncService} from './common-auth-sync.service';
+export { CommonAuthSyncService } from './common-auth-sync.service';

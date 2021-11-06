@@ -1,1 +1,1 @@
-export {ActiveSeasonService} from './active-season.service';
+export { ActiveSeasonService } from './active-season.service';

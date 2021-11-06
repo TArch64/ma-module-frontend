@@ -1,4 +1,4 @@
-import {FactoryProvider} from "@angular/core";
+import { FactoryProvider } from '@angular/core';
 
 export class KeyFactory {
     private id: number = 0;

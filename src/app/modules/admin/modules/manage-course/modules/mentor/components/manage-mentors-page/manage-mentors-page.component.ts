@@ -1,22 +1,23 @@
-import {Component, OnDestroy} from '@angular/core';
-import {ManageMentorsFacade} from "../../manage-mentors.facade";
-import {map} from "rxjs/operators";
-import {MatDialog} from "@angular/material/dialog";
-import {AddMentorDialogComponent} from "../add-mentor-dialog";
-import {DialogSizes} from "@common/dialog";
-import {Disposable} from "@common/core";
-import {BannersService} from "@common/banner/services";
-import {BannerRef} from "@common/banner";
-import {Mentor} from "@common/course";
+import { Component, OnDestroy } from '@angular/core';
+import { map } from 'rxjs/operators';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogSizes } from '@common/dialog';
+import { Disposable } from '@common/core';
+import { BannersService } from '@common/banner/services';
+import { BannerRef } from '@common/banner';
+import { Mentor } from '@common/course';
+import { AddMentorDialogComponent } from '../add-mentor-dialog';
+import { ManageMentorsFacade } from '../../manage-mentors.facade';
 
 @Component({
-  selector: 'app-manage-mentors-page',
-  templateUrl: './manage-mentors-page.component.html'
+    selector: 'app-manage-mentors-page',
+    templateUrl: './manage-mentors-page.component.html'
 })
 export class ManageMentorsPageComponent implements OnDestroy {
     public readonly hasMentors$ = this.facade.mentors$.pipe(
-        map(mentors => !!mentors.length)
+        map((mentors) => !!mentors.length)
     );
+
     private readonly disposable = new Disposable();
     private noLeadWarningRef: BannerRef | null = null;
 
@@ -49,6 +50,6 @@ export class ManageMentorsPageComponent implements OnDestroy {
     }
 
     public addMentor(): void {
-        this.matDialog.open(AddMentorDialogComponent, {width: DialogSizes.MD})
+        this.matDialog.open(AddMentorDialogComponent, { width: DialogSizes.MD });
     }
 }

@@ -1,12 +1,12 @@
-import {Component, Input} from '@angular/core';
-import {Course} from "@common/course";
-import {Observable} from "rxjs";
-import {ConfirmResult, ConfirmService} from "@common/confirm";
+import { Component, Input } from '@angular/core';
+import { Course } from '@common/course';
+import { Observable } from 'rxjs';
+import { ConfirmResult, ConfirmService } from '@common/confirm';
 
 @Component({
-  selector: 'app-courses-list-item',
-  templateUrl: './courses-list-item.component.html',
-  styleUrls: ['./courses-list-item.component.css']
+    selector: 'app-courses-list-item',
+    templateUrl: './courses-list-item.component.html',
+    styleUrls: ['./courses-list-item.component.css']
 })
 export class CoursesListItemComponent {
     @Input()

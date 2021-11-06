@@ -1,1 +1,1 @@
-export {CoursesGuard} from './courses.guard';
+export { CoursesGuard } from './courses.guard';

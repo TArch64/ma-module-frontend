@@ -4,21 +4,21 @@ import {
     HostBinding,
     HostListener,
     Inject,
-    Input,
+    Input, OnChanges,
     OnDestroy,
     Optional,
     Self,
     ViewChild
 } from '@angular/core';
-import {MatFormFieldControl} from "@angular/material/form-field";
-import {Subject} from "rxjs";
-import {Disposable, KeyFactory, NgChanges, TypedOnChanges} from "@common/core";
-import {ControlValueAccessor, FormControl, NgControl} from "@angular/forms";
-import {NotifyControlChange, NotifyControlTouched, requireEmail, requireField} from "@common/form";
-import {BooleanInput} from "ngx-boolean-input";
-import {COMMA, ENTER, SPACE} from "@angular/cdk/keycodes";
-import {IUsersAutocompleteService, USERS_AUTOCOMPLETE_SERVICE} from "../../services";
-import {UserInputData} from "../../entities";
+import { MatFormFieldControl } from '@angular/material/form-field';
+import { Subject } from 'rxjs';
+import { Disposable, KeyFactory, NgChanges, TypedOnChanges } from '@common/core';
+import { ControlValueAccessor, FormControl, NgControl } from '@angular/forms';
+import { NotifyControlChange, NotifyControlTouched, requireEmail, requireField } from '@common/form';
+import { BooleanInput } from 'ngx-boolean-input';
+import { COMMA, ENTER, SPACE } from '@angular/cdk/keycodes';
+import { IUsersAutocompleteService, USERS_AUTOCOMPLETE_SERVICE } from '../../services';
+import { UserInputData } from '../../entities';
 
 @Component({
     selector: 'app-users-input',
@@ -32,7 +32,7 @@ import {UserInputData} from "../../entities";
         KeyFactory.createProvider(UsersInputComponent.CONTROL_TYPE)
     ]
 })
-export class UsersInputComponent implements MatFormFieldControl<UserInputData[]>, OnDestroy, TypedOnChanges, ControlValueAccessor {
+export class UsersInputComponent implements MatFormFieldControl<UserInputData[]>, OnDestroy, OnChanges, TypedOnChanges, ControlValueAccessor {
     private static readonly CONTROL_TYPE = 'admin-users-input'
     public readonly emailInputSeparators = [ENTER, COMMA, SPACE]
     public stateChanges = new Subject<void>();
@@ -55,6 +55,7 @@ export class UsersInputComponent implements MatFormFieldControl<UserInputData[]>
 
     @ViewChild('emailInput')
     public emailInputRef!: ElementRef<HTMLInputElement>;
+
     public emailControl = new FormControl('', [requireEmail(), requireField()]);
 
     private notifyControlChange!: NotifyControlChange<UserInputData[]>;
@@ -71,13 +72,13 @@ export class UsersInputComponent implements MatFormFieldControl<UserInputData[]>
         @Inject(USERS_AUTOCOMPLETE_SERVICE)
         private readonly autocompleteService: IUsersAutocompleteService,
         @Optional() @Self()
-        public readonly ngControl: NgControl,
+        public readonly ngControl: NgControl
     ) {
         if (ngControl) {
             ngControl.valueAccessor = this;
 
             this.disposable.subscribeTo(this.emailControl.valueChanges, () => {
-                ngControl.control?.setErrors(null)
+                ngControl.control?.setErrors(null);
             });
         }
     }
@@ -85,7 +86,7 @@ export class UsersInputComponent implements MatFormFieldControl<UserInputData[]>
     ngOnChanges(changes: NgChanges<this>) {
         const watchingProps: Array<keyof this> = ['placeholder', 'required', 'disabled'];
 
-        if (watchingProps.some(prop => prop in changes)) {
+        if (watchingProps.some((prop) => prop in changes)) {
             this.stateChanges.next();
         }
 
@@ -179,7 +180,7 @@ export class UsersInputComponent implements MatFormFieldControl<UserInputData[]>
             return;
         }
 
-        const isAlreadyAdded = this.value.some(user => user.email.toLowerCase() === email.toLowerCase());
+        const isAlreadyAdded = this.value.some((user) => user.email.toLowerCase() === email.toLowerCase());
 
         if (!isAlreadyAdded) {
             this.value = [...this.value, new UserInputData(email)];
@@ -191,7 +192,7 @@ export class UsersInputComponent implements MatFormFieldControl<UserInputData[]>
     }
 
     public removeUser(email: string): void {
-        this.value = this.value.filter(user => user.email.toLowerCase() !== email.toLowerCase())
+        this.value = this.value.filter((user) => user.email.toLowerCase() !== email.toLowerCase());
         this.notifyControlChange(this.value);
         this.stateChanges.next();
 

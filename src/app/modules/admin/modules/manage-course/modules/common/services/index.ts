@@ -1,1 +1,1 @@
-export {IUsersAutocompleteService, USERS_AUTOCOMPLETE_SERVICE} from './users-autocomplete.service';
+export { IUsersAutocompleteService, USERS_AUTOCOMPLETE_SERVICE } from './users-autocomplete.service';

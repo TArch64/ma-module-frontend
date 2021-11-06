@@ -1,1 +1,1 @@
-export {NotifyControlChange, NotifyControlTouched} from './ng-control-accessor';
+export { NotifyControlChange, NotifyControlTouched } from './ng-control-accessor';

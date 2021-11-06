@@ -1,1 +1,1 @@
-export {LoadCourseResolver} from './load-course.resolver';
+export { LoadCourseResolver } from './load-course.resolver';

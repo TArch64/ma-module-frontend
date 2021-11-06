@@ -1,5 +1,5 @@
-import {Course, CourseTypes, ICourseJSON, Mentor, IMentorJSON} from "@common/course";
-import {IPrototype} from "@common/core";
+import { Course, CourseTypes, ICourseJSON, Mentor, IMentorJSON } from '@common/course';
+import { IPrototype } from '@common/core';
 
 export interface IFullCourseJSON extends ICourseJSON {
     mentors: IMentorJSON[];
@@ -25,6 +25,6 @@ export class FullCourse extends Course implements IPrototype<IFullCourseJSON> {
     }
 
     public clone(overrides: Partial<IFullCourseJSON> = {}): FullCourse {
-        return FullCourse.fromJSON({...this, ...overrides});
+        return FullCourse.fromJSON({ ...this, ...overrides });
     }
 }

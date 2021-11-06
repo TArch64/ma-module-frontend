@@ -1,11 +1,11 @@
-import {Injectable} from "@angular/core";
-import {Observable} from "rxjs";
-import {ManageCoursesService} from "./services";
-import {mapTo, skip} from "rxjs/operators";
-import {Course, CoursesRepositoryService} from "@common/course";
-import {IAddCourseOptions} from "./entities";
-import {CommonSeasonsService} from "@common/season";
-import {captureExistsValues} from "@common/core";
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { mapTo, skip } from 'rxjs/operators';
+import { Course, CoursesRepositoryService } from '@common/course';
+import { CommonSeasonsService } from '@common/season';
+import { captureExistsValues } from '@common/core';
+import { IAddCourseOptions } from './entities';
+import { ManageCoursesService } from './services';
 
 @Injectable()
 export class ManageCoursesFacade {

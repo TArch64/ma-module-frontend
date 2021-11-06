@@ -1,5 +1,5 @@
-import {inject, InjectionToken} from "@angular/core";
-import {SerializerService} from "@common/core";
+import { inject, InjectionToken } from '@angular/core';
+import { SerializerService } from '@common/core';
 
 export class StorageService {
     public static readonly LOCAL_STORAGE = StorageService.createInjector('localStorage', localStorage);
@@ -18,7 +18,7 @@ export class StorageService {
     ) {}
 
     public getItem<T>(key: string): T | null {
-        const json = this.nativeStorage.getItem(this.buildKey(key))
+        const json = this.nativeStorage.getItem(this.buildKey(key));
         return json ? this.serializer.parse(json) : null;
     }
 
@@ -32,6 +32,6 @@ export class StorageService {
     }
 
     public buildKey(key: string): string {
-        return [this.prefix, key].join('.')
+        return [this.prefix, key].join('.');
     }
 }

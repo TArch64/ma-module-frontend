@@ -1,1 +1,1 @@
-export {RoleTitlePipe} from './role-title.pipe';
+export { RoleTitlePipe } from './role-title.pipe';

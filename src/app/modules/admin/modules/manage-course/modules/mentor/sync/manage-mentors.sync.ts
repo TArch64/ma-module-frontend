@@ -1,9 +1,9 @@
-import {Injectable} from "@angular/core";
-import {HttpClient} from "@angular/common/http";
-import {ApiPathService, formatValidationHttpResponse} from "@common/core";
-import {Observable} from "rxjs";
-import {IInsecureUserJSON} from "@common/auth";
-import {IMentorJSON} from "@common/course";
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { ApiPathService, formatValidationHttpResponse } from '@common/core';
+import { Observable } from 'rxjs';
+import { IInsecureUserJSON } from '@common/auth';
+import { IMentorJSON } from '@common/course';
 
 @Injectable()
 export class ManageMentorsSync {
@@ -13,7 +13,7 @@ export class ManageMentorsSync {
     ) {}
 
     public changeLeadMentor(courseId: string, mentorId: string): Observable<object> {
-        const url = this.apiPath.buildRolePath(['courses', courseId, 'lead-mentor'])
+        const url = this.apiPath.buildRolePath(['courses', courseId, 'lead-mentor']);
         return this.httpClient.post<object>(url, { mentorId });
     }
 

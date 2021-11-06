@@ -1,4 +1,4 @@
-import {OnChanges} from "@angular/core";
+import { OnChanges } from '@angular/core';
 
 type MarkFunctionProperties<Component> = {
     [Key in keyof Component]: Component[Key] extends Function ? never : Key;

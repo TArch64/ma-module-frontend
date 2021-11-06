@@ -1,9 +1,9 @@
-import {Injectable} from "@angular/core";
-import {BehaviorSubject, Observable} from "rxjs";
-import {ManageCourseSync} from "../sync";
-import {map, tap} from "rxjs/operators";
-import {FullCourse} from "../entities";
-import {Mentor} from "@common/course";
+import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { map, tap } from 'rxjs/operators';
+import { Mentor } from '@common/course';
+import { ManageCourseSync } from '../sync';
+import { FullCourse } from '../entities';
 
 @Injectable()
 export class ManageCourseService {
@@ -15,7 +15,7 @@ export class ManageCourseService {
     public loadCourse(courseId: string): Observable<FullCourse | null> {
         return this.syncService.loadCourse(courseId).pipe(
             map((course) => course ? FullCourse.fromJSON(course) : null),
-            tap(course => this.courseSubject.next(course))
+            tap((course) => this.courseSubject.next(course))
         );
     }
 

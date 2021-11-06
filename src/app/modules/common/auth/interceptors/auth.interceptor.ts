@@ -1,4 +1,4 @@
-import {ClassProvider, Injectable} from "@angular/core";
+import { ClassProvider, Injectable } from '@angular/core';
 import {
     HTTP_INTERCEPTORS,
     HttpErrorResponse,
@@ -6,10 +6,10 @@ import {
     HttpHandler,
     HttpInterceptor,
     HttpRequest
-} from "@angular/common/http";
-import {Observable, throwError} from "rxjs";
-import {catchError} from "rxjs/operators";
-import {CommonAuthFacade} from "../common-auth.facade";
+} from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import { CommonAuthFacade } from '../common-auth.facade';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
@@ -18,7 +18,7 @@ export class AuthInterceptor implements HttpInterceptor {
             provide: HTTP_INTERCEPTORS,
             useClass: AuthInterceptor,
             multi: true
-        }
+        };
     }
 
     constructor(private readonly authFacade: CommonAuthFacade) {}
@@ -26,10 +26,10 @@ export class AuthInterceptor implements HttpInterceptor {
     public intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         const headers = this.authFacade.isSignedIn
             ? req.headers.append('Authorization', `Bearer ${this.authFacade.authToken}`)
-            : req.headers
-        return next.handle(req.clone({headers})).pipe(
+            : req.headers;
+        return next.handle(req.clone({ headers })).pipe(
             catchError(this.handleAccessError.bind(this))
-        )
+        );
     }
 
     private handleAccessError(error: HttpErrorResponse): Observable<never> {

@@ -1,1 +1,1 @@
-export {FullCourse, IFullCourseJSON} from './full-course';
+export { FullCourse, IFullCourseJSON } from './full-course';

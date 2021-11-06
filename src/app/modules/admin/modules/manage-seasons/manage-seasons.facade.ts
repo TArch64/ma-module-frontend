@@ -1,23 +1,23 @@
-import {Injectable} from "@angular/core";
-import {Observable} from "rxjs";
-import {ActiveSeasonService} from "./services";
-import {map, mapTo} from "rxjs/operators";
-import {CommonSeasonsService, Season} from "@common/season";
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { map, mapTo } from 'rxjs/operators';
+import { CommonSeasonsService, Season } from '@common/season';
+import { ActiveSeasonService } from './services';
 
 @Injectable()
 export class ManageSeasonsFacade {
     public readonly seasons$ = this.commonSeasonsService.seasons$;
 
     public readonly activeSeason$ = this.seasons$.pipe(
-        map(seasons => seasons.find(season => season.active) ?? null)
+        map((seasons) => seasons.find((season) => season.active) ?? null)
     );
 
     public readonly inactiveSeasons$ = this.seasons$.pipe(
-        map(seasons => seasons.filter(season => !season.active))
+        map((seasons) => seasons.filter((season) => !season.active))
     );
 
     public readonly hasSeasons$ = this.seasons$.pipe(
-        map(seasons => !!seasons.length)
+        map((seasons) => !!seasons.length)
     );
 
     constructor(

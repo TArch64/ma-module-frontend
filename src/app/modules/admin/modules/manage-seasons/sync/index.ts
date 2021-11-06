@@ -1,1 +1,1 @@
-export {SeasonManagerSync} from './season-manager.sync';
+export { SeasonManagerSync } from './season-manager.sync';

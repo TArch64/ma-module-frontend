@@ -1,9 +1,9 @@
-import {Injectable} from "@angular/core";
-import {ActivatedRouteSnapshot, Resolve, Router} from "@angular/router";
-import {EMPTY, Observable, of} from "rxjs";
-import {ManageCourseFacade} from "../manage-course.facade";
-import {switchMap} from "rxjs/operators";
-import {Course} from "@common/course";
+import { Injectable } from '@angular/core';
+import { ActivatedRouteSnapshot, Resolve, Router } from '@angular/router';
+import { EMPTY, Observable, of } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
+import { Course } from '@common/course';
+import { ManageCourseFacade } from '../manage-course.facade';
 
 @Injectable()
 export class LoadCourseResolver implements Resolve<null> {

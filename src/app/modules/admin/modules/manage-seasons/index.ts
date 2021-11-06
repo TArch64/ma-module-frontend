@@ -1,2 +1,2 @@
-export {ManageSeasonsModule} from './manage-seasons.module';
-export {ManageSeasonsPageComponent} from './components';
+export { ManageSeasonsModule } from './manage-seasons.module';
+export { ManageSeasonsPageComponent } from './components';

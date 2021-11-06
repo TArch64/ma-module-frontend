@@ -1,1 +1,1 @@
-export {MentorModule} from './mentor.module';
+export { MentorModule } from './mentor.module';

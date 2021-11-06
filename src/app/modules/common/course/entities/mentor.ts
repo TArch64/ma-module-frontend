@@ -1,6 +1,6 @@
-import {IUserJSON, User} from "@common/auth";
-import {MentorRoles} from "../enums";
-import {IPrototype} from "@common/core";
+import { IUserJSON, User } from '@common/auth';
+import { IPrototype } from '@common/core';
+import { MentorRoles } from '../enums';
 
 export interface IMentorJSON {
     id: string;
@@ -27,6 +27,6 @@ export class Mentor implements IPrototype<IMentorJSON> {
             ...this,
             user: this.user.clone(),
             ...overrides
-        })
+        });
     }
 }

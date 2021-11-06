@@ -1,4 +1,4 @@
-import {BannerTypes} from "../enums";
+import { BannerTypes } from '../enums';
 
 export interface IBannerOptions {
     title: string,

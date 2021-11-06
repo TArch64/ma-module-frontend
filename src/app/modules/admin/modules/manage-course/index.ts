@@ -1,1 +1,1 @@
-export {ManageCourseModule} from './manage-course.module';
+export { ManageCourseModule } from './manage-course.module';

@@ -1,8 +1,8 @@
-import {Injectable} from "@angular/core";
-import {Observable} from "rxjs";
-import {HttpClient} from "@angular/common/http";
-import {IUserJSON} from "../entities";
-import {ApiPathService} from "@common/core";
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { ApiPathService } from '@common/core';
+import { IUserJSON } from '../entities';
 
 export interface ISignInResponse {
     token: string;

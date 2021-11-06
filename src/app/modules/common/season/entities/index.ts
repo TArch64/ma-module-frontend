@@ -1,1 +1,1 @@
-export {Season, ISeasonJSON} from './season';
+export { Season, ISeasonJSON } from './season';

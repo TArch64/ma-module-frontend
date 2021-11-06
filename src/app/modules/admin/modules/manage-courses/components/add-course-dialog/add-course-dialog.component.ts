@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
-import {FormBuilder} from "@angular/forms";
-import {requireField} from "@common/form";
-import {MatDialogRef} from "@angular/material/dialog";
-import {ManageCoursesFacade} from "../../manage-courses.facade";
-import {ToastrService} from "@common/toastr";
+import { FormBuilder } from '@angular/forms';
+import { requireField } from '@common/form';
+import { MatDialogRef } from '@angular/material/dialog';
+import { ToastrService } from '@common/toastr';
+import { ManageCoursesFacade } from '../../manage-courses.facade';
 
 @Component({
-  selector: 'app-add-course-dialog',
-  templateUrl: './add-course-dialog.component.html'
+    selector: 'app-add-course-dialog',
+    templateUrl: './add-course-dialog.component.html'
 })
 export class AddCourseDialogComponent {
     public isAdding: boolean = false;

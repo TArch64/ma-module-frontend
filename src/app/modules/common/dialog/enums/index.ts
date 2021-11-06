@@ -1,1 +1,1 @@
-export {DialogSizes} from './dialog-sizes';
+export { DialogSizes } from './dialog-sizes';

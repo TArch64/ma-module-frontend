@@ -1,2 +1,2 @@
-export {User, IUserJSON} from './user';
-export {InsecureUser, IInsecureUserJSON} from './insecure-user';
+export { User, IUserJSON } from './user';
+export { InsecureUser, IInsecureUserJSON } from './insecure-user';

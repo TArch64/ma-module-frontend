@@ -1,10 +1,10 @@
-import {Injectable} from "@angular/core";
-import {ConfirmOptions, ConfirmResult, IConfirmOptions} from "../entities";
-import {MatDialog, MatDialogRef} from "@angular/material/dialog";
-import {ConfirmDialogComponent} from "@common/confirm/components";
-import {Observable} from "rxjs";
-import {filter, map} from "rxjs/operators";
-import {DialogSizes} from "@common/dialog";
+import { Injectable } from '@angular/core';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { ConfirmDialogComponent } from '@common/confirm/components';
+import { Observable } from 'rxjs';
+import { filter, map } from 'rxjs/operators';
+import { DialogSizes } from '@common/dialog';
+import { ConfirmOptions, ConfirmResult, IConfirmOptions } from '../entities';
 
 type ConfirmRef = MatDialogRef<ConfirmDialogComponent>;
 type ConfirmResult$ = Observable<ConfirmResult>;
@@ -26,10 +26,10 @@ export class ConfirmService {
     private onDialogClosed(dialogRef: ConfirmRef, options: ConfirmOptions): Observable<ConfirmResult> {
         let afterClosed$ = dialogRef.afterClosed().pipe(
             // Convert backdropClick event into dialog dismiss
-            map((result?: ConfirmResult) => result || ConfirmResult.createDeclined()),
+            map((result?: ConfirmResult) => result || ConfirmResult.createDeclined())
         );
         if (options.ignoreDismissEvent) {
-            afterClosed$ = afterClosed$.pipe(filter(result => result.isConfirmed));
+            afterClosed$ = afterClosed$.pipe(filter((result) => result.isConfirmed));
         }
         return afterClosed$;
     }

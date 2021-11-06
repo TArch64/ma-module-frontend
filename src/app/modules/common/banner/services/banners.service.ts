@@ -1,8 +1,8 @@
-import {Injectable, OnDestroy} from "@angular/core";
-import {Disposable} from "@common/core";
-import {BehaviorSubject} from "rxjs";
-import {BannerOptions, BannerRef, IBannerOptions} from "../entities";
-import {BannerTypes} from "../enums";
+import { Injectable, OnDestroy } from '@angular/core';
+import { Disposable } from '@common/core';
+import { BehaviorSubject } from 'rxjs';
+import { BannerOptions, BannerRef, IBannerOptions } from '../entities';
+import { BannerTypes } from '../enums';
 
 @Injectable()
 export class BannersService implements OnDestroy {
@@ -20,7 +20,7 @@ export class BannersService implements OnDestroy {
 
     private show(options: BannerOptions): BannerRef {
         const ref = BannerRef.create(options);
-        this.disposable.subscribeTo(ref.events.onClose, () => this.removeBanner(ref))
+        this.disposable.subscribeTo(ref.events.onClose, () => this.removeBanner(ref));
         this.addBanner(ref);
         return ref;
     }
@@ -30,7 +30,7 @@ export class BannersService implements OnDestroy {
     }
 
     private removeBanner(bannerRef: BannerRef): void {
-        const banners = this.bannersSubject.value.filter(ref => ref !== bannerRef);
+        const banners = this.bannersSubject.value.filter((ref) => ref !== bannerRef);
         this.bannersSubject.next(banners);
     }
 }

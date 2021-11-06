@@ -1,13 +1,14 @@
-import {Directive, Input, OnDestroy, ViewContainerRef} from '@angular/core';
+import { Directive, Input, OnDestroy, ViewContainerRef } from '@angular/core';
 import { AbstractControl, FormGroup } from '@angular/forms';
-import {Disposable} from "@common/core";
+import { Disposable } from '@common/core';
 
 @Directive({
-    selector: '[appBindControlError]',
+    selector: '[appBindControlError]'
 })
 export class BindControlErrorDirective implements OnDestroy {
     @Input('appBindControlError')
     public controlName!: string;
+
     private control!: AbstractControl;
     private readonly disposable = new Disposable();
 

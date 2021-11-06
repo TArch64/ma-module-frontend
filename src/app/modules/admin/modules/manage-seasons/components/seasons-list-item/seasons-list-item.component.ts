@@ -1,15 +1,15 @@
-import {Component, Input} from '@angular/core';
-import {Season} from "@common/season";
-import {Observable} from "rxjs";
-import {ConfirmResult, ConfirmService} from "@common/confirm";
-import {ManageSeasonsFacade} from "../../manage-seasons.facade";
-import {switchMap} from "rxjs/operators";
-import {ToastrService} from "@common/toastr";
-import {ProgressBarService} from "@common/layout";
+import { Component, Input } from '@angular/core';
+import { Season } from '@common/season';
+import { Observable } from 'rxjs';
+import { ConfirmResult, ConfirmService } from '@common/confirm';
+import { switchMap } from 'rxjs/operators';
+import { ToastrService } from '@common/toastr';
+import { ProgressBarService } from '@common/layout';
+import { ManageSeasonsFacade } from '../../manage-seasons.facade';
 
 @Component({
-  selector: 'app-seasons-list-item',
-  templateUrl: './seasons-list-item.component.html'
+    selector: 'app-seasons-list-item',
+    templateUrl: './seasons-list-item.component.html'
 })
 export class SeasonsListItemComponent {
     @Input()

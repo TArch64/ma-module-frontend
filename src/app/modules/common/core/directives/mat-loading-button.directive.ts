@@ -8,10 +8,10 @@ import {
     Renderer2,
     SimpleChanges,
     ViewContainerRef
-} from "@angular/core";
-import {BooleanInput} from "ngx-boolean-input";
-import {MatButton} from "@angular/material/button";
-import {ButtonLoaderComponent} from "../components";
+} from '@angular/core';
+import { BooleanInput } from 'ngx-boolean-input';
+import { MatButton } from '@angular/material/button';
+import { ButtonLoaderComponent } from '../components';
 
 @Directive({
     selector: '[appMatLoadingButton]'
@@ -44,7 +44,7 @@ export class MatLoadingButtonDirective implements OnChanges {
     private renderLoading(): void {
         this.matButtonRef.disabled = true;
         const componentFactory = this.componentFactoryResolver.resolveComponentFactory(ButtonLoaderComponent);
-        this.loadingComponentRef = this.viewContainerRef.createComponent(componentFactory)
+        this.loadingComponentRef = this.viewContainerRef.createComponent(componentFactory);
         this.renderer.appendChild(this.viewContainerRef.element.nativeElement, this.loadingComponentRef.location.nativeElement);
     }
 
