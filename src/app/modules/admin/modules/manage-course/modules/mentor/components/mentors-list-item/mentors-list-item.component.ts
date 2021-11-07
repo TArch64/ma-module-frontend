@@ -8,7 +8,4 @@ import { Mentor } from '@common/course';
 export class MentorsListItemComponent {
     @Input()
     public mentor!: Mentor;
-
-
-    public mentor1 = 1
 }
