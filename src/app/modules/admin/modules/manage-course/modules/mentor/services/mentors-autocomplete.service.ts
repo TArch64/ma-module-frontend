@@ -9,8 +9,7 @@ import { ManageMentorsSync } from '../sync';
 export class MentorsAutocompleteService implements IUsersAutocompleteService {
     private readonly searchTrigger = new BehaviorSubject<string>('');
     public readonly users$: Observable<UserInputData[]> = this.searchTrigger.pipe(
-        startWith(''),
-        throttleTime(500, asyncScheduler, { leading: true, trailing: true }),
+        throttleTime(1000, asyncScheduler, { leading: true, trailing: true }),
         switchMap(this.load.bind(this))
     );
 
