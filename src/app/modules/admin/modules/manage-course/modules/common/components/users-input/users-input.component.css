@@ -1,3 +1,7 @@
+:host {
+    display: block;
+}
+
 .users-chip__remove {
     padding: 0;
     border: none;
@@ -8,4 +12,11 @@
     width: 18px;
     height: 18px;
     font-size: 18px;
+}
+
+.users-input__field.users-input__field {
+    width: 100%;
+    margin: 0;
+    padding-top: var(--offset-xs);
+    padding-bottom: var(--offset-xxs);
 }

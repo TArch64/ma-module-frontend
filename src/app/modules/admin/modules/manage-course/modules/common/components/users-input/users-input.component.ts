@@ -74,13 +74,7 @@ export class UsersInputComponent implements MatFormFieldControl<UserInputData[]>
         @Optional() @Self()
         public readonly ngControl: NgControl
     ) {
-        if (ngControl) {
-            ngControl.valueAccessor = this;
-
-            this.disposable.subscribeTo(this.emailControl.valueChanges, () => {
-                ngControl.control?.setErrors(null);
-            });
-        }
+        if (ngControl) ngControl.valueAccessor = this;
     }
 
     ngOnChanges(changes: NgChanges<this>) {

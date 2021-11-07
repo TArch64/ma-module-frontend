@@ -1,5 +1,5 @@
 import { asyncScheduler, BehaviorSubject, Observable, of } from 'rxjs';
-import { map, startWith, switchMap, throttleTime } from 'rxjs/operators';
+import { map, switchMap, throttleTime } from 'rxjs/operators';
 import { IInsecureUserJSON } from '@common/auth';
 import { Injectable } from '@angular/core';
 import { IUsersAutocompleteService, UserInputData } from '../../common';
