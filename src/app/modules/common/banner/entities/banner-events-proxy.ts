@@ -10,6 +10,6 @@ export class BannerEventsProxy {
     ) {}
 
     close() {
-        this.onClose.next();
+        this.onClose.next(null);
     }
 }

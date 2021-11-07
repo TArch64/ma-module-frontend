@@ -18,7 +18,7 @@ export class LoginFormComponent {
             [requireField(), requireEmail()]
         ],
         password: ['', requireField()]
-    })
+    });
 
     constructor(
         private readonly formBuilder: FormBuilder,

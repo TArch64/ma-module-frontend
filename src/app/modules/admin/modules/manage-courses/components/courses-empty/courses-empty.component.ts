@@ -6,9 +6,9 @@ import { Component, EventEmitter, Output } from '@angular/core';
 })
 export class CoursesEmptyComponent {
     @Output()
-    public readonly onAddCourse = new EventEmitter();
+    public readonly onAddCourse = new EventEmitter<null>();
 
     public addCourse(): void {
-        this.onAddCourse.next();
+        this.onAddCourse.next(null);
     }
 }

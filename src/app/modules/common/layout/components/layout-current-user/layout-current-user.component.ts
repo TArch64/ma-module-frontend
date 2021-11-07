@@ -12,7 +12,7 @@ export class LayoutCurrentUserComponent {
     public readonly user$ = this.layoutFacade.currentUser$;
 
     @ViewChild('userMenu')
-    private matMenu!: MatMenu
+    private matMenu!: MatMenu;
 
     constructor(private readonly layoutFacade: LayoutFacade) {}
 

@@ -12,7 +12,7 @@ export class ApiPathService {
         [UserRoles.ADMIN]: 'admin'
     };
 
-    private authService!: CommonAuthService
+    private authService!: CommonAuthService;
 
     constructor(
         @Inject(EnvironmentProvider)

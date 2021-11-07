@@ -14,7 +14,7 @@ export class AddCourseDialogComponent {
     public readonly courseForm = this.formBuilder.group({
         name: ['', requireField()],
         isGeneral: [true]
-    })
+    });
 
     constructor(
         private readonly dialogRef: MatDialogRef<AddCourseDialogComponent>,

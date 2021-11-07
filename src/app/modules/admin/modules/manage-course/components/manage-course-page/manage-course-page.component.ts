@@ -17,7 +17,7 @@ export class ManageCoursePageComponent {
     public readonly links: ITabLink[] = [
         this.buildTabLink('Mentors', 'mentors'),
         this.buildTabLink('Students', 'students')
-    ]
+    ];
 
     constructor(private readonly facade: ManageCourseFacade) {}
 

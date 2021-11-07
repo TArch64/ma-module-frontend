@@ -11,7 +11,7 @@ import { ManageMentorsFacade } from '../../manage-mentors.facade';
 })
 export class CourseLeadSelectorComponent implements OnDestroy {
     private readonly disposable = new Disposable();
-    public readonly control = new FormControl()
+    public readonly control = new FormControl();
     public readonly mentors$ = this.facade.mentors$;
 
     constructor(private readonly facade: ManageMentorsFacade) {

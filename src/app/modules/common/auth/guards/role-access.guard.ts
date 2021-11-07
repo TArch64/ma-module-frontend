@@ -12,7 +12,7 @@ export class RoleAccessGuard implements CanActivate {
         [UserRoles.ADMIN]: ['/admin'],
         [UserRoles.MENTOR]: ['/mentor'],
         [UserRoles.STUDENT]: ['/']
-    }
+    };
 
     constructor(
         private readonly authFacade: CommonAuthFacade,

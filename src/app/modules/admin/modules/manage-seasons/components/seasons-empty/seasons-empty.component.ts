@@ -9,9 +9,9 @@ export class SeasonsEmptyComponent {
     public isAdding!: boolean;
 
     @Output()
-    public readonly onAddSeason = new EventEmitter();
+    public readonly onAddSeason = new EventEmitter<null>();
 
     public addSeason(): void {
-        this.onAddSeason.next();
+        this.onAddSeason.next(null);
     }
 }

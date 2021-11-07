@@ -14,7 +14,7 @@ export class MentorsListComponent {
         this.facade.regularMentors$
     ]).pipe(
         map(([leadMentor, mentors]) => ({ leadMentor, mentors }))
-    )
+    );
 
     constructor(
         private readonly facade: ManageMentorsFacade

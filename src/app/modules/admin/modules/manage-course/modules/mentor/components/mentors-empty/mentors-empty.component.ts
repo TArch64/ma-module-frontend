@@ -6,7 +6,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 })
 export class MentorsEmptyComponent {
     @Output()
-    public onAddMentor = new EventEmitter()
+    public onAddMentor = new EventEmitter();
 
     public addMentor(): void {
         this.onAddMentor.emit();

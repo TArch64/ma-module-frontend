@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, of } from 'rxjs';
-import { formatValidationHttpResponse, StorageService } from '@common/core';
+import { formatValidationHttpResponse, StorageService, WindowProvider } from '@common/core';
 import { map, switchMap, tap } from 'rxjs/operators';
 import { CommonAuthSyncService } from '../sync';
 import { IUserJSON, User } from '../entities';
@@ -14,7 +14,9 @@ export class CommonAuthService {
     constructor(
         @Inject(StorageService.LOCAL_STORAGE)
         private readonly localStorage: StorageService,
-        private readonly syncService: CommonAuthSyncService
+        private readonly syncService: CommonAuthSyncService,
+        @Inject(WindowProvider)
+        private readonly window: Window
     ) {}
 
     private fetchSavedToken(): string | null {
@@ -48,7 +50,7 @@ export class CommonAuthService {
 
     public signOut() {
         this.localStorage.removeItem(CommonAuthService.TOKEN_KEY);
-        window.location.reload();
+        this.window.location.reload();
     }
 
     public actualizeUser(): Observable<User> {

@@ -33,8 +33,8 @@ import { UserInputData } from '../../entities';
     ]
 })
 export class UsersInputComponent implements MatFormFieldControl<UserInputData[]>, OnDestroy, OnChanges, TypedOnChanges, ControlValueAccessor {
-    private static readonly CONTROL_TYPE = 'admin-users-input'
-    public readonly emailInputSeparators = [ENTER, COMMA, SPACE]
+    private static readonly CONTROL_TYPE = 'admin-users-input';
+    public readonly emailInputSeparators = [ENTER, COMMA, SPACE];
     public stateChanges = new Subject<void>();
     public value: UserInputData[] = [];
     public focused: boolean = false;
