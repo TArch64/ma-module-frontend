@@ -9,6 +9,7 @@ import { CommonAuthModule } from '@common/auth';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
+import { PortalModule } from '@angular/cdk/portal';
 import { ManageCourseSync } from './sync';
 import { ManageCourseService } from './services';
 import { LoadCourseResolver } from './resolvers';
@@ -27,7 +28,8 @@ import { ManageMentorsModule, ManageMentorsPageComponent } from './modules';
                 children: [
                     {
                         path: 'mentors',
-                        component: ManageMentorsPageComponent
+                        component: ManageMentorsPageComponent,
+                        data: { toolbarActions: 'test' }
                     },
                     {
                         path: 'students',
@@ -48,6 +50,7 @@ import { ManageMentorsModule, ManageMentorsPageComponent } from './modules';
         MatButtonModule,
         MatIconModule,
         MatTabsModule,
+        PortalModule,
         ManageMentorsModule
     ],
     declarations: [

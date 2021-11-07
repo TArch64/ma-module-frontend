@@ -52,7 +52,10 @@ const routes: Routes = [
     imports: [
         BrowserModule,
         BrowserAnimationsModule,
-        RouterModule.forRoot(routes, { useHash: false }),
+        RouterModule.forRoot(routes, {
+            useHash: false,
+            paramsInheritanceStrategy: 'always'
+        }),
         CommonCoreModule,
         CommonAuthModule,
         CommonSeasonModule

@@ -2,7 +2,6 @@ import { Component, OnDestroy } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
-import { DialogSizes } from '@common/dialog';
 import { Disposable } from '@common/core';
 import { AddCourseDialogComponent } from '../add-course-dialog';
 import { ManageCoursesFacade } from '../../manage-courses.facade';
@@ -33,7 +32,7 @@ export class ManageCoursesPageComponent implements OnDestroy {
     }
 
     public addCourse(): void {
-        this.matDialog.open(AddCourseDialogComponent, { width: DialogSizes.MD });
+        this.matDialog.open(AddCourseDialogComponent, AddCourseDialogComponent.DIALOG_CONFIG);
     }
 
     private attachRefreshListener(): void {

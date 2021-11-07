@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { FormBuilder } from '@angular/forms';
 import { ToastrService } from '@common/toastr';
 import { requireArrayLength } from '@common/form';
+import { DialogSizes } from '@common/dialog';
 import { ManageMentorsFacade } from '../../manage-mentors.facade';
 import { UserInputData, USERS_AUTOCOMPLETE_SERVICE } from '../../../common';
 import { MentorsAutocompleteService } from '../../services';
@@ -19,6 +20,10 @@ import { MentorsAutocompleteService } from '../../services';
     ]
 })
 export class AddMentorDialogComponent {
+    public static readonly DIALOG_CONFIG: MatDialogConfig = {
+        width: DialogSizes.MD
+    };
+
     public isAdding: boolean = false;
     public readonly mentorsForm = this.formBuilder.group({
         users: [[], requireArrayLength(1, 'Add at list one mentor')]

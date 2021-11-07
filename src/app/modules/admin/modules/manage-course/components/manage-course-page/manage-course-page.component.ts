@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ManageCourseFacade } from '../../manage-course.facade';
+import { DynamicToolbarService } from '../../services';
 
 interface ITabLink {
     title: string;
@@ -12,6 +13,7 @@ interface ITabLink {
     styleUrls: ['./manage-course-page.component.css']
 })
 export class ManageCoursePageComponent {
+    public toolbarActionsPortal$ = this.dynamicToolbarService.portal$;
     public readonly course = this.facade.course!;
 
     public readonly links: ITabLink[] = [
@@ -19,7 +21,10 @@ export class ManageCoursePageComponent {
         this.buildTabLink('Students', 'students')
     ];
 
-    constructor(private readonly facade: ManageCourseFacade) {}
+    constructor(
+        private readonly facade: ManageCourseFacade,
+        private readonly dynamicToolbarService: DynamicToolbarService
+    ) {}
 
     private buildTabLink(title: string, tabPath: string): ITabLink {
         return {

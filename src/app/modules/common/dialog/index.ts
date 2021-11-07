@@ -1,1 +1,1 @@
-export { DialogSizes } from './enums';
+export * from './enums';

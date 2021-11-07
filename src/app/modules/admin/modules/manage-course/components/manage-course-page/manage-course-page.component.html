@@ -4,6 +4,10 @@
     </a>
 
     <h2 class="margin-left--xs text--truncate">Manage "{{ course.name }}"</h2>
+
+    <div class="margin-left--auto" *ngIf="toolbarActionsPortal$ | async as portal">
+        <ng-template [cdkPortalOutlet]="portal"></ng-template>
+    </div>
 </mat-toolbar>
 
 <nav mat-tab-nav-bar>

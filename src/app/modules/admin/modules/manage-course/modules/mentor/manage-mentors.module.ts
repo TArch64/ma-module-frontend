@@ -21,13 +21,15 @@ import {
     AddMentorDialogComponent,
     CourseLeadSelectorComponent,
     ManageMentorsPageComponent,
+    ManageMentorsActionsComponent,
     MentorsEmptyComponent,
     MentorsListComponent,
     MentorsListItemComponent
 } from './components';
 
 const publicDeclarations = [
-    ManageMentorsPageComponent
+    ManageMentorsPageComponent,
+    ManageMentorsActionsComponent
 ];
 
 @NgModule({
