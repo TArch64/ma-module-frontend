@@ -3,9 +3,16 @@
         <h1 mat-card-title>Welcome to MA Community!</h1>
     </mat-card-header>
 
-    <form appBindFormErrors [formGroup]="acceptForm">
+    <form appBindFormErrors [appProcessingForm]="isJoining" [formGroup]="acceptForm" (ngSubmit)="accept()">
         <mat-card-content>
-            <p><b>Your email:</b> {{ userEmail }}</p>
+            <p class="margin-bottom--xxs">
+                <b>Your email:</b> {{ userEmail }}
+            </p>
+
+            <p class="margin-bottom--xs">
+                <b>Your {{ 'course' | pluralize:courses }}:</b>
+                {{ courses | join }}
+            </p>
 
             <mat-form-field class="block form-field--md margin-bottom--xxs">
                 <mat-label>Username</mat-label>
@@ -13,11 +20,18 @@
                 <mat-error appBindControlError="username"></mat-error>
             </mat-form-field>
 
-            <mat-form-field class="block form-field--md">
+            <mat-form-field class="block form-field--md margin-bottom--sm">
                 <mat-label>Password</mat-label>
                 <input matInput type="password" formControlName="password">
                 <mat-error appBindControlError="password"></mat-error>
             </mat-form-field>
+
+            <p>
+                <b>Note:</b>
+                Saving password into your browser may cause security issues.
+                Please use password managers like <a class="text-link" href="https://bitwarden.com/" target="_blank">BitWarden</a>
+                and <a class="text-link" href="https://1password.com/" target="_blank">1password</a> to avoid them
+            </p>
         </mat-card-content>
 
         <mat-card-actions>

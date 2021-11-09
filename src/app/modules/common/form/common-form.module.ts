@@ -1,21 +1,23 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
-import { BindControlErrorDirective, BindFormErrorsDirective } from './directives';
+import { BindControlErrorDirective, BindFormErrorsDirective, ProcessingFormDirective } from './directives';
+
+const publicDeclarations = [
+    BindFormErrorsDirective,
+    BindControlErrorDirective,
+    ProcessingFormDirective
+];
 
 @NgModule({
     imports: [
         CommonModule,
         ReactiveFormsModule
     ],
-    declarations: [
-        BindFormErrorsDirective,
-        BindControlErrorDirective
-    ],
+    declarations: publicDeclarations,
     exports: [
-        ReactiveFormsModule,
-        BindFormErrorsDirective,
-        BindControlErrorDirective
+        ...publicDeclarations,
+        ReactiveFormsModule
     ]
 })
 export class CommonFormModule {}
