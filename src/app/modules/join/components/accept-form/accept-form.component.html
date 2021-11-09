@@ -1,0 +1,35 @@
+<mat-card class="block block--full-width mat-elevation-z2">
+    <mat-card-header>
+        <h1 mat-card-title>Welcome to MA Community!</h1>
+    </mat-card-header>
+
+    <form appBindFormErrors [formGroup]="acceptForm">
+        <mat-card-content>
+            <p><b>Your email:</b> {{ userEmail }}</p>
+
+            <mat-form-field class="block form-field--md margin-bottom--xxs">
+                <mat-label>Username</mat-label>
+                <input matInput type="text" formControlName="username">
+                <mat-error appBindControlError="username"></mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="block form-field--md">
+                <mat-label>Password</mat-label>
+                <input matInput type="password" formControlName="password">
+                <mat-error appBindControlError="password"></mat-error>
+            </mat-form-field>
+        </mat-card-content>
+
+        <mat-card-actions>
+            <button
+                class="block margin-left--auto"
+                mat-raised-button
+                color="primary"
+                type="submit"
+                [appMatLoadingButton]="isJoining"
+            >
+                Join now
+            </button>
+        </mat-card-actions>
+    </form>
+</mat-card>

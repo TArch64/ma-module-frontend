@@ -4,7 +4,11 @@ import { RouterModule } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonCoreModule } from '@common/core';
-import { JoinPageComponent } from './components';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { CommonFormModule } from '@common/form';
+import { ReactiveFormsModule } from '@angular/forms';
+import { AcceptFormComponent, JoinPageComponent } from './components';
 import { InvitationResolver } from './resolvers';
 
 @NgModule({
@@ -17,12 +21,17 @@ import { InvitationResolver } from './resolvers';
                 resolve: { invitation: InvitationResolver }
             }
         ]),
+        ReactiveFormsModule,
         MatCardModule,
         MatButtonModule,
-        CommonCoreModule
+        MatFormFieldModule,
+        MatInputModule,
+        CommonCoreModule,
+        CommonFormModule
     ],
     declarations: [
-        JoinPageComponent
+        JoinPageComponent,
+        AcceptFormComponent
     ]
 })
 export class JoinModule {}
