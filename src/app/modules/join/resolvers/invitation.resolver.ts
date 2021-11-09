@@ -10,6 +10,6 @@ export class InvitationResolver implements Resolve<Invitation> {
 
     public resolve(route: ActivatedRouteSnapshot): Observable<Invitation> {
         const id = route.queryParamMap.get('iid')!;
-        return this.facade.loadInfo(id);
+        return this.facade.loadInvitation(id);
     }
 }

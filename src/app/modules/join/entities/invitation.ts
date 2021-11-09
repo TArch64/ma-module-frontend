@@ -11,6 +11,8 @@ export class Invitation {
         return new Invitation(json.email, json.status, json.courseNames);
     }
 
+    public id: string = '';
+
     private constructor(
         public readonly email: string,
         public readonly status: InvitationStatuses,

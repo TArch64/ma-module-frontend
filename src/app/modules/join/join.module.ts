@@ -8,6 +8,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { CommonFormModule } from '@common/form';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ToastrModule } from '@common/toastr';
+import { CommonAuthModule } from '@common/auth';
 import { AcceptFormComponent, JoinPageComponent } from './components';
 import { InvitationResolver } from './resolvers';
 
@@ -27,7 +29,9 @@ import { InvitationResolver } from './resolvers';
         MatFormFieldModule,
         MatInputModule,
         CommonCoreModule,
-        CommonFormModule
+        CommonFormModule,
+        CommonAuthModule,
+        ToastrModule
     ],
     declarations: [
         JoinPageComponent,
