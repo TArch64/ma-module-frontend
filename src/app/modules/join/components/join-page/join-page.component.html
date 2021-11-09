@@ -1,3 +1,7 @@
 <div class="flex flex--column flex--center block--full-height">
-    <app-accept-form></app-accept-form>
+    <app-accepted *ngIf="isAccepted; else acceptForm"></app-accepted>
+
+    <ng-template #acceptForm>
+        <app-accept-form></app-accept-form>
+    </ng-template>
 </div>

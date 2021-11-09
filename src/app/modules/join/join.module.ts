@@ -10,7 +10,7 @@ import { CommonFormModule } from '@common/form';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from '@common/toastr';
 import { CommonAuthModule } from '@common/auth';
-import { AcceptFormComponent, JoinPageComponent } from './components';
+import { AcceptedComponent, AcceptFormComponent, JoinPageComponent } from './components';
 import { InvitationResolver } from './resolvers';
 
 @NgModule({
@@ -35,7 +35,8 @@ import { InvitationResolver } from './resolvers';
     ],
     declarations: [
         JoinPageComponent,
-        AcceptFormComponent
+        AcceptFormComponent,
+        AcceptedComponent
     ]
 })
 export class JoinModule {}

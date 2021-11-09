@@ -12,6 +12,7 @@ export class Invitation {
     }
 
     public id: string = '';
+    public readonly isAccepted = this.status === InvitationStatuses.ACCEPTED;
 
     private constructor(
         public readonly email: string,
