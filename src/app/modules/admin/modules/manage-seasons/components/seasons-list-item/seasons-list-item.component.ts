@@ -26,9 +26,9 @@ export class SeasonsListItemComponent {
         this.progressBar.show();
 
         this.confirmDeactivatingSeason().pipe(
-            switchMap(() => this.facade.deactivateSeason(this.season))
+            switchMap((): Observable<null> => this.facade.deactivateSeason(this.season))
         ).subscribe({
-            next: () => this.onActionSuccess('made inactive'),
+            next: (): void => this.onActionSuccess('made inactive'),
             error: this.onActionFailed.bind(this)
         });
     }
@@ -43,9 +43,9 @@ export class SeasonsListItemComponent {
         this.progressBar.show();
 
         this.confirmActivatingSeason().pipe(
-            switchMap(() => this.facade.activateSeason(this.season))
+            switchMap((): Observable<null> => this.facade.activateSeason(this.season))
         ).subscribe({
-            next: () => this.onActionSuccess('made active'),
+            next: (): void => this.onActionSuccess('made active'),
             error: this.onActionFailed.bind(this)
         });
     }
@@ -60,9 +60,9 @@ export class SeasonsListItemComponent {
         this.progressBar.show();
 
         this.confirmRemovingSeason().pipe(
-            switchMap(() => this.facade.removeSeason(this.season))
+            switchMap((): Observable<null> => this.facade.removeSeason(this.season))
         ).subscribe({
-            next: () => this.onActionSuccess('removed'),
+            next: (): void => this.onActionSuccess('removed'),
             error: this.onActionFailed.bind(this)
         });
     }

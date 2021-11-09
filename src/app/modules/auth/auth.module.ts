@@ -18,8 +18,7 @@ import { LoginFormComponent, SignInPageComponent } from './components';
         CommonCoreModule,
         CommonAuthModule,
         RouterModule.forChild([
-            { path: '', pathMatch: 'full', redirectTo: 'sign-in' },
-            { path: 'sign-in', component: SignInPageComponent }
+            { path: '', component: SignInPageComponent }
         ]),
         CommonFormModule,
         ToastrModule,

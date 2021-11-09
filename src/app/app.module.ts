@@ -14,6 +14,10 @@ const routes: Routes = [
         loadChildren: () => import('./modules/auth').then((m) => m.AuthModule)
     },
     {
+        path: 'join',
+        loadChildren: () => import('./modules/join').then((m) => m.JoinModule)
+    },
+    {
         path: '',
         canActivate: [AuthOnlyGuard],
         children: [

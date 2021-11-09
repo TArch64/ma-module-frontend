@@ -23,12 +23,12 @@ export class CommonSeasonsService {
     }
 
     public get activeSeason(): Season | null {
-        return this.seasonsSnapshot.find((season) => season.active) ?? null;
+        return this.seasonsSnapshot.find((season): boolean => season.active) ?? null;
     }
 
     public loadSeasons(): Observable<Season[]> {
         return this.syncService.loadSeasons().pipe(
-            map((json) => json.map(Season.fromJSON)),
+            map((json): Season[] => json.map(Season.fromJSON)),
             tap(this.refreshSeasonsState.bind(this))
         );
     }
@@ -48,7 +48,10 @@ export class CommonSeasonsService {
 
     private getCurrentSeason(): Season | null {
         if (!this.seasonsSnapshot.length) return null;
-        return this.activeSeason ?? this.seasonsSnapshot.reduce((prev, current) => (prev.value > current.value) ? prev : current);
+
+        return this.activeSeason ?? this.seasonsSnapshot.reduce((prev, current): Season => {
+            return (prev.value > current.value) ? prev : current;
+        });
     }
 
     public addSeason(season: Season): void {
@@ -56,13 +59,13 @@ export class CommonSeasonsService {
     }
 
     public updateSeason(season: Season): void {
-        const seasonIndex = this.seasonsSnapshot.findIndex((s) => s.id === season.id);
+        const seasonIndex = this.seasonsSnapshot.findIndex((s): boolean => s.id === season.id);
         const seasons = this.seasonsSnapshot.slice();
         seasons.splice(seasonIndex, 1, season);
         this.refreshSeasonsState(seasons);
     }
 
     public removeSeason(season: Season): void {
-        this.refreshSeasonsState(this.seasonsSnapshot.filter((s) => s.id !== season.id));
+        this.refreshSeasonsState(this.seasonsSnapshot.filter((s): boolean => s.id !== season.id));
     }
 }

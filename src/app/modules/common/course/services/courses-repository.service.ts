@@ -18,8 +18,8 @@ export class CoursesRepositoryService {
     public loadCourses(): Observable<Course[]> {
         const currentSeason = this.seasonsService.currentSeasonSnapshot!;
         return this.coursesSync.loadCourses(currentSeason).pipe(
-            map((json) => json.map(Course.fromJSON)),
-            tap((courses) => this.coursesSubject.next(courses))
+            map((json): Course[] => json.map(Course.fromJSON)),
+            tap((courses): void => this.coursesSubject.next(courses))
         );
     }
 

@@ -13,7 +13,7 @@ export class MatTabRouterLinkDirective implements DoCheck {
         this.updateTabActive();
     }
 
-    public ngDoCheck() {
+    public ngDoCheck(): void {
         this.updateTabActive();
     }
 

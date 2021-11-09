@@ -1,7 +1,7 @@
 import { EventEmitter } from '@angular/core';
 
 export class BannerEventsProxy {
-    public static create() {
+    public static create(): BannerEventsProxy {
         return new BannerEventsProxy(new EventEmitter<null>());
     }
 
@@ -9,7 +9,7 @@ export class BannerEventsProxy {
         public readonly onClose: EventEmitter<null>
     ) {}
 
-    close() {
+    public close(): void {
         this.onClose.next(null);
     }
 }

@@ -14,15 +14,15 @@ export class SeasonSelectorComponent implements OnDestroy {
     public readonly seasons$ = this.seasonFacade.seasons$;
 
     constructor(private readonly seasonFacade: CommonSeasonFacade) {
-        this.disposable.subscribeTo(this.selectControl.valueChanges, (season: Season) => {
+        this.disposable.subscribeTo(this.selectControl.valueChanges, (season: Season): void => {
             this.seasonFacade.changeCurrentSeason(season);
         });
-        this.disposable.subscribeTo(this.seasonFacade.currentSeason$, (season: Season | null) => {
+        this.disposable.subscribeTo(this.seasonFacade.currentSeason$, (season: Season | null): void => {
             this.selectControl.setValue(season, { emitEvent: false });
         });
     }
 
-    public ngOnDestroy() {
+    public ngOnDestroy(): void {
         this.disposable.dispose();
     }
 }

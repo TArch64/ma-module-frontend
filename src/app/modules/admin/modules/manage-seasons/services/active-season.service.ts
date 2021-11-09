@@ -14,10 +14,10 @@ export class ActiveSeasonService {
     public addSeason(makeActive: boolean): Observable<Season> {
         return this.syncService.addSeason(makeActive).pipe(
             map(Season.fromJSON),
-            tap(() => {
+            tap((): void => {
                 if (makeActive) this.deactivateActiveSeason();
             }),
-            tap((season) => this.commonService.addSeason(season))
+            tap((season): void => this.commonService.addSeason(season))
         );
     }
 
@@ -31,22 +31,22 @@ export class ActiveSeasonService {
 
     public activateSeason(season: Season): Observable<null> {
         return this.syncService.activateSeason(season).pipe(
-            tap(() => this.deactivateActiveSeason()),
-            tap(() => this.commonService.updateSeason(season.clone({ active: true }))),
+            tap((): void => this.deactivateActiveSeason()),
+            tap((): void => this.commonService.updateSeason(season.clone({ active: true }))),
             mapTo(null)
         );
     }
 
     public deactivateSeason(season: Season): Observable<null> {
         return this.syncService.deactivateSeason(season).pipe(
-            tap(() => this.commonService.updateSeason(season.clone({ active: false }))),
+            tap((): void => this.commonService.updateSeason(season.clone({ active: false }))),
             mapTo(null)
         );
     }
 
     public removeSeason(season: Season): Observable<null> {
         return this.syncService.removeSeason(season).pipe(
-            tap(() => this.commonService.removeSeason(season)),
+            tap((): void => this.commonService.removeSeason(season)),
             mapTo(null)
         );
     }

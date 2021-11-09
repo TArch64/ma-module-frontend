@@ -46,7 +46,7 @@ export class AddMentorDialogComponent {
 
         this.isAdding = true;
         this.mentorsForm.disable();
-        const emails = this.mentorsForm.value.users.map((user: UserInputData) => user.email);
+        const emails = this.mentorsForm.value.users.map((user: UserInputData): string => user.email);
 
         this.facade.addMentors(emails).subscribe({
             next: this.onMentorAdded.bind(this),

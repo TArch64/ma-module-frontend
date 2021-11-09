@@ -1,10 +1,10 @@
 import { IPrototype, ISerializable } from '@common/core';
 
 export interface ISeasonJSON {
-    id: string
-    value: number
-    active: boolean
-    year: number
+    id: string;
+    value: number;
+    active: boolean;
+    year: number;
 }
 
 export class Season implements IPrototype<ISeasonJSON>, ISerializable<ISeasonJSON> {
@@ -26,11 +26,11 @@ export class Season implements IPrototype<ISeasonJSON>, ISerializable<ISeasonJSO
         return `${this.value}th - ${year}`;
     }
 
-    clone(overrides: Partial<ISeasonJSON> = {}): Season {
+    public clone(overrides: Partial<ISeasonJSON> = {}): Season {
         return Season.fromJSON({ ...this.toJSON(), ...overrides });
     }
 
-    toJSON(): ISeasonJSON {
+    public toJSON(): ISeasonJSON {
         return {
             id: this.id,
             value: this.value,

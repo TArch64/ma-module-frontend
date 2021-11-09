@@ -13,24 +13,28 @@ export class WindowService implements OnDestroy {
     public readonly breakpoint$: Observable<ScreenBreakpointEvent> = this.createBreakpointStream();
 
     constructor(@Inject(WindowProvider) private readonly window: Window) {
-        this.disposable.subscribeTo(this.resize$, (value) => this.resizeSnapshot = value);
-        this.disposable.subscribeTo(this.breakpoint$, (value) => this.breakpointSnapshot = value);
+        this.disposable.subscribeTo(this.resize$, (value): void => {
+            this.resizeSnapshot = value;
+        });
+        this.disposable.subscribeTo(this.breakpoint$, (value): void => {
+            this.breakpointSnapshot = value;
+        });
     }
 
-    public ngOnDestroy() {
+    public ngOnDestroy(): void {
         this.disposable.dispose();
     }
 
     private createResizeStream(): Observable<ResizeEvent> {
         return fromEvent<UIEvent>(this.window, 'resize').pipe(
             startWith(null),
-            map(() => new ResizeEvent(this.window.innerWidth, this.window.innerHeight))
+            map((): ResizeEvent => new ResizeEvent(this.window.innerWidth, this.window.innerHeight))
         );
     }
 
     private createBreakpointStream(): Observable<ScreenBreakpointEvent> {
         return this.resize$.pipe(
-            map((event) => new ScreenBreakpointEvent(event.width)),
+            map((event): ScreenBreakpointEvent => new ScreenBreakpointEvent(event.width)),
             distinctUntilKeyChanged('breakpoint')
         );
     }

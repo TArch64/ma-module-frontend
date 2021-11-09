@@ -26,7 +26,7 @@ export class ApiPathService {
     public build(paths: Path[]): string {
         return [
             this.environment.apiUrl,
-            ...paths.map((path) => path.toString())
+            ...paths.map((path): string => path.toString())
         ].join('/');
     }
 

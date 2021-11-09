@@ -21,13 +21,13 @@ export class ManageCoursesPageComponent implements OnDestroy {
         this.attachRefreshListener();
     }
 
-    ngOnDestroy() {
+    public ngOnDestroy(): void {
         this.disposable.dispose();
     }
 
     private createHasCoursesStream(): Observable<boolean> {
         return this.facade.courses$.pipe(
-            map((courses) => !!courses.length)
+            map((courses): boolean => !!courses.length)
         );
     }
 
@@ -37,8 +37,8 @@ export class ManageCoursesPageComponent implements OnDestroy {
 
     private attachRefreshListener(): void {
         const refresh$ = this.facade.currentSeasonChange$.pipe(
-            switchMap(() => this.facade.loadState())
+            switchMap((): Observable<null> => this.facade.loadState())
         );
-        this.disposable.subscribeTo(refresh$, () => {});
+        this.disposable.subscribeTo(refresh$, (): void => {});
     }
 }

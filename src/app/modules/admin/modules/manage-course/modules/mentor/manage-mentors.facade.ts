@@ -10,7 +10,9 @@ export class ManageMentorsFacade {
     public readonly leadMentor$ = this.mentorsService.leadMentor$;
 
     public readonly regularMentors$ = this.mentors$.pipe(
-        map((mentors) => mentors.filter((mentor) => mentor.isRegular))
+        map((mentors): Mentor[] => {
+            return mentors.filter((mentor): boolean => mentor.isRegular);
+        })
     );
 
     constructor(

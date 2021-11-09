@@ -9,15 +9,19 @@ export class ManageSeasonsFacade {
     public readonly seasons$ = this.commonSeasonsService.seasons$;
 
     public readonly activeSeason$ = this.seasons$.pipe(
-        map((seasons) => seasons.find((season) => season.active) ?? null)
+        map((seasons): Season | null => {
+            return seasons.find((season): boolean => season.active) ?? null;
+        })
     );
 
     public readonly inactiveSeasons$ = this.seasons$.pipe(
-        map((seasons) => seasons.filter((season) => !season.active))
+        map((seasons): Season[] => {
+            return seasons.filter((season): boolean => !season.active);
+        })
     );
 
     public readonly hasSeasons$ = this.seasons$.pipe(
-        map((seasons) => !!seasons.length)
+        map((seasons): boolean => !!seasons.length)
     );
 
     constructor(

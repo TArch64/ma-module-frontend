@@ -1,8 +1,8 @@
 import { BannerTypes } from '../enums';
 
 export interface IBannerOptions {
-    title: string,
-    closable?: boolean
+    title: string;
+    closable?: boolean;
 }
 
 export class BannerOptions {

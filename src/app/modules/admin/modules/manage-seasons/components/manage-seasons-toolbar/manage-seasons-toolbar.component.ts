@@ -16,7 +16,7 @@ export class ManageSeasonsToolbarComponent {
     constructor(private readonly confirm: ConfirmService) {}
 
     public addSeason(): void {
-        this.confirmAdding().subscribe((result) => {
+        this.confirmAdding().subscribe((result): void => {
             this.onAddSeason.next(result.additionalAction!.value);
         });
     }

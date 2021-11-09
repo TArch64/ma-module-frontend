@@ -19,7 +19,7 @@ export class RoleAccessGuard implements CanActivate {
         private readonly router: Router
     ) {}
 
-    public canActivate(route: ActivatedRouteSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> {
+    public canActivate(route: ActivatedRouteSnapshot): true | UrlTree | Observable<true | UrlTree> {
         if (this.authFacade.isSignedOut) {
             return this.router.createUrlTree(['/auth']);
         }
@@ -27,7 +27,7 @@ export class RoleAccessGuard implements CanActivate {
         if (!requiredRole) return true;
 
         return this.authFacade.fetchCurrentUser().pipe(
-            map(({ role }: User) => {
+            map(({ role }: User): UrlTree | true => {
                 if (requiredRole === role) return true;
                 return this.getHomeRedirectUrlTree();
             })

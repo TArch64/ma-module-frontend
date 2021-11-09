@@ -23,7 +23,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
     constructor(private readonly authFacade: CommonAuthFacade) {}
 
-    public intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    public intercept(req: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
         const headers = this.authFacade.isSignedIn
             ? req.headers.append('Authorization', `Bearer ${this.authFacade.authToken}`)
             : req.headers;

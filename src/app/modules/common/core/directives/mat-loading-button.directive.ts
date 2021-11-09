@@ -35,7 +35,7 @@ export class MatLoadingButtonDirective implements OnChanges {
         private readonly renderer: Renderer2
     ) {}
 
-    public ngOnChanges(changes: SimpleChanges) {
+    public ngOnChanges(changes: SimpleChanges): void {
         if ('isLoading' in changes) {
             this.isLoading ? this.renderLoading() : this.renderInitial();
         }

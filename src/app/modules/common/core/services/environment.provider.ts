@@ -3,7 +3,7 @@ import { environment, IEnvironment } from '../../../../../environments';
 
 export const EnvironmentProvider = new InjectionToken<IEnvironment>('environment', {
     providedIn: 'root',
-    factory: () => environment
+    factory: (): IEnvironment => environment
 });
 
 export { IEnvironment };

@@ -15,7 +15,7 @@ export class CoursesGuard implements CanActivate {
         if (this.seasonService.seasonsSnapshot.length) return true;
 
         return this.seasonService.loadSeasons().pipe(
-            map((seasons: Season[]) => {
+            map((seasons: Season[]): true | UrlTree => {
                 if (seasons.length) return true;
                 return this.router.createUrlTree(['/admin', 'seasons']);
             })

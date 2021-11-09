@@ -77,10 +77,10 @@ export class UsersInputComponent implements MatFormFieldControl<UserInputData[]>
         if (ngControl) ngControl.valueAccessor = this;
     }
 
-    ngOnChanges(changes: NgChanges<this>) {
+    public ngOnChanges(changes: NgChanges<this>): void {
         const watchingProps: Array<keyof this> = ['placeholder', 'required', 'disabled'];
 
-        if (watchingProps.some((prop) => prop in changes)) {
+        if (watchingProps.some((prop): boolean => prop in changes)) {
             this.stateChanges.next();
         }
 
@@ -89,32 +89,32 @@ export class UsersInputComponent implements MatFormFieldControl<UserInputData[]>
         }
     }
 
-    public ngOnDestroy() {
+    public ngOnDestroy(): void {
         this.stateChanges.complete();
         this.disposable.dispose();
     }
 
-    writeValue(users: UserInputData[]) {
+    public writeValue(users: UserInputData[]): void {
         this.value = users;
         this.stateChanges.next();
     }
 
-    registerOnChange(notifyChange: NotifyControlChange<UserInputData[]>) {
+    public registerOnChange(notifyChange: NotifyControlChange<UserInputData[]>): void {
         this.notifyControlChange = notifyChange;
     }
 
-    registerOnTouched(notifyTouched: NotifyControlTouched) {
+    public registerOnTouched(notifyTouched: NotifyControlTouched): void {
         this.notifyControlTouched = notifyTouched;
     }
 
-    setDisabledState(isDisabled: boolean): void {
+    public setDisabledState(isDisabled: boolean): void {
         this.disabled = isDisabled;
         this.disabled ? this.emailControl.disable() : this.emailControl.enable();
         this.stateChanges.next();
     }
 
     @HostListener('focusin')
-    public onFocusIn() {
+    public onFocusIn(): void {
         if (this.focused || this.disabled) return;
 
         this.focused = true;
@@ -122,7 +122,7 @@ export class UsersInputComponent implements MatFormFieldControl<UserInputData[]>
     }
 
     @HostListener('focusout', ['$event'])
-    public onFocusOut(event: FocusEvent) {
+    public onFocusOut(event: FocusEvent): void {
         const focusedElement = event.relatedTarget as HTMLElement;
         const isInnerFocus = this.elementRef.nativeElement.contains(focusedElement);
 
@@ -132,7 +132,7 @@ export class UsersInputComponent implements MatFormFieldControl<UserInputData[]>
         }
     }
 
-    private markAsTouched() {
+    private markAsTouched(): void {
         this.touched = true;
         this.notifyControlTouched();
         this.stateChanges.next();
@@ -142,7 +142,7 @@ export class UsersInputComponent implements MatFormFieldControl<UserInputData[]>
         return !this.value.length;
     }
 
-    public get shouldLabelFloat() {
+    public get shouldLabelFloat(): boolean {
         return this.focused || !this.empty || !!this.emailControl.value;
     }
 
@@ -151,11 +151,11 @@ export class UsersInputComponent implements MatFormFieldControl<UserInputData[]>
         return isInvalid && this.touched;
     }
 
-    public setDescribedByIds(ids: string[]) {
+    public setDescribedByIds(ids: string[]): void {
         this.ariaDescribedBy = ids.join(' ');
     }
 
-    onContainerClick(event: MouseEvent) {
+    public onContainerClick(event: MouseEvent): void {
         const clickedElement = event.target as HTMLElement;
         const emailInputElement = this.emailInputRef.nativeElement;
 
@@ -174,7 +174,7 @@ export class UsersInputComponent implements MatFormFieldControl<UserInputData[]>
             return;
         }
 
-        const isAlreadyAdded = this.value.some((user) => user.email.toLowerCase() === email.toLowerCase());
+        const isAlreadyAdded = this.value.some((user): boolean => user.email.toLowerCase() === email.toLowerCase());
 
         if (!isAlreadyAdded) {
             this.value = [...this.value, new UserInputData(email)];
@@ -186,7 +186,7 @@ export class UsersInputComponent implements MatFormFieldControl<UserInputData[]>
     }
 
     public removeUser(email: string): void {
-        this.value = this.value.filter((user) => user.email.toLowerCase() !== email.toLowerCase());
+        this.value = this.value.filter((user): boolean => user.email.toLowerCase() !== email.toLowerCase());
         this.notifyControlChange(this.value);
         this.stateChanges.next();
 

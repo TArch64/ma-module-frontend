@@ -22,7 +22,7 @@ export class ManageCoursesService {
         const currentSeason = this.seasonsService.currentSeasonSnapshot!;
         return this.coursesSync.addCourse(currentSeason, payload).pipe(
             map(Course.fromJSON),
-            tap((course) => this.repository.addCourse(course))
+            tap((course): void => this.repository.addCourse(course))
         );
     }
 }

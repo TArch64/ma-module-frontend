@@ -26,10 +26,10 @@ export class ConfirmService {
     private onDialogClosed(dialogRef: ConfirmRef, options: ConfirmOptions): Observable<ConfirmResult> {
         let afterClosed$ = dialogRef.afterClosed().pipe(
             // Convert backdropClick event into dialog dismiss
-            map((result?: ConfirmResult) => result || ConfirmResult.createDeclined())
+            map((result?: ConfirmResult): ConfirmResult => result || ConfirmResult.createDeclined())
         );
         if (options.ignoreDismissEvent) {
-            afterClosed$ = afterClosed$.pipe(filter((result) => result.isConfirmed));
+            afterClosed$ = afterClosed$.pipe(filter((result): boolean => result.isConfirmed));
         }
         return afterClosed$;
     }

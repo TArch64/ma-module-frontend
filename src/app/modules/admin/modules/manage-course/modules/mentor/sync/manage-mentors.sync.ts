@@ -23,7 +23,7 @@ export class ManageMentorsSync {
         return this.httpClient.get<IInsecureUserJSON[]>(url, { params });
     }
 
-    addMentors(courseId: string, emails: string[]): Observable<IMentorJSON[]> {
+    public addMentors(courseId: string, emails: string[]): Observable<IMentorJSON[]> {
         const url = this.apiPath.buildRolePath(['courses', courseId, 'mentors']);
         return this.httpClient.post<IMentorJSON[]>(url, { emails }).pipe(formatValidationHttpResponse);
     }

@@ -21,7 +21,7 @@ export class MentorsAutocompleteService implements IUsersAutocompleteService {
         this.searchTrigger.next(query);
     }
 
-    public reset() {
+    public reset(): void {
         this.searchTrigger.next('');
     }
 
@@ -30,7 +30,7 @@ export class MentorsAutocompleteService implements IUsersAutocompleteService {
     }
 
     private createModels(mentors: IInsecureUserJSON[]): UserInputData[] {
-        return mentors.map((mentor) => new UserInputData(mentor.email));
+        return mentors.map((mentor): UserInputData => new UserInputData(mentor.email));
     }
 
     private searchUsers(query: string): Observable<IInsecureUserJSON[]> {

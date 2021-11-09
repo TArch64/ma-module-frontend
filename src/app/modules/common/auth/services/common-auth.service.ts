@@ -23,23 +23,23 @@ export class CommonAuthService {
         return this.localStorage.getItem(CommonAuthService.TOKEN_KEY);
     }
 
-    get currentUser(): User | null {
+    public get currentUser(): User | null {
         return this.currentUserSubject.value;
     }
 
-    get currentUser$(): Observable<User | null> {
+    public get currentUser$(): Observable<User | null> {
         return this.currentUserSubject.asObservable();
     }
 
-    get isSignedIn(): boolean {
+    public get isSignedIn(): boolean {
         return !!this.authToken;
     }
 
     public signIn(email: string, password: string): Observable<User> {
         return this.syncService.signIn(email, password).pipe(
             formatValidationHttpResponse,
-            tap(({ token }) => this.saveAuthToken(token)),
-            switchMap(() => this.actualizeUser())
+            tap(({ token }): void => this.saveAuthToken(token)),
+            switchMap((): Observable<User> => this.actualizeUser())
         );
     }
 
@@ -48,14 +48,14 @@ export class CommonAuthService {
         this.localStorage.setItem(CommonAuthService.TOKEN_KEY, token);
     }
 
-    public signOut() {
+    public signOut(): void {
         this.localStorage.removeItem(CommonAuthService.TOKEN_KEY);
         this.window.location.reload();
     }
 
     public actualizeUser(): Observable<User> {
         return this.syncService.loadCurrentUser().pipe(
-            map((json) => this.saveCurrentUser(json))
+            map((json): User => this.saveCurrentUser(json))
         );
     }
 

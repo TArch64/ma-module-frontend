@@ -1,9 +1,9 @@
 import { CourseTypes } from '../enums';
 
 export interface ICourseJSON {
-    id: string,
-    name: string,
-    type: CourseTypes
+    id: string;
+    name: string;
+    type: CourseTypes;
 }
 
 export class Course {

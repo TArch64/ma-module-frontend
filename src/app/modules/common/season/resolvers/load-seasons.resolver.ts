@@ -8,7 +8,7 @@ import { CommonSeasonFacade } from '../common-season.facade';
 export class LoadSeasonsResolver implements Resolve<null> {
     constructor(private readonly seasonsFacade: CommonSeasonFacade) {}
 
-    resolve(): Observable<null> | null {
+    public resolve(): Observable<null> | null {
         if (this.seasonsFacade.isSeasonsLoaded) return null;
         return this.seasonsFacade.loadSeasons().pipe(mapTo(null));
     }

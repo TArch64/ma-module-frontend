@@ -16,7 +16,7 @@ import { ManageMentorsActionsComponent } from '../manage-mentors-actions';
 })
 export class ManageMentorsPageComponent implements OnDestroy {
     public readonly hasMentors$ = this.facade.mentors$.pipe(
-        map((mentors) => !!mentors.length)
+        map((mentors): boolean => !!mentors.length)
     );
 
     private readonly disposable = new Disposable();
@@ -33,7 +33,7 @@ export class ManageMentorsPageComponent implements OnDestroy {
         this.dynamicToolbarService.useToolbar(ManageMentorsActionsComponent, this.injector);
     }
 
-    public ngOnDestroy() {
+    public ngOnDestroy(): void {
         this.disposable.dispose();
         this.closeLeadWarning();
         this.dynamicToolbarService.removeToolbar();

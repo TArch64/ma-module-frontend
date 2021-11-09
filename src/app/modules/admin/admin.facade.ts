@@ -5,7 +5,7 @@ import { map } from 'rxjs/operators';
 @Injectable()
 export class AdminFacade {
     public readonly hasSeasons$ = this.seasonsService.seasons$.pipe(
-        map((seasons) => !!seasons.length)
+        map((seasons): boolean => !!seasons.length)
     );
 
     constructor(private readonly seasonsService: CommonSeasonsService) {}

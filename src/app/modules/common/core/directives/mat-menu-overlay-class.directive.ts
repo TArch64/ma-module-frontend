@@ -10,7 +10,7 @@ export class MatMenuOverlayClassDirective implements AfterViewInit {
 
     constructor(private readonly matMenu: MatMenu) {}
 
-    public ngAfterViewInit() {
+    public ngAfterViewInit(): void {
         this.matMenu.overlayPanelClass = this.overlayClass;
     }
 }

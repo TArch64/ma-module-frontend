@@ -10,7 +10,7 @@ export class BannersService implements OnDestroy {
     private readonly bannersSubject = new BehaviorSubject<BannerRef[]>([]);
     public readonly banners$ = this.bannersSubject.asObservable();
 
-    public ngOnDestroy() {
+    public ngOnDestroy(): void {
         this.disposable.dispose();
     }
 
@@ -20,7 +20,7 @@ export class BannersService implements OnDestroy {
 
     private show(options: BannerOptions): BannerRef {
         const ref = BannerRef.create(options);
-        this.disposable.subscribeTo(ref.events.onClose, () => this.removeBanner(ref));
+        this.disposable.subscribeTo(ref.events.onClose, (): void => this.removeBanner(ref));
         this.addBanner(ref);
         return ref;
     }
@@ -30,7 +30,7 @@ export class BannersService implements OnDestroy {
     }
 
     private removeBanner(bannerRef: BannerRef): void {
-        const banners = this.bannersSubject.value.filter((ref) => ref !== bannerRef);
+        const banners = this.bannersSubject.value.filter((ref): boolean => ref !== bannerRef);
         this.bannersSubject.next(banners);
     }
 }

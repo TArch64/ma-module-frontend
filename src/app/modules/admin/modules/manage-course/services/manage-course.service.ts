@@ -14,8 +14,8 @@ export class ManageCourseService {
 
     public loadCourse(courseId: string): Observable<FullCourse | null> {
         return this.syncService.loadCourse(courseId).pipe(
-            map((course) => course ? FullCourse.fromJSON(course) : null),
-            tap((course) => this.courseSubject.next(course))
+            map((course): FullCourse | null => course ? FullCourse.fromJSON(course) : null),
+            tap((course): void => this.courseSubject.next(course))
         );
     }
 

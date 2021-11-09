@@ -23,16 +23,16 @@ export class LayoutComponent implements OnInit {
         private readonly router: Router
     ) {}
 
-    public ngOnInit() {
+    public ngOnInit(): void {
         const mobileNavigation$ = this.router.events.pipe(
-            filter(() => this.windowService.breakpointSnapshot.isMobile)
+            filter((): boolean => this.windowService.breakpointSnapshot.isMobile)
         );
         this.disposable.subscribeTo(mobileNavigation$, this.closeSidenav.bind(this));
     }
 
     private createSidenavModeStream(): Observable<MatDrawerMode> {
         return this.windowService.breakpoint$.pipe(
-            map((event) => event.isMobile ? 'over' : 'side')
+            map((event): MatDrawerMode => event.isMobile ? 'over' : 'side')
         );
     }
 

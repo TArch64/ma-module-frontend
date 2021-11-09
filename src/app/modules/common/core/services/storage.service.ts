@@ -7,7 +7,7 @@ export class StorageService {
     private static createInjector(name: string, storage: Storage): InjectionToken<StorageService> {
         return new InjectionToken(name, {
             providedIn: 'root',
-            factory: () => new StorageService('ma', inject(SerializerService), storage)
+            factory: (): StorageService => new StorageService('ma', inject(SerializerService), storage)
         });
     }
 

@@ -8,27 +8,27 @@ export class CommonAuthFacade {
         private readonly authService: CommonAuthService
     ) {}
 
-    get isSignedOut(): boolean {
+    public get isSignedOut(): boolean {
         return !this.isSignedIn;
     }
 
-    get isSignedIn(): boolean {
+    public get isSignedIn(): boolean {
         return this.authService.isSignedIn;
     }
 
-    get authToken(): string | null {
+    public get authToken(): string | null {
         return this.authService.authToken;
     }
 
-    get currentUser(): User | null {
+    public get currentUser(): User | null {
         return this.authService.currentUser;
     }
 
-    signOut(): void {
+    public signOut(): void {
         this.authService.signOut();
     }
 
-    fetchCurrentUser(): Observable<User> {
+    public fetchCurrentUser(): Observable<User> {
         return this.authService.fetchCurrentUser();
     }
 }

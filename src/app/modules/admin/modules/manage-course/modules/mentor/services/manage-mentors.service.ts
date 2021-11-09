@@ -9,14 +9,20 @@ import { ManageMentorsSync } from '../sync';
 export class ManageMentorsService {
     public mentorsSnapshot: Mentor[] = [];
     public readonly mentors$ = this.manageCourseService.course$.pipe(
-        map((course) => course?.mentors || []),
-        tap((mentors) => this.mentorsSnapshot = mentors)
+        map((course): Mentor[] => course?.mentors || []),
+        tap((mentors): void => {
+            this.mentorsSnapshot = mentors;
+        })
     );
 
     public leadMentorSnapshot: Mentor | null = null;
     public readonly leadMentor$: Observable<Mentor | null> = this.mentors$.pipe(
-        map((mentors) => mentors.find((mentor) => mentor.isLead) ?? null),
-        tap((mentor) => this.leadMentorSnapshot = mentor)
+        map((mentors): Mentor | null => {
+            return mentors.find((mentor): boolean => mentor.isLead) ?? null;
+        }),
+        tap((mentor): void => {
+            this.leadMentorSnapshot = mentor;
+        })
     );
 
     constructor(
@@ -27,7 +33,7 @@ export class ManageMentorsService {
     public changeLeadMentor(mentor: Mentor): Observable<null> {
         const courseId = this.manageCourseService.courseSnapshot!.id;
         return this.syncService.changeLeadMentor(courseId, mentor.id).pipe(
-            tap(() => {
+            tap((): void => {
                 const mentors = this.mentorsSnapshot.slice();
                 if (this.leadMentorSnapshot) {
                     const oldLead = this.leadMentorSnapshot.clone({ role: MentorRoles.MENTOR });
@@ -41,15 +47,15 @@ export class ManageMentorsService {
     }
 
     private updateMentor(mentors: Mentor[], mentor: Mentor): void {
-        const index = mentors.findIndex((m) => m.id === mentor.id);
+        const index = mentors.findIndex((m): boolean => m.id === mentor.id);
         mentors.splice(index, 1, mentor);
     }
 
     public addMentors(emails: string[]): Observable<null> {
         const courseId = this.manageCourseService.courseSnapshot!.id;
         return this.syncService.addMentors(courseId, emails).pipe(
-            map((mentors) => mentors.map(Mentor.fromJSON)),
-            tap((mentors) => {
+            map((mentors): Mentor[] => mentors.map(Mentor.fromJSON)),
+            tap((mentors): void => {
                 this.manageCourseService.updateCourseMentors([
                     ...mentors,
                     ...this.mentorsSnapshot

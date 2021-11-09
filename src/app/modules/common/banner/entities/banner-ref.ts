@@ -22,7 +22,7 @@ export class BannerRef {
         public readonly events: BannerEventsProxy
     ) {}
 
-    close() {
+    public close(): void {
         this.events.close();
     }
 }

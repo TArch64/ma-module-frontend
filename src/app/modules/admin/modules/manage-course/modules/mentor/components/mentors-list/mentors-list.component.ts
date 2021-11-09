@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { combineLatest } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { ManageMentorsFacade } from '../../manage-mentors.facade';
 
 @Component({
@@ -9,12 +8,10 @@ import { ManageMentorsFacade } from '../../manage-mentors.facade';
     styleUrls: ['./mentors-list.component.css']
 })
 export class MentorsListComponent {
-    public readonly state$ = combineLatest([
-        this.facade.leadMentor$,
-        this.facade.regularMentors$
-    ]).pipe(
-        map(([leadMentor, mentors]) => ({ leadMentor, mentors }))
-    );
+    public readonly state$ = combineLatest({
+        leadMentor: this.facade.leadMentor$,
+        mentors: this.facade.regularMentors$
+    });
 
     constructor(
         private readonly facade: ManageMentorsFacade

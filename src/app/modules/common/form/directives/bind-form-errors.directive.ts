@@ -13,6 +13,6 @@ export class BindFormErrorsDirective implements AfterViewInit {
     private readonly controlsQuery!: QueryList<BindControlErrorDirective>;
 
     public ngAfterViewInit(): void {
-        this.controlsQuery.forEach((control) => control.bindControl(this.formGroup));
+        this.controlsQuery.forEach((control): void => control.bindControl(this.formGroup));
     }
 }

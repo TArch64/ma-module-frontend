@@ -6,7 +6,7 @@ export class KeyFactory {
     public static createProvider(scope: string, delimiter: string = '-'): FactoryProvider {
         return {
             provide: KeyFactory,
-            useFactory: () => new KeyFactory(scope, delimiter)
+            useFactory: (): KeyFactory => new KeyFactory(scope, delimiter)
         };
     }
 
