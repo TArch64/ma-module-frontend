@@ -1,6 +1,6 @@
 <h1 mat-dialog-title>Add mentor</h1>
 
-<form [formGroup]="mentorsForm" appBindFormErrors (ngSubmit)="addMentor()">
+<form [formGroup]="mentorsForm" appBindFormErrors [appProcessingForm]="isAdding" (ngSubmit)="addMentor()">
     <div mat-card-content class="margin-bottom--none">
         <mat-form-field class="block block--full-width">
             <mat-label>User emails</mat-label>

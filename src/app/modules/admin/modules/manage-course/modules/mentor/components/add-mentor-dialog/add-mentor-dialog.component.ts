@@ -45,7 +45,6 @@ export class AddMentorDialogComponent {
         if (this.mentorsForm.invalid) return;
 
         this.isAdding = true;
-        this.mentorsForm.disable();
         const emails = this.mentorsForm.value.users.map((user: UserInputData): string => user.email);
 
         this.facade.addMentors(emails).subscribe({
@@ -61,7 +60,6 @@ export class AddMentorDialogComponent {
 
     private onAddFailed(error: Error): void {
         this.isAdding = false;
-        this.mentorsForm.enable();
         this.toastr.show(error.message);
     }
 }

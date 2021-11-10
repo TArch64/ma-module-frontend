@@ -1,6 +1,6 @@
 <h1 mat-dialog-title>Add course</h1>
 
-<form [formGroup]="courseForm" appBindFormErrors (ngSubmit)="addCourse()">
+<form [formGroup]="courseForm" appBindFormErrors [appProcessingForm]="isAdding" (ngSubmit)="addCourse()">
     <div mat-card-content class="margin-bottom--none">
         <mat-form-field class="form-field--md margin-bottom--xxs">
             <mat-label>Name</mat-label>
