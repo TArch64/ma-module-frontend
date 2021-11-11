@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { ApiPathService, formatValidationHttpResponse } from '@common/core';
 import { Observable } from 'rxjs';
 import { IInsecureUserJSON } from '@common/auth';
-import { IMentorJSON } from '@common/course';
+import { IMentorJSON, Mentor } from '@common/course';
 
 @Injectable()
 export class ManageMentorsSync {
@@ -26,5 +26,10 @@ export class ManageMentorsSync {
     public addMentors(courseId: string, emails: string[]): Observable<IMentorJSON[]> {
         const url = this.apiPath.buildRolePath(['courses', courseId, 'mentors']);
         return this.httpClient.post<IMentorJSON[]>(url, { emails }).pipe(formatValidationHttpResponse);
+    }
+
+    public removeFromCourse(mentor: Mentor): Observable<object> {
+        const url = this.apiPath.buildRolePath(['users', 'mentors', mentor.id]);
+        return this.httpClient.delete<object>(url);
     }
 }

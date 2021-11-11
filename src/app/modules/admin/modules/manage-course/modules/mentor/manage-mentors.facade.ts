@@ -26,4 +26,8 @@ export class ManageMentorsFacade {
     public addMentors(emails: string[]): Observable<null> {
         return this.mentorsService.addMentors(emails);
     }
+
+    public removeMentorFromCourse(mentor: Mentor): Observable<null> {
+        return this.mentorsService.removeFromCourse(mentor);
+    }
 }

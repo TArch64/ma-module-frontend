@@ -13,6 +13,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { BannerModule } from '@common/banner';
 import { MatListModule } from '@angular/material/list';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { ConfirmModule } from '@common/confirm';
 import { ManageCourseCommonModule } from '../common';
 import { ManageMentorsSync } from './sync';
 import { ManageMentorsFacade } from './manage-mentors.facade';
@@ -44,9 +47,12 @@ const publicDeclarations = [
         MatButtonModule,
         MatDialogModule,
         MatListModule,
+        MatToolbarModule,
+        MatIconModule,
         CommonCoreModule,
         CommonFormModule,
         ToastrModule,
+        ConfirmModule,
         BannerModule,
         ManageCourseCommonModule
     ],

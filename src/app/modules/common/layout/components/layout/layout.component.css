@@ -19,7 +19,7 @@
 }
 
 @media (min-width: 600px) {
-    .layout__sidenav-header { box-shadow: 1px 0 0 0 #394aa3 }
+    .layout__sidenav-header { box-shadow: 1px 0 0 0 var(--theme-primary-600) }
 }
 
 .layout__current-user {

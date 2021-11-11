@@ -1,5 +1,15 @@
-<mat-list-item class="mat-list-item--interactive">
-    <div class="flex flex--align-center" mat-line>
+<mat-list-item class="mat-list-item--interactive" [class.mat-list-item--removing]="isRemoving">
+    <div class="flex flex--align-center" mat-line *ngIf="!isRemoving">
         <p class="margin--none">{{ mentor.user.username }}</p>
+
+        <button
+            class="block margin-left--auto"
+            mat-icon-button
+            color="warn"
+            matTooltip="Remove course"
+            (click)="removeMentor()"
+        >
+            <mat-icon>delete</mat-icon>
+        </button>
     </div>
 </mat-list-item>

@@ -40,7 +40,7 @@ export class CoursesListItemComponent {
 
     private onDeleted(): void {
         this.isRemoving = false;
-        this.toastr.show('Course successfully deleted');
+        this.toastr.show('Course successfully removed');
     }
 
     private onDeleteFailed(error: Error): void {
