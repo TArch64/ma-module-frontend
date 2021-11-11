@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { mapTo, skip } from 'rxjs/operators';
+import { skip } from 'rxjs/operators';
 import { Course, CoursesRepositoryService } from '@common/course';
 import { CommonSeasonsService } from '@common/season';
 import { captureExistsValues } from '@common/core';
@@ -23,11 +23,15 @@ export class ManageCoursesFacade {
     ) {}
 
     public loadState(): Observable<null> {
-        return this.repository.loadCourses().pipe(mapTo(null));
+        return this.repository.loadCourses();
     }
 
     public addCourse(options: IAddCourseOptions): Observable<Course> {
         return this.manageCoursesService.addCourse(options);
+    }
+
+    public removeCourse(course: Course): Observable<null> {
+        return this.manageCoursesService.removeCourse(course);
     }
 }
 

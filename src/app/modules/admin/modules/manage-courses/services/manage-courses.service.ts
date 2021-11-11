@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { map, mapTo, tap } from 'rxjs/operators';
 import { Course, CoursesRepositoryService, CourseTypes } from '@common/course';
 import { CommonSeasonsService } from '@common/season';
 import { CoursesSync, AddCoursePayload } from '../sync';
@@ -23,6 +23,13 @@ export class ManageCoursesService {
         return this.coursesSync.addCourse(currentSeason, payload).pipe(
             map(Course.fromJSON),
             tap((course): void => this.repository.addCourse(course))
+        );
+    }
+
+    public removeCourse(course: Course): Observable<null> {
+        return this.coursesSync.removeCourse(course).pipe(
+            tap(() => this.repository.removeCourse(course)),
+            mapTo(null)
         );
     }
 }

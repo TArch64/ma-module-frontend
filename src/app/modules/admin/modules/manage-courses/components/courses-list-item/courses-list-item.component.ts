@@ -1,7 +1,9 @@
 import { Component, Input } from '@angular/core';
 import { Course } from '@common/course';
-import { Observable } from 'rxjs';
+import { Observable, switchMap, tap } from 'rxjs';
 import { ConfirmResult, ConfirmService } from '@common/confirm';
+import { ToastrService } from '@common/toastr';
+import { ManageCoursesFacade } from '../../manage-courses.facade';
 
 @Component({
     selector: 'app-courses-list-item',
@@ -12,15 +14,37 @@ export class CoursesListItemComponent {
     @Input()
     public course!: Course;
 
-    constructor(private readonly confirm: ConfirmService) {}
+    public isRemoving: boolean = false;
+
+    constructor(
+        private readonly facade: ManageCoursesFacade,
+        private readonly confirm: ConfirmService,
+        private readonly toastr: ToastrService
+    ) {}
 
     public removeCourse(): void {
-        this.confirmRemovingSeason().subscribe();
+        this.confirmRemovingSeason().pipe(
+            tap(() => this.isRemoving = true),
+            switchMap(() => this.facade.removeCourse(this.course))
+        ).subscribe({
+            next: this.onDeleted.bind(this),
+            error: this.onDeleteFailed.bind(this)
+        });
     }
 
     private confirmRemovingSeason(): Observable<ConfirmResult> {
         return this.confirm.open({
             text: 'Are you sure you want to remove the course?'
         });
+    }
+
+    private onDeleted(): void {
+        this.isRemoving = false;
+        this.toastr.show('Course successfully deleted');
+    }
+
+    private onDeleteFailed(error: Error): void {
+        this.isRemoving = false;
+        this.toastr.show(error.message);
     }
 }

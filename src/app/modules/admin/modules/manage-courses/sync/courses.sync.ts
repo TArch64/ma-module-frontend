@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ICourseJSON } from '@common/course';
+import { Course, ICourseJSON } from '@common/course';
 import { Season } from '@common/season';
 import { ApiPathService, formatValidationHttpResponse } from '@common/core';
 import { HttpClient } from '@angular/common/http';
@@ -17,5 +17,10 @@ export class CoursesSync {
     public addCourse(season: Season, payload: AddCoursePayload): Observable<ICourseJSON> {
         const url = this.apiPath.buildRolePath(['seasons', season.id, 'courses']);
         return this.httpClient.post<ICourseJSON>(url, payload).pipe(formatValidationHttpResponse);
+    }
+
+    public removeCourse(course: Course): Observable<object> {
+        const url = this.apiPath.buildRolePath(['courses', course.id]);
+        return this.httpClient.delete<object>(url);
     }
 }

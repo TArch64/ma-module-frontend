@@ -1,10 +1,16 @@
-<mat-list-item class="courses-list-item">
-    <div class="flex flex--align-center" mat-line>
+<mat-list-item class="mat-list-item--interactive" [class.mat-list-item--removing]="isRemoving">
+    <div class="flex flex--align-center" mat-line *ngIf="!isRemoving">
         <a class="courses-list-item__link" [routerLink]="['/admin', 'courses', course.id]">
             <h2 class="courses-list-item__title">{{ course.name }}</h2>
         </a>
 
-        <button class="block margin-left--auto" mat-icon-button color="warn" matTooltip="Remove course" (click)="removeCourse()">
+        <button
+            class="block margin-left--auto"
+            mat-icon-button
+            color="warn"
+            matTooltip="Remove course"
+            (click)="removeCourse()"
+        >
             <mat-icon>delete</mat-icon>
         </button>
     </div>

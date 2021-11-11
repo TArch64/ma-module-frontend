@@ -2,6 +2,6 @@
     transition: background-color 0.2s var(--mat-transition);
 }
 
-.mat-list-item--interactive:hover {
+.mat-list-item--interactive:not(.mat-list-item--removing):hover {
     background-color: rgba(0, 0, 0, 0.04);
 }
