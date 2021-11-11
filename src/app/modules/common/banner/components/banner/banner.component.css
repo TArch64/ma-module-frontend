@@ -12,7 +12,7 @@
 }
 
 .banner--warning {
-    border-color: var(--mat-warn)
+    border-color: var(--theme-warn-500);
 }
 
 .banner__icon {

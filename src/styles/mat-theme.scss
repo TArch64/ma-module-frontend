@@ -1,0 +1,89 @@
+@use 'sass:map';
+@use 'sass:math';
+@use 'sass:meta';
+@use '@angular/material' as mat;
+
+:root {
+    --mat-primary: 231, 48%;
+    --mat-transition: cubic-bezier(0.35, 0, 0.25, 1);
+}
+
+$palette-keys: 50, 100, 200, 300, 400, 500, 600, 700, 800, 900;
+$palette-alpha-keys: 100, 200, 400, 700;
+
+
+@function generate-palette-colors($keys, $var, $color-generator) {
+    $dynamic-palette-map: ();
+    @each $key in $keys {
+        $color-level: math.div(1000 - $key, 10) * 1%;
+        $color: meta.call(meta.get-function($color-generator), $var, $key, $color-level);
+        $dynamic-palette-map: map.set($dynamic-palette-map, map.get($color, key), map.get($color, value));
+    }
+    @return $dynamic-palette-map;
+}
+
+@function generate-color($var, $key, $color-level) {
+    @return (
+        key: $key,
+        value: hsl(var(#{$var}), #{$color-level})
+    );
+}
+
+@function generate-alpha-color($var, $key, $color-level) {
+    @return (
+        key: A + $key,
+        value: hsla(var(#{$var}), #{$color-level}, #{$color-level})
+    );
+}
+
+@function generate-dynamic-palette-var-name($name, $key) {
+    @return --theme-#{$name}-#{$key};
+}
+
+@mixin provide-dynamic-palette($name, $palette) {
+    $palette: map.remove($palette, contrast);
+    @each $key in map.keys($palette) {
+        #{generate-dynamic-palette-var-name($name, $key)}: #{map.get($palette, $key)};
+    }
+}
+
+@function generate-palette($var) {
+    $dynamic-palette-map: map.merge(
+        generate-palette-colors($palette-keys, $var, generate-color),
+        generate-palette-colors($palette-alpha-keys, $var, generate-alpha-color),
+    );
+    @return map.set($dynamic-palette-map, contrast, map.get(mat.$indigo-palette, contrast));
+}
+
+@function generate-dynamic-palette($name, $palette) {
+    $contrast: map.get($palette, contrast);
+    $palette: map.remove($palette, contrast);
+    @each $key in map.keys($palette) {
+        $palette: map.set($palette, $key, var(#{generate-dynamic-palette-var-name($name, $key)}));
+    }
+    @return map.set($palette, contrast, $contrast);
+}
+
+$primary-palette-definition: generate-palette(--mat-primary);
+
+:root {
+    @include provide-dynamic-palette(primary, $primary-palette-definition);
+    @include provide-dynamic-palette(accent, mat.$pink-palette);
+    @include provide-dynamic-palette(warn, mat.$red-palette);
+}
+
+$primary-palette: mat.define-palette(generate-dynamic-palette(primary, $primary-palette-definition), 500);
+$accent-palette: mat.define-palette(generate-dynamic-palette(accent, mat.$pink-palette), A200, A100, A400);
+$warn-palette: mat.define-palette(generate-dynamic-palette(warn, mat.$red-palette));
+
+$dynamic-theme: mat.define-light-theme((
+    color: (
+        primary: $primary-palette,
+        accent: $accent-palette,
+        warn: $warn-palette
+    )
+));
+
+@include mat.core();
+@include mat.all-component-themes($dynamic-theme);
+@include mat.all-component-typographies($dynamic-theme);

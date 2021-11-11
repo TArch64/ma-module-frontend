@@ -4,8 +4,4 @@
     --offset-sm: 16px;
     --offset-md: 24px;
     --offset-lg: 32px;
-
-    --mat-transition: cubic-bezier(0.35, 0, 0.25, 1);
-    --mat-primary: #3f51b5;
-    --mat-warn: #f44336;
 }
