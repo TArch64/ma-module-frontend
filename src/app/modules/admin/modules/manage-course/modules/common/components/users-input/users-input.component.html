@@ -24,7 +24,8 @@
     [matChipInputSeparatorKeyCodes]="emailInputSeparators"
     [matChipInputAddOnBlur]="false"
     [formControl]="emailControl"
-    (input)="updateAutocomplete()"
+    [placeholder]="placeholder"
+    (input)="updateEmailField()"
     (matChipInputTokenEnd)="addUser($event.value)"
     #emailInput
 >

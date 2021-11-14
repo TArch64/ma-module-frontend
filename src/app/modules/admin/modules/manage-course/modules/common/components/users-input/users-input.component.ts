@@ -16,7 +16,7 @@ import { Disposable, KeyFactory, NgChanges, TypedOnChanges } from '@common/core'
 import { ControlValueAccessor, FormControl, NgControl } from '@angular/forms';
 import { NotifyControlChange, NotifyControlTouched, requireEmail, requireField } from '@common/form';
 import { BooleanInput } from 'ngx-boolean-input';
-import { COMMA, ENTER, SPACE } from '@angular/cdk/keycodes';
+import { COMMA, SPACE } from '@angular/cdk/keycodes';
 import { IUsersAutocompleteService, USERS_AUTOCOMPLETE_SERVICE } from '../../services';
 import { UserInputData } from '../../entities';
 
@@ -34,7 +34,7 @@ import { UserInputData } from '../../entities';
 })
 export class UsersInputComponent implements MatFormFieldControl<UserInputData[]>, OnDestroy, OnChanges, TypedOnChanges, ControlValueAccessor {
     private static readonly CONTROL_TYPE = 'admin-users-input';
-    public readonly emailInputSeparators = [ENTER, COMMA, SPACE];
+    public readonly emailInputSeparators = [COMMA, SPACE];
     public stateChanges = new Subject<void>();
     public value: UserInputData[] = [];
     public focused: boolean = false;
@@ -194,7 +194,8 @@ export class UsersInputComponent implements MatFormFieldControl<UserInputData[]>
         this.emailInputRef.nativeElement.focus();
     }
 
-    public updateAutocomplete(): void {
+    public updateEmailField(): void {
+        this.ngControl?.control?.setErrors(null);
         this.autocompleteService.triggerRequest(this.emailControl.value.trim());
     }
 }
