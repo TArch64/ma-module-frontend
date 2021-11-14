@@ -1,12 +1,12 @@
-<h1 mat-dialog-title>Add mentors</h1>
+<h1 mat-dialog-title>Add students</h1>
 
-<form [formGroup]="mentorsForm" appBindFormErrors [appProcessingForm]="isAdding" (ngSubmit)="addMentors()">
+<form [formGroup]="studentsForm" appBindFormErrors [appProcessingForm]="isAdding" (ngSubmit)="addStudents()">
     <div mat-card-content class="margin-bottom--none">
         <mat-form-field class="block block--full-width">
-            <mat-label>Mentor emails</mat-label>
+            <mat-label>Student emails</mat-label>
 
             <app-users-input
-                placeholder="Type mentor email..."
+                placeholder="Type student email..."
                 formControlName="users"
             ></app-users-input>
 
@@ -31,7 +31,7 @@
             type="submit"
             color="primary"
         >
-            Add mentors
+            Add students
         </button>
     </div>
 </form>

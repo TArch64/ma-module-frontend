@@ -10,8 +10,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
 import { PortalModule } from '@angular/cdk/portal';
-import { ManageCourseSync } from './sync';
-import { ManageCourseService } from './services';
 import { LoadCourseResolver } from './resolvers';
 import { ManageCoursePageComponent } from './components';
 import { ManageCourseFacade } from './manage-course.facade';
@@ -58,8 +56,6 @@ import { ManageMentorsModule, ManageMentorsPageComponent, ManageStudentsModule, 
     ],
     providers: [
         ManageCourseFacade,
-        ManageCourseService,
-        ManageCourseSync,
         LoadCourseResolver
     ]
 })

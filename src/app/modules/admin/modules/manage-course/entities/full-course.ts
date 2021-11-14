@@ -1,8 +1,9 @@
-import { Course, CourseTypes, ICourseJSON, Mentor, IMentorJSON } from '@common/course';
+import { Course, CourseTypes, ICourseJSON, Mentor, IMentorJSON, IStudentJSON, Student } from '@common/course';
 import { IPrototype } from '@common/core';
 
 export interface IFullCourseJSON extends ICourseJSON {
     mentors: IMentorJSON[];
+    students: IStudentJSON[];
 }
 
 export class FullCourse extends Course implements IPrototype<IFullCourseJSON> {
@@ -11,7 +12,8 @@ export class FullCourse extends Course implements IPrototype<IFullCourseJSON> {
             json.id,
             json.name,
             json.type,
-            json.mentors.map(Mentor.fromJSON)
+            json.mentors.map(Mentor.fromJSON),
+            json.students.map(Student.fromJSON)
         );
     }
 
@@ -19,7 +21,8 @@ export class FullCourse extends Course implements IPrototype<IFullCourseJSON> {
         id: string,
         name: string,
         type: CourseTypes,
-        public readonly mentors: Mentor[]
+        public readonly mentors: Mentor[],
+        public readonly students: Student[]
     ) {
         super(id, name, type);
     }

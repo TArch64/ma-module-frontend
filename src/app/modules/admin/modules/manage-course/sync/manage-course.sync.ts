@@ -4,7 +4,7 @@ import { ApiPathService } from '@common/core';
 import { HttpClient } from '@angular/common/http';
 import { IFullCourseJSON } from '../entities';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class ManageCourseSync {
     constructor(
         private readonly apiPath: ApiPathService,

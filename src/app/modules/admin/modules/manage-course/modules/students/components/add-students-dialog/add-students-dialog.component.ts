@@ -4,56 +4,56 @@ import { FormBuilder } from '@angular/forms';
 import { ToastrService } from '@common/toastr';
 import { requireArrayMinLength } from '@common/form';
 import { DialogSizes } from '@common/dialog';
-import { ManageMentorsFacade } from '../../manage-mentors.facade';
+import { ManageStudentsFacade } from '../../manage-students.facade';
 import { UserInputData, USERS_AUTOCOMPLETE_SERVICE } from '../../../common';
-import { MentorsAutocompleteService } from '../../services';
+import { StudentsAutocompleteService } from '../../services';
 
 @Component({
-    selector: 'app-add-mentor-dialog',
-    templateUrl: './add-mentor-dialog.component.html',
+    selector: 'app-add-students-dialog',
+    templateUrl: './add-students-dialog.component.html',
     providers: [
         {
             provide: USERS_AUTOCOMPLETE_SERVICE,
-            useClass: MentorsAutocompleteService
+            useClass: StudentsAutocompleteService
         }
     ]
 })
-export class AddMentorDialogComponent {
+export class AddStudentsDialogComponent {
     public static readonly DIALOG_CONFIG: MatDialogConfig = {
         width: DialogSizes.MD
     };
 
     public isAdding: boolean = false;
-    public readonly mentorsForm = this.formBuilder.group({
-        users: [[], requireArrayMinLength(1, 'Add at list one mentor')]
+    public readonly studentsForm = this.formBuilder.group({
+        users: [[], requireArrayMinLength(1, 'Add at list one student')]
     });
 
     constructor(
-        private readonly dialogRef: MatDialogRef<AddMentorDialogComponent>,
+        private readonly dialogRef: MatDialogRef<AddStudentsDialogComponent>,
         private readonly formBuilder: FormBuilder,
-        private readonly facade: ManageMentorsFacade,
+        private readonly facade: ManageStudentsFacade,
         private readonly toastr: ToastrService
     ) {}
 
     public get isAddDisabled(): boolean {
-        return !this.mentorsForm.value.users.length;
+        return !this.studentsForm.value.users.length;
     }
 
-    public addMentors(): void {
-        this.mentorsForm.markAllAsTouched();
-        if (this.mentorsForm.invalid) return;
+    public addStudents(): void {
+        this.studentsForm.markAllAsTouched();
+        if (this.studentsForm.invalid) return;
 
         this.isAdding = true;
-        const emails = this.mentorsForm.value.users.map((user: UserInputData): string => user.email);
+        const emails = this.studentsForm.value.users.map((user: UserInputData): string => user.email);
 
-        this.facade.addMentors(emails).subscribe({
-            next: this.onMentorAdded.bind(this),
+        this.facade.addStudents(emails).subscribe({
+            next: this.onStudentsAdded.bind(this),
             error: this.onAddFailed.bind(this)
         });
     }
 
-    private onMentorAdded(): void {
-        this.toastr.show('Mentors successfully added');
+    private onStudentsAdded(): void {
+        this.toastr.show('Students successfully added');
         this.dialogRef.close();
     }
 

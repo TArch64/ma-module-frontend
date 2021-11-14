@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
-import { Mentor } from '@common/course';
+import { Mentor, Student } from '@common/course';
 import { ManageCourseSync } from '../sync';
 import { FullCourse } from '../entities';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class ManageCourseService {
     private readonly courseSubject = new BehaviorSubject<FullCourse | null>(null);
     public readonly course$ = this.courseSubject.asObservable();
@@ -25,5 +25,9 @@ export class ManageCourseService {
 
     public updateCourseMentors(mentors: Mentor[]): void {
         this.courseSubject.next(this.courseSnapshot!.clone({ mentors }));
+    }
+
+    public updateCourseStudents(students: Student[]): void {
+        this.courseSubject.next(this.courseSnapshot!.clone({ students }));
     }
 }
