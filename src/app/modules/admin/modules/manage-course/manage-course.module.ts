@@ -13,9 +13,9 @@ import { PortalModule } from '@angular/cdk/portal';
 import { ManageCourseSync } from './sync';
 import { ManageCourseService } from './services';
 import { LoadCourseResolver } from './resolvers';
-import { ManageCoursePageComponent, ManageStudentsPageComponent } from './components';
+import { ManageCoursePageComponent } from './components';
 import { ManageCourseFacade } from './manage-course.facade';
-import { ManageMentorsModule, ManageMentorsPageComponent } from './modules';
+import { ManageMentorsModule, ManageMentorsPageComponent, ManageStudentsModule, ManageStudentsPageComponent } from './modules';
 
 @NgModule({
     imports: [
@@ -28,8 +28,7 @@ import { ManageMentorsModule, ManageMentorsPageComponent } from './modules';
                 children: [
                     {
                         path: 'mentors',
-                        component: ManageMentorsPageComponent,
-                        data: { toolbarActions: 'test' }
+                        component: ManageMentorsPageComponent
                     },
                     {
                         path: 'students',
@@ -51,11 +50,11 @@ import { ManageMentorsModule, ManageMentorsPageComponent } from './modules';
         MatIconModule,
         MatTabsModule,
         PortalModule,
-        ManageMentorsModule
+        ManageMentorsModule,
+        ManageStudentsModule
     ],
     declarations: [
-        ManageCoursePageComponent,
-        ManageStudentsPageComponent
+        ManageCoursePageComponent
     ],
     providers: [
         ManageCourseFacade,
