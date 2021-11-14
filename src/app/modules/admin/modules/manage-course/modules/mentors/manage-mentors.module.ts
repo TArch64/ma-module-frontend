@@ -19,7 +19,7 @@ import { ConfirmModule } from '@common/confirm';
 import { ManageCourseCommonModule } from '../common';
 import { ManageMentorsSync } from './sync';
 import { ManageMentorsFacade } from './manage-mentors.facade';
-import { MentorsAutocompleteService, ManageMentorsService } from './services';
+import { ManageMentorsService } from './services';
 import {
     AddMentorDialogComponent,
     CourseLeadSelectorComponent,
@@ -67,8 +67,7 @@ const publicDeclarations = [
     providers: [
         ManageMentorsFacade,
         ManageMentorsSync,
-        ManageMentorsService,
-        MentorsAutocompleteService
+        ManageMentorsService
     ],
     exports: publicDeclarations
 })

@@ -9,7 +9,12 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { ManageCourseCommonModule } from '../common';
-import { AddStudentsDialogComponent, ManageStudentsActionsComponent, ManageStudentsPageComponent } from './components';
+import {
+    AddStudentsDialogComponent,
+    ManageStudentsActionsComponent,
+    ManageStudentsPageComponent,
+    StudentsEmptyComponent
+} from './components';
 
 const publicDeclarations = [
     ManageStudentsPageComponent,
@@ -30,6 +35,9 @@ const publicDeclarations = [
         CommonFormModule,
         CommonCoreModule
     ],
-    declarations: publicDeclarations
+    declarations: [
+        ...publicDeclarations,
+        StudentsEmptyComponent
+    ]
 })
 export class ManageStudentsModule {}
