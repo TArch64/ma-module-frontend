@@ -1,15 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { MatButtonModule } from '@angular/material/button';
 import { ManageCourseCommonModule } from '../common';
-import { ManageStudentsPageComponent } from './components';
+import { ManageStudentsActionsComponent, ManageStudentsPageComponent } from './components';
 
 const publicDeclarations = [
-    ManageStudentsPageComponent
+    ManageStudentsPageComponent,
+    ManageStudentsActionsComponent
 ];
 
 @NgModule({
     imports: [
         CommonModule,
+        MatButtonModule,
         ManageCourseCommonModule
     ],
     declarations: publicDeclarations

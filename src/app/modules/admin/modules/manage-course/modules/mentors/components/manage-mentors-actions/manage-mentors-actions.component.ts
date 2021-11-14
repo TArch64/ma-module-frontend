@@ -4,8 +4,7 @@ import { AddMentorDialogComponent } from '../add-mentor-dialog';
 
 @Component({
     selector: 'app-manage-mentors-actions',
-    templateUrl: './manage-mentors-actions.component.html',
-    styleUrls: ['./manage-mentors-actions.component.css']
+    templateUrl: './manage-mentors-actions.component.html'
 })
 export class ManageMentorsActionsComponent {
     constructor(
