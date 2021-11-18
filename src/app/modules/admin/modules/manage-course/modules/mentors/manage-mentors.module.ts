@@ -16,6 +16,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { ConfirmModule } from '@common/confirm';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { ManageCourseCommonModule } from '../common';
 import { ManageMentorsSync } from './sync';
 import { ManageMentorsFacade } from './manage-mentors.facade';
@@ -48,6 +49,7 @@ const publicDeclarations = [
         MatDialogModule,
         MatListModule,
         MatToolbarModule,
+        MatTooltipModule,
         MatIconModule,
         CommonCoreModule,
         CommonFormModule,

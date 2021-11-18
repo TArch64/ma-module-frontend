@@ -1,3 +1,8 @@
 .mentors-list__card {
     padding: 0 0 var(--offset-xs);
 }
+
+.mentors-list__divider:first-child,
+.mentors-list__divider + .mentors-list__divider {
+    display: none;
+}

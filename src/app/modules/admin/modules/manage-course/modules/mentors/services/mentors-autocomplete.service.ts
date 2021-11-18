@@ -13,9 +13,7 @@ export class MentorsAutocompleteService implements IUsersAutocompleteService {
         switchMap(this.load.bind(this))
     );
 
-    constructor(
-        private readonly syncService: ManageMentorsSync
-    ) {}
+    constructor(private readonly syncService: ManageMentorsSync) {}
 
     public triggerRequest(query: string): void {
         this.searchTrigger.next(query);

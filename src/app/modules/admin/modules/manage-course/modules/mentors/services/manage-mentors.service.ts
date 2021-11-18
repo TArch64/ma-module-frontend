@@ -4,15 +4,14 @@ import { map, mapTo, tap } from 'rxjs/operators';
 import { Mentor, MentorRoles } from '@common/course';
 import { ManageCourseService } from '../../../services';
 import { ManageMentorsSync } from '../sync';
+import { PendingInvitation } from '../../../entities';
 
 @Injectable()
 export class ManageMentorsService {
     public mentorsSnapshot: Mentor[] = [];
     public readonly mentors$ = this.manageCourseService.course$.pipe(
         map((course): Mentor[] => course?.mentors || []),
-        tap((mentors): void => {
-            this.mentorsSnapshot = mentors;
-        })
+        tap((mentors) => void (this.mentorsSnapshot = mentors))
     );
 
     public leadMentorSnapshot: Mentor | null = null;
@@ -20,8 +19,12 @@ export class ManageMentorsService {
         map((mentors): Mentor | null => {
             return mentors.find((mentor): boolean => mentor.isLead) ?? null;
         }),
-        tap((mentor): void => {
-            this.leadMentorSnapshot = mentor;
+        tap((mentor) => void (this.leadMentorSnapshot = mentor))
+    );
+
+    public readonly regularMentors$ = this.mentors$.pipe(
+        map((mentors): Mentor[] => {
+            return mentors.filter((mentor): boolean => mentor.isRegular);
         })
     );
 
@@ -54,12 +57,9 @@ export class ManageMentorsService {
     public addMentors(emails: string[]): Observable<null> {
         const courseId = this.manageCourseService.courseSnapshot!.id;
         return this.syncService.addMentors(courseId, emails).pipe(
-            map((mentors): Mentor[] => mentors.map(Mentor.fromJSON)),
-            tap((mentors): void => {
-                this.manageCourseService.updateCourseMentors([
-                    ...mentors,
-                    ...this.mentorsSnapshot
-                ]);
+            tap(({ mentors, invitations }): void => {
+                this.manageCourseService.addCourseMentors(mentors.map(Mentor.fromJSON));
+                this.manageCourseService.addMentorInvitations(invitations.map(PendingInvitation.fromJSON));
             }),
             mapTo(null)
         );

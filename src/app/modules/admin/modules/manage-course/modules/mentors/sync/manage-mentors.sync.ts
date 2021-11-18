@@ -4,6 +4,12 @@ import { ApiPathService, formatValidationHttpResponse } from '@common/core';
 import { Observable } from 'rxjs';
 import { IInsecureUserJSON } from '@common/auth';
 import { IMentorJSON, Mentor } from '@common/course';
+import { IPendingInvitationJSON } from '../../../entities';
+
+export interface AddedMentorsResponse {
+    mentors: IMentorJSON[];
+    invitations: IPendingInvitationJSON[];
+}
 
 @Injectable()
 export class ManageMentorsSync {
@@ -23,9 +29,9 @@ export class ManageMentorsSync {
         return this.httpClient.get<IInsecureUserJSON[]>(url, { params });
     }
 
-    public addMentors(courseId: string, emails: string[]): Observable<IMentorJSON[]> {
+    public addMentors(courseId: string, emails: string[]): Observable<AddedMentorsResponse> {
         const url = this.apiPath.buildRolePath(['courses', courseId, 'mentors']);
-        return this.httpClient.post<IMentorJSON[]>(url, { emails }).pipe(formatValidationHttpResponse);
+        return this.httpClient.post<AddedMentorsResponse>(url, { emails }).pipe(formatValidationHttpResponse);
     }
 
     public removeFromCourse(mentor: Mentor): Observable<object> {

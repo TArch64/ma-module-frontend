@@ -5,15 +5,24 @@
             <app-mentors-list-item [mentor]="state.leadMentor"></app-mentors-list-item>
         </ng-container>
 
-        <mat-divider *ngIf="state.leadMentor && state.mentors.length"></mat-divider>
-
         <ng-container *ngIf="state.mentors.length">
+            <mat-divider class="mentors-list__divider"></mat-divider>
             <h3 mat-subheader>Mentors</h3>
 
             <app-mentors-list-item
                 *ngFor="let mentor of state.mentors"
                 [mentor]="mentor"
             ></app-mentors-list-item>
+        </ng-container>
+
+        <ng-container *ngIf="state.pendingInvitations.length">
+            <mat-divider class="mentors-list__divider"></mat-divider>
+            <h3 mat-subheader>Pending Invitations</h3>
+
+            <app-pending-course-invitation
+                *ngFor="let invitation of state.pendingInvitations"
+                [invitation]="invitation"
+            ></app-pending-course-invitation>
         </ng-container>
     </mat-list>
 </mat-card>

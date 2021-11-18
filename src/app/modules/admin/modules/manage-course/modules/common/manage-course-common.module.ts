@@ -5,10 +5,16 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
-import { UsersInputComponent } from './components';
+import { MatListModule } from '@angular/material/list';
+import { ToastrModule } from '@common/toastr';
+import { ConfirmModule } from '@common/confirm';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatButtonModule } from '@angular/material/button';
+import { PendingCourseInvitationComponent, UsersInputComponent } from './components';
 
 const publicDeclarations = [
-    UsersInputComponent
+    UsersInputComponent,
+    PendingCourseInvitationComponent
 ];
 
 @NgModule({
@@ -18,7 +24,12 @@ const publicDeclarations = [
         MatIconModule,
         MatAutocompleteModule,
         MatChipsModule,
-        MatInputModule
+        MatInputModule,
+        MatListModule,
+        MatTooltipModule,
+        MatButtonModule,
+        ToastrModule,
+        ConfirmModule
     ],
     declarations: publicDeclarations,
     exports: publicDeclarations

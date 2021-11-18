@@ -15,9 +15,7 @@ import { ManageMentorsActionsComponent } from '../manage-mentors-actions';
     templateUrl: './manage-mentors-page.component.html'
 })
 export class ManageMentorsPageComponent implements OnDestroy {
-    public readonly hasMentors$ = this.facade.mentors$.pipe(
-        map((mentors): boolean => !!mentors.length)
-    );
+    public readonly hasMentors$ = this.facade.hasMentors$;
 
     private readonly disposable = new Disposable();
     private noLeadWarningRef: BannerRef | null = null;
