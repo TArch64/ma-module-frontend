@@ -4,6 +4,7 @@ import { map, mapTo, tap } from 'rxjs/operators';
 import { Student } from '@common/course';
 import { ManageCourseService } from '../../../services';
 import { ManageStudentsSync } from '../sync';
+import { PendingInvitation } from '../../../entities';
 
 @Injectable({ providedIn: 'root' })
 export class ManageStudentsService {
@@ -21,13 +22,17 @@ export class ManageStudentsService {
     public addStudents(emails: string[]): Observable<null> {
         const courseId = this.manageCourseService.courseSnapshot!.id;
         return this.syncService.addStudents(courseId, emails).pipe(
-            map((students): Student[] => students.map(Student.fromJSON)),
-            tap((students: Student[]): void => {
-                this.manageCourseService.updateCourseStudents([
-                    ...students,
-                    ...this.studentsSnapshot
-                ]);
+            tap(({ students, invitations }): void => {
+                this.manageCourseService.addCourseStudents(students.map(Student.fromJSON));
+                this.manageCourseService.addStudentInvitations(invitations.map(PendingInvitation.fromJSON));
             }),
+            mapTo(null)
+        );
+    }
+
+    public removeFromCourse(student: Student): Observable<null> {
+        return this.syncService.removeFromCourse(student).pipe(
+            tap(() => this.manageCourseService.removeStudentFromCourse(student)),
             mapTo(null)
         );
     }

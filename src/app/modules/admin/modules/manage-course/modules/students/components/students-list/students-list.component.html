@@ -1,0 +1,22 @@
+<mat-card class="student-list__card" *ngIf="state$ | async as state">
+    <mat-list>
+        <ng-container *ngIf="state.students.length">
+            <h3 mat-subheader>Students</h3>
+
+            <app-students-list-item
+                *ngFor="let student of state.students"
+                [student]="student"
+            ></app-students-list-item>
+        </ng-container>
+
+        <ng-container *ngIf="state.pendingInvitations.length">
+            <mat-divider class="student-list__divider"></mat-divider>
+            <h3 mat-subheader>Pending Invitations</h3>
+
+            <app-pending-course-invitation
+                *ngFor="let invitation of state.pendingInvitations"
+                [invitation]="invitation"
+            ></app-pending-course-invitation>
+        </ng-container>
+    </mat-list>
+</mat-card>

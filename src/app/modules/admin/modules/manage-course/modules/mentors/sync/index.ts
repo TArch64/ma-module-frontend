@@ -1,1 +1,1 @@
-export { ManageMentorsSync } from './manage-mentors.sync';
+export { ManageMentorsSync, IAddedMentorsResponse } from './manage-mentors.sync';

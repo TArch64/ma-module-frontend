@@ -1,6 +1,4 @@
-<ng-container *ngIf="hasStudents$ | async; else emptyState">
-    <p>manage-students-page works!</p>
-</ng-container>
+<app-students-list *ngIf="hasStudents$ | async; else emptyState"></app-students-list>
 
 <ng-template #emptyState>
     <app-students-empty (onAddStudent)="addStudents()"></app-students-empty>

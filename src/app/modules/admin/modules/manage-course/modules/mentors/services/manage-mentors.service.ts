@@ -67,10 +67,7 @@ export class ManageMentorsService {
 
     public removeFromCourse(mentor: Mentor): Observable<null> {
         return this.syncService.removeFromCourse(mentor).pipe(
-            tap(() => {
-                const mentors = this.mentorsSnapshot.filter((m): boolean => m.id !== mentor.id);
-                this.manageCourseService.updateCourseMentors(mentors);
-            }),
+            tap(() => this.manageCourseService.removeMentorFromCourse(mentor)),
             mapTo(null)
         );
     }

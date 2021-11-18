@@ -1,1 +1,1 @@
-export { ManageStudentsSync } from './manage-students.sync';
+export { ManageStudentsSync, IAddedStudentsResponse } from './manage-students.sync';

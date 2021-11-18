@@ -28,26 +28,50 @@ export class ManageCourseService {
     }
 
     public addCourseMentors(mentors: Mentor[]): void {
-        const courseMentors = [...mentors, ...this.courseSnapshot!.mentors];
-        this.courseSubject.next(this.courseSnapshot!.clone({ mentors: courseMentors }));
+        this.updateCourseMentors([...mentors, ...this.courseSnapshot!.mentors]);
+    }
+
+    public removeMentorFromCourse(mentor: Mentor): void {
+        const mentors = this.courseSnapshot!.mentors.filter((m): boolean => m.id !== mentor.id);
+        this.updateCourseMentors(mentors);
+    }
+
+    public updateMentorInvitations(invitations: PendingInvitation[]): void {
+        this.courseSubject.next(this.courseSnapshot!.clone({ pendingMentorInvitations: invitations }));
     }
 
     public removeMentorInvitation(invitation: PendingInvitation): void {
         const invitations = this.courseSnapshot!.pendingMentorInvitations.filter((i) => i.id !== invitation.id);
-        this.courseSubject.next(this.courseSnapshot!.clone({ pendingMentorInvitations: invitations }));
+        this.updateMentorInvitations(invitations);
     }
 
     public addMentorInvitations(invitations: PendingInvitation[]): void {
-        const pendingMentorInvitations = [...invitations, ...this.courseSnapshot!.pendingMentorInvitations];
-        this.courseSubject.next(this.courseSnapshot!.clone({ pendingMentorInvitations }));
+        this.updateMentorInvitations([...invitations, ...this.courseSnapshot!.pendingMentorInvitations]);
     }
 
     public updateCourseStudents(students: Student[]): void {
         this.courseSubject.next(this.courseSnapshot!.clone({ students }));
     }
 
+    public addCourseStudents(students: Student[]): void {
+        this.updateCourseStudents([...students, ...this.courseSnapshot!.students]);
+    }
+
+    public removeStudentFromCourse(student: Student): void {
+        const mentors = this.courseSnapshot!.students.filter((s): boolean => s.id !== student.id);
+        this.updateCourseStudents(mentors);
+    }
+
+    public updateStudentInvitations(invitations: PendingInvitation[]): void {
+        this.courseSubject.next(this.courseSnapshot!.clone({ pendingStudentInvitations: invitations }));
+    }
+
+    public addStudentInvitations(invitations: PendingInvitation[]): void {
+        this.updateStudentInvitations([...invitations, ...this.courseSnapshot!.pendingStudentInvitations]);
+    }
+
     public removeStudentInvitation(invitation: PendingInvitation): void {
         const invitations = this.courseSnapshot!.pendingStudentInvitations.filter((i) => i.id !== invitation.id);
-        this.courseSubject.next(this.courseSnapshot!.clone({ pendingStudentInvitations: invitations }));
+        this.updateStudentInvitations(invitations);
     }
 }

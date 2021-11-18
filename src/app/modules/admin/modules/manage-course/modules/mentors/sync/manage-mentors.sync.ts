@@ -6,7 +6,7 @@ import { IInsecureUserJSON } from '@common/auth';
 import { IMentorJSON, Mentor } from '@common/course';
 import { IPendingInvitationJSON } from '../../../entities';
 
-export interface AddedMentorsResponse {
+export interface IAddedMentorsResponse {
     mentors: IMentorJSON[];
     invitations: IPendingInvitationJSON[];
 }
@@ -29,13 +29,13 @@ export class ManageMentorsSync {
         return this.httpClient.get<IInsecureUserJSON[]>(url, { params });
     }
 
-    public addMentors(courseId: string, emails: string[]): Observable<AddedMentorsResponse> {
+    public addMentors(courseId: string, emails: string[]): Observable<IAddedMentorsResponse> {
         const url = this.apiPath.buildRolePath(['courses', courseId, 'mentors']);
-        return this.httpClient.post<AddedMentorsResponse>(url, { emails }).pipe(formatValidationHttpResponse);
+        return this.httpClient.post<IAddedMentorsResponse>(url, { emails }).pipe(formatValidationHttpResponse);
     }
 
     public removeFromCourse(mentor: Mentor): Observable<object> {
-        const url = this.apiPath.buildRolePath(['users', 'mentors', mentor.id]);
+        const url = this.apiPath.buildRolePath(['courses', 'mentors', mentor.id]);
         return this.httpClient.delete<object>(url);
     }
 }

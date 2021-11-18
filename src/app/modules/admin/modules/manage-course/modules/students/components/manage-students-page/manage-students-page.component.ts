@@ -1,6 +1,4 @@
 import { Component, Injector } from '@angular/core';
-import { map } from 'rxjs/operators';
-import { Observable } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { DynamicToolbarService } from '../../../../services';
 import { ManageStudentsActionsComponent } from '../manage-students-actions';
@@ -12,9 +10,7 @@ import { AddStudentsDialogComponent } from '../add-students-dialog';
     templateUrl: './manage-students-page.component.html'
 })
 export class ManageStudentsPageComponent {
-    public readonly hasStudents$: Observable<boolean> = this.manageStudentsFacade.students$.pipe(
-        map((students) => !!students.length)
-    );
+    public readonly hasStudents$ = this.manageStudentsFacade.hasStudents$;
 
     constructor(
         private readonly manageStudentsFacade: ManageStudentsFacade,

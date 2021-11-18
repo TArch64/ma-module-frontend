@@ -1,0 +1,15 @@
+<mat-list-item class="mat-list-item--interactive" [class.mat-list-item--removing]="isRemoving">
+    <div class="flex flex--align-center" mat-line *ngIf="!isRemoving">
+        <p class="margin--none">{{ student.user.username }}</p>
+
+        <button
+            class="block margin-left--auto"
+            mat-icon-button
+            color="warn"
+            matTooltip="Remove from course"
+            (click)="removeStudent()"
+        >
+            <mat-icon>delete</mat-icon>
+        </button>
+    </div>
+</mat-list-item>

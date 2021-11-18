@@ -1,0 +1,8 @@
+.student-list__card {
+    padding: 0 0 var(--offset-xs);
+}
+
+.student-list__divider:first-child,
+.student-list__divider + .student-list__divider {
+    display: none;
+}
