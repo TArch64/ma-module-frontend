@@ -5,7 +5,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ApiPathService, SerializerService } from './services';
 import { ButtonLoaderComponent, SquareComponent } from './components';
 import { JoinPipe, PluralizePipe, RoleTitlePipe } from './pipes';
-import { MatMenuOverlayClassDirective, MatLoadingButtonDirective } from './directives';
+import { MatMenuOverlayClassDirective, MatLoadingButtonDirective, MatDisabledButtonDirective } from './directives';
 
 const publicDeclarations = [
     SquareComponent,
@@ -13,7 +13,8 @@ const publicDeclarations = [
     PluralizePipe,
     JoinPipe,
     MatMenuOverlayClassDirective,
-    MatLoadingButtonDirective
+    MatLoadingButtonDirective,
+    MatDisabledButtonDirective
 ];
 
 @NgModule({

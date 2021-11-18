@@ -2,14 +2,27 @@
     <div class="flex flex--align-center" mat-line *ngIf="!isRevoking">
         <p class="margin--none">{{ invitation.email }}</p>
 
-        <button
-            class="block margin-left--auto"
-            mat-icon-button
-            color="warn"
-            matTooltip="Revoke invitation"
-            (click)="revoke()"
-        >
-            <mat-icon>delete</mat-icon>
-        </button>
+        <div class="flex margin-left--auto">
+            <button
+                mat-icon-button
+                color="primary"
+                matTooltip="Resend invitation"
+                appMatDisabledButton
+                (click)="resend()"
+                #resendButtonDisabling="appMatDisabledButton"
+            >
+                <mat-icon>replay</mat-icon>
+            </button>
+
+            <button
+                class="block margin-left--xs"
+                mat-icon-button
+                color="warn"
+                matTooltip="Revoke invitation"
+                (click)="revoke()"
+            >
+                <mat-icon>delete</mat-icon>
+            </button>
+        </div>
     </div>
 </mat-list-item>

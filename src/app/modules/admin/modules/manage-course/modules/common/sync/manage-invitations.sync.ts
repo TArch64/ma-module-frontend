@@ -15,4 +15,9 @@ export class ManageInvitationsSync {
         const url = this.apiPath.buildRolePath(['invitations', invitation.id]);
         return this.httpClient.delete<object>(url);
     }
+
+    public resendInvitation(invitation: PendingInvitation): Observable<object> {
+        const url = this.apiPath.buildRolePath(['invitations', invitation.id, 'resend']);
+        return this.httpClient.post<object>(url, null);
+    }
 }

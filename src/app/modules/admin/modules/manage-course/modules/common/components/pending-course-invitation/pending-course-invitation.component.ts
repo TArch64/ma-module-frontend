@@ -1,8 +1,8 @@
-import { Component, Inject, Input, OnDestroy } from '@angular/core';
-import { Disposable } from '@common/core';
+import { Component, Inject, Input, ViewChild } from '@angular/core';
 import { Observable, switchMap, tap } from 'rxjs';
 import { ConfirmResult, ConfirmService } from '@common/confirm';
 import { ToastrService } from '@common/toastr';
+import { MatDisabledButtonDirective } from '@common/core';
 import { IPendingInvitationService, PENDING_INVITATION_SERVICE } from '../../services';
 import { PendingInvitation } from '../../../../entities';
 
@@ -11,11 +11,12 @@ import { PendingInvitation } from '../../../../entities';
     templateUrl: './pending-course-invitation.component.html',
     styleUrls: ['./pending-course-invitation.component.css']
 })
-export class PendingCourseInvitationComponent implements OnDestroy {
-    private readonly disposable = new Disposable();
-
+export class PendingCourseInvitationComponent {
     @Input()
     public invitation!: PendingInvitation;
+
+    @ViewChild('resendButtonDisabling')
+    public resendButtonDisabling!: MatDisabledButtonDirective;
 
     public isRevoking: boolean = false;
 
@@ -26,16 +27,11 @@ export class PendingCourseInvitationComponent implements OnDestroy {
         private readonly toastr: ToastrService
     ) {}
 
-    public ngOnDestroy(): void {
-        this.disposable.dispose();
-    }
-
     public revoke(): void {
-        const revoking = this.confirmRevoking().pipe(
+        this.confirmRevoking().pipe(
             tap(() => this.isRevoking = true),
             switchMap(() => this.invitationService.revoke(this.invitation))
-        );
-        this.disposable.subscribeTo(revoking, {
+        ).subscribe({
             next: this.onRevoked.bind(this),
             error: this.onRevokeFailed.bind(this)
         });
@@ -54,6 +50,22 @@ export class PendingCourseInvitationComponent implements OnDestroy {
 
     private onRevokeFailed(error: Error): void {
         this.isRevoking = false;
+        this.toastr.show(error.message);
+    }
+
+    public resend(): void {
+        this.invitationService.resend(this.invitation).subscribe({
+            next: this.onResent.bind(this),
+            error: this.onResendFailed.bind(this)
+        });
+    }
+
+    private onResent(): void {
+        this.toastr.show('Successfully sent');
+        this.resendButtonDisabling.disableForTime(10000);
+    }
+
+    private onResendFailed(error: Error): void {
         this.toastr.show(error.message);
     }
 }

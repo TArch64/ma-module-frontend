@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { map, mapTo, tap } from 'rxjs/operators';
 import { IPendingInvitationService } from '../../common';
 import { PendingInvitation } from '../../../entities';
@@ -27,6 +27,6 @@ export class MentorPendingInvitationService implements IPendingInvitationService
     }
 
     public resend(invitation: PendingInvitation): Observable<null> {
-        return of(null);
+        return this.syncService.resendInvitation(invitation).pipe(mapTo(null));
     }
 }

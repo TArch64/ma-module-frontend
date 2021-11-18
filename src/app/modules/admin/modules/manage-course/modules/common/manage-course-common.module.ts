@@ -10,6 +10,7 @@ import { ToastrModule } from '@common/toastr';
 import { ConfirmModule } from '@common/confirm';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatButtonModule } from '@angular/material/button';
+import { CommonCoreModule } from '@common/core';
 import { PendingCourseInvitationComponent, UsersInputComponent } from './components';
 
 const publicDeclarations = [
@@ -28,6 +29,7 @@ const publicDeclarations = [
         MatListModule,
         MatTooltipModule,
         MatButtonModule,
+        CommonCoreModule,
         ToastrModule,
         ConfirmModule
     ],
