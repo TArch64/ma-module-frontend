@@ -10,6 +10,10 @@ export class CommonSeasonsService {
     private readonly currentSeasonSubject = new BehaviorSubject<Season | null>(null);
     public readonly seasons$ = this.seasonsSubject.asObservable();
 
+    public readonly hasSeasons$ = this.seasons$.pipe(
+        map((seasons): boolean => !!seasons.length)
+    );
+
     public readonly currentSeason$ = this.currentSeasonSubject.asObservable();
 
     constructor(private readonly syncService: CommonSeasonSyncService) {}

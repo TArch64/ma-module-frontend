@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { CommonSeasonsService } from './services';
 import { Season } from './entities';
 
@@ -7,6 +8,10 @@ import { Season } from './entities';
 export class CommonSeasonFacade {
     public readonly seasons$ = this.seasonsService.seasons$;
     public readonly currentSeason$ = this.seasonsService.currentSeason$;
+
+    public readonly isSingleSeason$ = this.seasons$.pipe(
+        map((seasons) => seasons.length === 1)
+    );
 
     constructor(private readonly seasonsService: CommonSeasonsService) {}
 

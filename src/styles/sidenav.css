@@ -25,8 +25,8 @@
     transition: background-color 0.2s var(--mat-transition);
 }
 
-.sidenav-selector:hover,
-.sidenav-selector:focus {
+.sidenav-selector:not(.mat-form-field-disabled):hover,
+.sidenav-selector:not(.mat-form-field-disabled):focus {
     background-color: rgba(0, 0, 0, 0.04);
 }
 
@@ -37,7 +37,15 @@
 
 .sidenav-selector .mat-form-field-underline {
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+.sidenav-selector.mat-form-field-disabled .mat-form-field-underline {
+    background-image: none !important;
+}
+
+.sidenav-selector.mat-form-field-disabled .mat-select-arrow {
+    color: transparent !important;
 }
 
 .sidenav-selector .mat-form-field-flex {

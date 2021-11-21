@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { LayoutModule } from '@common/layout';
+import { CommonSeasonModule } from '@common/season';
 import { MentorPageComponent } from './components';
 
 @NgModule({
@@ -8,7 +10,9 @@ import { MentorPageComponent } from './components';
         CommonModule,
         RouterModule.forChild([
             { path: '', component: MentorPageComponent }
-        ])
+        ]),
+        LayoutModule,
+        CommonSeasonModule
     ],
     declarations: [
         MentorPageComponent

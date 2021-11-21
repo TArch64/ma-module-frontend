@@ -1,1 +1,7 @@
-<p>mentor-page works!</p>
+<app-layout>
+    <ng-container appSidenavContent>
+        <app-season-selector *ngIf="hasSeasons$ | async"></app-season-selector>
+    </ng-container>
+
+    <p>mentor-page works!</p>
+</app-layout>
