@@ -1,6 +1,12 @@
 <app-layout>
     <ng-container appSidenavContent>
         <app-season-selector *ngIf="hasSeasons$ | async"></app-season-selector>
+
+        <app-sidenav-link
+            *ngFor="let course of courses$ | async"
+            [title]="course.name"
+            [link]="['/mentor', 'courses', course.id]"
+        ></app-sidenav-link>
     </ng-container>
 
     <p>mentor-page works!</p>

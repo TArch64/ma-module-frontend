@@ -7,6 +7,7 @@ import { MentorFacade } from '../../mentor.facade';
 })
 export class MentorPageComponent {
     public readonly hasSeasons$ = this.facade.hasSeasons$;
+    public readonly courses$ = this.facade.courses$;
 
     constructor(private readonly facade: MentorFacade) {}
 }

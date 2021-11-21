@@ -9,5 +9,5 @@ export class SidenavLinkComponent {
     public title!: string;
 
     @Input()
-    public link!: string;
+    public link!: string | Array<string | number>;
 }

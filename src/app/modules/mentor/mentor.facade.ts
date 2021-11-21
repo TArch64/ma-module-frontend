@@ -8,7 +8,7 @@ import { CoursesService } from './services';
 @Injectable({ providedIn: 'root' })
 export class MentorFacade {
     public readonly hasSeasons$ = this.seasonsService.hasSeasons$;
-    public readonly currentSeason$ = this.seasonsService.currentSeason$;
+    public readonly courses$ = this.coursesService.courses$;
 
     constructor(
         private readonly seasonsService: CommonSeasonsService,
@@ -16,7 +16,7 @@ export class MentorFacade {
     ) {}
 
     public loadCourses(): Observable<Course[]> {
-        return this.currentSeason$.pipe(
+        return this.seasonsService.currentSeason$.pipe(
             captureExistsValues,
             switchMap(() => this.coursesService.loadCourses())
         );
