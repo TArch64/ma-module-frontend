@@ -10,7 +10,6 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { CommonAuthModule } from '@common/auth';
 import { CommonCoreModule } from '@common/core';
 import { LayoutComponent, LayoutContentComponent, LayoutCurrentUserComponent, SidenavLinkComponent } from './components';
-import { LayoutFacade } from './layout.facade';
 import { MatTabRouterLinkDirective } from './directives';
 
 const publicDeclarations = [
@@ -36,9 +35,6 @@ const publicDeclarations = [
     declarations: [
         ...publicDeclarations,
         LayoutCurrentUserComponent
-    ],
-    providers: [
-        LayoutFacade
     ],
     exports: publicDeclarations
 })

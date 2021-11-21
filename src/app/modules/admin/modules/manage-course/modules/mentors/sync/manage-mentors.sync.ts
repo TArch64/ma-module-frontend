@@ -11,7 +11,7 @@ export interface IAddedMentorsResponse {
     invitations: IPendingInvitationJSON[];
 }
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class ManageMentorsSync {
     constructor(
         private readonly httpClient: HttpClient,

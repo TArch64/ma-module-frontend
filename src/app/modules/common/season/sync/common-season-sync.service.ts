@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ISeasonJSON } from '../entities';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class CommonSeasonSyncService {
     constructor(
         private readonly apiPath: ApiPathService,

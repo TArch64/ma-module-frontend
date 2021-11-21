@@ -3,7 +3,7 @@ import { Resolve } from '@angular/router';
 import { Observable } from 'rxjs';
 import { ManageCoursesFacade } from '../manage-courses.facade';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class ManageCoursesResolver implements Resolve<null> {
     constructor(private readonly facade: ManageCoursesFacade) {}
 

@@ -4,7 +4,7 @@ import { ApiPathService, formatValidationHttpResponse } from '@common/core';
 import { HttpClient } from '@angular/common/http';
 import { ISeasonJSON, Season } from '@common/season';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class SeasonManagerSync {
     constructor(
         private readonly apiPath: ApiPathService,

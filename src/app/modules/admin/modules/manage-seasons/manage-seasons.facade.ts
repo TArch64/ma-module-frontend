@@ -4,7 +4,7 @@ import { map, mapTo } from 'rxjs/operators';
 import { CommonSeasonsService, Season } from '@common/season';
 import { ActiveSeasonService } from './services';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class ManageSeasonsFacade {
     public readonly seasons$ = this.commonSeasonsService.seasons$;
 

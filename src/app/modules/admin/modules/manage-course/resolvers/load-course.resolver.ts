@@ -5,7 +5,7 @@ import { switchMap } from 'rxjs/operators';
 import { Course } from '@common/course';
 import { ManageCourseFacade } from '../manage-course.facade';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class LoadCourseResolver implements Resolve<null> {
     constructor(
         private readonly facade: ManageCourseFacade,

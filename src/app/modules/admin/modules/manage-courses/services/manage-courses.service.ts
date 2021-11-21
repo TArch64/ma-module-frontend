@@ -6,7 +6,7 @@ import { CommonSeasonsService } from '@common/season';
 import { CoursesSync, AddCoursePayload } from '../sync';
 import { IAddCourseOptions } from '../entities';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class ManageCoursesService {
     constructor(
         private readonly coursesSync: CoursesSync,

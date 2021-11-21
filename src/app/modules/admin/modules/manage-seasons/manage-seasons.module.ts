@@ -20,9 +20,6 @@ import {
     SeasonsEmptyComponent,
     ManageSeasonsToolbarComponent
 } from './components';
-import { ManageSeasonsFacade } from './manage-seasons.facade';
-import { ActiveSeasonService } from './services';
-import { SeasonManagerSync } from './sync';
 
 @NgModule({
     imports: [
@@ -52,11 +49,6 @@ import { SeasonManagerSync } from './sync';
         SeasonsListComponent,
         SeasonsListItemComponent,
         SeasonsEmptyComponent
-    ],
-    providers: [
-        ManageSeasonsFacade,
-        ActiveSeasonService,
-        SeasonManagerSync
     ]
 })
 export class ManageSeasonsModule {}

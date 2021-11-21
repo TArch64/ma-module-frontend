@@ -4,7 +4,7 @@ import { BehaviorSubject } from 'rxjs';
 import { BannerOptions, BannerRef, IBannerOptions } from '../entities';
 import { BannerTypes } from '../enums';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class BannersService implements OnDestroy {
     private readonly disposable = new Disposable();
     private readonly bannersSubject = new BehaviorSubject<BannerRef[]>([]);

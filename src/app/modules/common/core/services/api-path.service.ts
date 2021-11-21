@@ -4,7 +4,7 @@ import { EnvironmentProvider, IEnvironment } from './environment.provider';
 
 type Path = string | number;
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class ApiPathService {
     private static readonly ROLE_PATH_MAPPING: Record<UserRoles, string> = {
         [UserRoles.STUDENT]: 'student',

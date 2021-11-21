@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { mapTo } from 'rxjs/operators';
 import { CommonSeasonFacade } from '../common-season.facade';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class LoadSeasonsResolver implements Resolve<null> {
     constructor(private readonly seasonsFacade: CommonSeasonFacade) {}
 

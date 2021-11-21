@@ -4,7 +4,7 @@ import { Mentor } from '@common/course';
 import { map } from 'rxjs/operators';
 import { ManageMentorsService, MentorPendingInvitationService } from './services';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class ManageMentorsFacade {
     public readonly mentors$ = this.mentorsService.mentors$;
     public readonly leadMentor$ = this.mentorsService.leadMentor$;

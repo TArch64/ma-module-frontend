@@ -9,7 +9,6 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonFormModule } from '@common/form';
 import { ToastrModule } from '@common/toastr';
-import { AuthFacade } from './auth.facade';
 import { LoginFormComponent, SignInPageComponent } from './components';
 
 @NgModule({
@@ -30,9 +29,6 @@ import { LoginFormComponent, SignInPageComponent } from './components';
     declarations: [
         SignInPageComponent,
         LoginFormComponent
-    ],
-    providers: [
-        AuthFacade
     ]
 })
 export class AuthModule {

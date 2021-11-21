@@ -5,12 +5,13 @@ import { Observable } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 import { DialogSizes } from '@common/dialog';
 import { ConfirmOptions, ConfirmResult, IConfirmOptions } from '../entities';
+import { ConfirmModule } from '../confirm.module';
 
 type ConfirmRef = MatDialogRef<ConfirmDialogComponent>;
 type ConfirmResult$ = Observable<ConfirmResult>;
 
 
-@Injectable()
+@Injectable({ providedIn: ConfirmModule })
 export class ConfirmService {
     constructor(private readonly matDialog: MatDialog) {}
 

@@ -4,7 +4,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { ConfirmService } from './services';
 import { ConfirmDialogComponent } from './components';
 
 @NgModule({
@@ -15,7 +14,6 @@ import { ConfirmDialogComponent } from './components';
         MatButtonModule,
         MatCheckboxModule
     ],
-    providers: [ConfirmService],
     declarations: [ConfirmDialogComponent]
 })
 export class ConfirmModule {}

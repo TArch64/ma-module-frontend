@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { CommonSeasonsService } from './services';
 import { Season } from './entities';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class CommonSeasonFacade {
     public readonly seasons$ = this.seasonsService.seasons$;
     public readonly currentSeason$ = this.seasonsService.currentSeason$;

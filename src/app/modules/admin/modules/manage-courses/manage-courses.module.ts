@@ -20,8 +20,6 @@ import { CommonCourseModule } from '@common/course';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatIconModule } from '@angular/material/icon';
 import { ConfirmModule } from '@common/confirm';
-import { CoursesSync } from './sync';
-import { ManageCoursesService } from './services';
 import { ManageCoursesResolver } from './resolvers';
 import {
     AddCourseDialogComponent,
@@ -30,7 +28,6 @@ import {
     CoursesListItemComponent,
     ManageCoursesPageComponent
 } from './components';
-import { ManageCoursesFacade } from './manage-courses.facade';
 
 @NgModule({
     imports: [
@@ -68,12 +65,6 @@ import { ManageCoursesFacade } from './manage-courses.facade';
         CoursesListComponent,
         CoursesListItemComponent,
         AddCourseDialogComponent
-    ],
-    providers: [
-        ManageCoursesFacade,
-        ManageCoursesService,
-        CoursesSync,
-        ManageCoursesResolver
     ]
 })
 export class ManageCoursesModule {}

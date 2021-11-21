@@ -7,7 +7,7 @@ import { captureExistsValues } from '@common/core';
 import { IAddCourseOptions } from './entities';
 import { ManageCoursesService } from './services';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class ManageCoursesFacade {
     public readonly courses$ = this.repository.courses$;
 

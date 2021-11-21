@@ -6,7 +6,7 @@ import { User } from '../entities';
 import { UserRoles } from '../enums';
 import { CommonAuthFacade } from '../common-auth.facade';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class RoleAccessGuard implements CanActivate {
     private static readonly HOME_URL_COMMANDS: Record<UserRoles, string[]> = {
         [UserRoles.ADMIN]: ['/admin'],

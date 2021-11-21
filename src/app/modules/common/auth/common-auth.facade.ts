@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { CommonAuthService, User } from '@common/auth';
 import { Observable } from 'rxjs';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class CommonAuthFacade {
     constructor(
         private readonly authService: CommonAuthService

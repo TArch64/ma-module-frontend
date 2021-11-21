@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { Course } from '@common/course';
 import { ManageCourseService } from './services';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class ManageCourseFacade {
     constructor(private readonly courseService: ManageCourseService) {}
 

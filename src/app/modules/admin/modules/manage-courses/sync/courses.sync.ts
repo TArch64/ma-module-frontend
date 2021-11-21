@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
 
 export type AddCoursePayload = Omit<ICourseJSON, 'id'>;
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class CoursesSync {
     constructor(
         private readonly apiPath: ApiPathService,

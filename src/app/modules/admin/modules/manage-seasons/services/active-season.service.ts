@@ -4,7 +4,7 @@ import { map, mapTo, tap } from 'rxjs/operators';
 import { CommonSeasonsService, Season } from '@common/season';
 import { SeasonManagerSync } from '../sync';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class ActiveSeasonService {
     constructor(
         private readonly commonService: CommonSeasonsService,

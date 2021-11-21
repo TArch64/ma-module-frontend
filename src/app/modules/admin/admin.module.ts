@@ -5,7 +5,6 @@ import { LayoutModule } from '@common/layout';
 import { CommonSeasonModule } from '@common/season';
 import { MatButtonModule } from '@angular/material/button';
 import { AdminLayoutComponent, AdminPageComponent } from './components';
-import { AdminFacade } from './admin.facade';
 import { CoursesGuard } from './guards';
 
 @NgModule({
@@ -43,10 +42,6 @@ import { CoursesGuard } from './guards';
     declarations: [
         AdminLayoutComponent,
         AdminPageComponent
-    ],
-    providers: [
-        AdminFacade,
-        CoursesGuard
     ]
 })
 export class AdminModule {}

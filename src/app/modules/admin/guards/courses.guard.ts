@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { CommonSeasonsService, Season } from '@common/season';
 import { map } from 'rxjs/operators';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class CoursesGuard implements CanActivate {
     constructor(
         private readonly router: Router,

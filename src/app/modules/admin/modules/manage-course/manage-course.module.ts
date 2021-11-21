@@ -12,7 +12,6 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { PortalModule } from '@angular/cdk/portal';
 import { LoadCourseResolver } from './resolvers';
 import { ManageCoursePageComponent } from './components';
-import { ManageCourseFacade } from './manage-course.facade';
 import { ManageMentorsModule, ManageMentorsPageComponent, ManageStudentsModule, ManageStudentsPageComponent } from './modules';
 
 @NgModule({
@@ -53,10 +52,6 @@ import { ManageMentorsModule, ManageMentorsPageComponent, ManageStudentsModule, 
     ],
     declarations: [
         ManageCoursePageComponent
-    ],
-    providers: [
-        ManageCourseFacade,
-        LoadCourseResolver
     ]
 })
 export class ManageCourseModule {}

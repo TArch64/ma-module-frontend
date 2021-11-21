@@ -4,8 +4,6 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { PortalModule } from '@angular/cdk/portal';
-import { BannersService } from './services';
-import { BannerFacade } from './banner.facade';
 import { BannerComponent, BannersComponent } from './components';
 
 const publicDeclarations = [
@@ -23,10 +21,6 @@ const publicDeclarations = [
     declarations: [
         ...publicDeclarations,
         BannerComponent
-    ],
-    providers: [
-        BannerFacade,
-        BannersService
     ],
     exports: publicDeclarations
 })

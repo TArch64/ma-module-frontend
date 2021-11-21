@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CommonAuthService } from '@common/auth';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { ApiPathService, SerializerService } from './services';
+import { ApiPathService } from './services';
 import { ButtonLoaderComponent, SquareComponent } from './components';
 import { JoinPipe, PluralizePipe, RoleTitlePipe } from './pipes';
 import { MatMenuOverlayClassDirective, MatLoadingButtonDirective, MatDisabledButtonDirective } from './directives';
@@ -21,10 +21,6 @@ const publicDeclarations = [
     imports: [
         CommonModule,
         MatProgressSpinnerModule
-    ],
-    providers: [
-        SerializerService,
-        ApiPathService
     ],
     declarations: [
         ...publicDeclarations,

@@ -18,9 +18,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { ConfirmModule } from '@common/confirm';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { ManageCourseCommonModule } from '../common';
-import { ManageMentorsSync } from './sync';
-import { ManageMentorsFacade } from './manage-mentors.facade';
-import { ManageMentorsService } from './services';
 import {
     AddMentorDialogComponent,
     CourseLeadSelectorComponent,
@@ -65,11 +62,6 @@ const publicDeclarations = [
         AddMentorDialogComponent,
         MentorsListComponent,
         MentorsListItemComponent
-    ],
-    providers: [
-        ManageMentorsFacade,
-        ManageMentorsSync,
-        ManageMentorsService
     ],
     exports: publicDeclarations
 })

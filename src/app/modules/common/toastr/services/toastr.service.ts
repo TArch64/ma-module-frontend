@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ToastrModule } from '../toastr.module';
 
-@Injectable()
+@Injectable({ providedIn: ToastrModule })
 export class ToastrService {
     constructor(private readonly snackBar: MatSnackBar) {}
 

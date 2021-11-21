@@ -6,7 +6,7 @@ import { ManageCourseService } from '../../../services';
 import { ManageMentorsSync } from '../sync';
 import { PendingInvitation } from '../../../entities';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class ManageMentorsService {
     public mentorsSnapshot: Mentor[] = [];
     public readonly mentors$ = this.manageCourseService.course$.pipe(
