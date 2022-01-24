@@ -1,5 +1,8 @@
 version: 2
 
+# dependabot doesn't support YAML aliases
+# https://github.com/dependabot/dependabot-core/issues/2127
+
 updates:
   - package-ecosystem: "bundler"
     directory: "/"
