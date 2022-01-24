@@ -1,14 +1,39 @@
-version: 2
-
-default: &default
-  directory: "/"
-  schedule:
-    interval: "daily"
-  labels:
-    - "Front-end"
-    - "Need Review"
-  separator: "-"
-
 updates:
+  - package-ecosystem: "bundler"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      timezone: "Europe/Kiev"
+      time: "09:00"
+    pull-request-branch-name:
+      separator: "_"
+    labels:
+      - "Back-end"
+      - "Need Review"
+
   - package-ecosystem: "npm"
-    <<: *default
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      timezone: "Europe/Kiev"
+      time: "09:00"
+    pull-request-branch-name:
+      separator: "_"
+    labels:
+      - "Front-end"
+      - "Need Review"
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      timezone: "Europe/Kiev"
+      time: "09:00"
+    pull-request-branch-name:
+      separator: "_"
+    labels:
+      - "Front-end"
+      - "Need Review"
