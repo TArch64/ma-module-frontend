@@ -1,0 +1,14 @@
+version: 2
+
+default: &default
+  directory: "/"
+  schedule:
+    interval: "daily"
+  labels:
+    - "Front-end"
+    - "Need Review"
+  separator: "-"
+
+updates:
+  - package-ecosystem: "npm"
+    <<: *default
