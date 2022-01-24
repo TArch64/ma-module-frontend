@@ -1,36 +1,7 @@
 version: 2
 
-# dependabot doesn't support YAML aliases
-# https://github.com/dependabot/dependabot-core/issues/2127
-
 updates:
-  - package-ecosystem: "bundler"
-    directory: "/"
-    schedule:
-      interval: "weekly"
-      day: "monday"
-      timezone: "Europe/Kiev"
-      time: "09:00"
-    pull-request-branch-name:
-      separator: "_"
-    labels:
-      - "Back-end"
-      - "Need Review"
-
   - package-ecosystem: "npm"
-    directory: "/"
-    schedule:
-      interval: "weekly"
-      day: "monday"
-      timezone: "Europe/Kiev"
-      time: "09:00"
-    pull-request-branch-name:
-      separator: "_"
-    labels:
-      - "Front-end"
-      - "Need Review"
-
-  - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "weekly"
